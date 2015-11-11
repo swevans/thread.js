@@ -1,8 +1,27 @@
-# Usage
-### Creating a Thread
+### Installation
+Include thread.js in your projects like so:
+###### Unminified
+```html
+<script src="thread.js"></script>
+```
+###### Minified
+```html
+<script src="thread.min.js"></script>
+```
+
+### Creating and Destroying Threads
+Simply instantiate a new thread object to create a thread. Call terminate to dispose of it.
+###### Creating Threads
 ```js
+// Create a thread using the new keyword
 var myThread = new Thread();
 ```
+###### Terminating Threads
+```js
+// Terminate will dispose the thread and release it's WebWorker resources
+myThread.terminate();
+```
+
 ### Adding Thread Logic
 ###### Loading Scripts
 Loading an external js file is the quickest way to add lots of logic to a thread. Scripts are loaded synchronously within the thread; no other thread code will execute until the script is loaded and evaluated within the thread's scope.
