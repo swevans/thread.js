@@ -1,4 +1,4 @@
-Thread.js
+# Thread.js
 ### Multi-threaded Programming with Javascript or TypeScript
 *******
 
