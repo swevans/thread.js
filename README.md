@@ -11,3 +11,9 @@ Some info about installation
 
 #Usage
 Some info about usage
+
+
+<ol>
+<li>Worker Queuing - If more than the optimal number of threads are created, later threads will queue until resources become available.</li>
+<li>Event Based Messaging - Messages to and from threads are powered by the widly understood EventTarget interface (addEventListener).</li>
+</ol>
