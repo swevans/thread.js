@@ -3,38 +3,38 @@
 <p>
 Thread.js is an easy to use library for leveraging the power of parallel computing in JavaScript or TypeScript. Thread.js provides an intuitive, no-hassle interface for creating, interacting with, and disposing of Web Workers. 
 </p>
-
+<br/>
 
 ## Download
 Download the latest versions of Thread.js or pull from the repo:
-##### Latest Releases
+**<p>Latest Releases</p>**
 <pre>
 Minified: <a href="http://github.com">thread.min.js</a>
 Unminified: <a href="http://github.com">thread.js</a>
 GitHub: <a href="https://github.com/swevans/thread.js">/swevans/thread.js</a>
 </pre>
-
+<br/>
 
 
 ## Installation
 Include thread.js in your projects like so:
-##### Tag Loading
+**<p>Tag Loading</p>**
 ```html
 <!-- Minified version, recommended for release -->
-<script src="thread.min.js"></script>
+<script src="pathto/thread.min.js"></script>
 
 <!-- Full version, recommended for debugging -->
-<script src="thread.js"></script>
+<script src="pathto/thread.js"></script>
 ```
-
+</br>
 
 
 
 ## Usage
 
-### Creating and Destroying Threads
+#### Creating and Destroying Threads
 Simply instantiate a new thread object to create a thread. Call terminate to dispose of it.
-##### Creation and Disposal
+**<p>Creation and Disposal</p>**
 ```js
 // Create a thread using the new keyword
 var myThread = new Thread();
@@ -44,11 +44,12 @@ var myThread = new Thread();
 // Terminate will dispose the thread and release it's WebWorker resources
 myThread.terminate();
 ```
+<br/>
 
 
-### Adding Thread Logic
+#### Adding Thread Logic
 You can add logic to a thread by loading external scripts or defining script via code. Loading an external js file is the quickest way to add lots of logic to a thread. Scripts are loaded synchronously within the thread; no other thread code will execute until the script is loaded and evaluated within the thread's scope.
-##### Loading Scripts
+**<p>Loading Scripts</p>**
 ```js
 // Loads two scripts into the thread's scope
 // A loads, A evaluates, B loads, B evaluates
