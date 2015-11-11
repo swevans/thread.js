@@ -63,7 +63,6 @@ myThread.importScripts("scriptA.js", "scriptB.js");
 // A and B load, A evaluates, B evaluates
 var myThread = new Thread("scriptA.js", "scriptB.js");
 ```
-<br/>
 
 **<p>Defining Script</p>**
 ```js
