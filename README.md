@@ -1,8 +1,10 @@
-This is s test
+Thread.js
+### Multi-threaded Programming with Javascript or TypeScript
+*******
 
-### Installation
+## Installation
 Include thread.js in your projects like so:
-###### Tag Loading
+#### Tag Loading
 ```html
 <!-- Full version, recommended for debugging -->
 <script src="thread.js"></script>
