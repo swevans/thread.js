@@ -23,8 +23,8 @@ myThread.terminate();
 ```
 
 ### Adding Thread Logic
+You can add logic to a thread by loading external scripts or defining script via code. Loading an external js file is the quickest way to add lots of logic to a thread. Scripts are loaded synchronously within the thread; no other thread code will execute until the script is loaded and evaluated within the thread's scope.
 ###### Loading Scripts
-Loading an external js file is the quickest way to add lots of logic to a thread. Scripts are loaded synchronously within the thread; no other thread code will execute until the script is loaded and evaluated within the thread's scope.
 ```js
 // Loads two scripts into the thread's scope
 // A loads, A evaluates, B loads, B evaluates
@@ -39,8 +39,8 @@ myThread.importScripts("scriptA.js", "scriptB.js");
 // A and B load, A evaluates, B evaluates
 var myThread = new Thread("scriptA.js", "scriptB.js");
 ```
+
 ###### Defining Script
-You can also define script dynamically.
 ```js
 /** An example function to run on a thread. */
 function myEchoFunc(a, b)
