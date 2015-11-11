@@ -7,10 +7,22 @@ Thread.js
 Thread.js is an easy to use library for leveraging the power of parallel computing in JavaScript or TypeScript. Thread.js provides an intuitive, no-hassle interface for creating, interacting with, and disposing of Web Workers. 
 
 # Installation
-Some info about installation
+Include thread.js in your web projects like so:
+```html
+<script src="threadjs.js"></script>
+```
 
 #Usage
-Some info about usage
+
+
+
+
+
+
+
+
+
+
 
 
 <ol>
