@@ -27,11 +27,10 @@ Include thread.js in your projects like so:
 <script src="pathto/thread.js"></script>
 ```
 </br>
-
+</br>
 
 
 ## Usage
-
 #### Creating and Destroying Threads
 Simply instantiate a new thread object to create a thread. Call terminate to dispose of it.
 **<p>Creation and Disposal</p>**
@@ -64,8 +63,9 @@ myThread.importScripts("scriptA.js", "scriptB.js");
 // A and B load, A evaluates, B evaluates
 var myThread = new Thread("scriptA.js", "scriptB.js");
 ```
+<br/>
 
-##### Defining Script
+**<p>Defining Script</p>**
 ```js
 /** An example function to run on a thread. */
 function myEchoFunc(a, b)
@@ -79,6 +79,7 @@ myThread.defineFunc(myEchoFunc);
 // Defines a variable in thread's global scope
 myThread.defineVar("myVarName");
 ```
+<br/>
 
 ### Running Thread Logic
 You can invoke logic on a thread using a few Thread methods.
