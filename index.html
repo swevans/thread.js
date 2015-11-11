@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Thread.js by swevans</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Thread.js</h1>
+      <h2 class="project-tagline">this is some tagline</h2>
+      <a href="https://github.com/swevans/thread.js" class="btn">View on GitHub</a>
+      <a href="https://github.com/swevans/thread.js/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/swevans/thread.js/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h3>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h3>
+
+<p>Include thread.js in your projects like so:</p>
+
+<h6>
+<a id="tag-loading" class="anchor" href="#tag-loading" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tag Loading</h6>
+
+<div class="highlight highlight-text-html-basic"><pre><span class="pl-c">&lt;!-- Full version, recommended for debugging --&gt;</span>
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>thread.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+
+<span class="pl-c">&lt;!-- Minified version, recommended for release --&gt;</span>
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>thread.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
+
+<h3>
+<a id="creating-and-destroying-threads" class="anchor" href="#creating-and-destroying-threads" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating and Destroying Threads</h3>
+
+<p>Simply instantiate a new thread object to create a thread. Call terminate to dispose of it.</p>
+
+<h6>
+<a id="creation-and-disposal" class="anchor" href="#creation-and-disposal" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creation and Disposal</h6>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// Create a thread using the new keyword</span>
+<span class="pl-k">var</span> myThread <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Thread</span>();
+
+<span class="pl-c">// ... Do something with the thread</span>
+
+<span class="pl-c">// Terminate will dispose the thread and release it's WebWorker resources</span>
+myThread.terminate();</pre></div>
+
+<h3>
+<a id="adding-thread-logic" class="anchor" href="#adding-thread-logic" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding Thread Logic</h3>
+
+<p>You can add logic to a thread by loading external scripts or defining script via code. Loading an external js file is the quickest way to add lots of logic to a thread. Scripts are loaded synchronously within the thread; no other thread code will execute until the script is loaded and evaluated within the thread's scope.</p>
+
+<h6>
+<a id="loading-scripts" class="anchor" href="#loading-scripts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Loading Scripts</h6>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// Loads two scripts into the thread's scope</span>
+<span class="pl-c">// A loads, A evaluates, B loads, B evaluates</span>
+myThread.importScripts(<span class="pl-s"><span class="pl-pds">"</span>scriptA.js<span class="pl-pds">"</span></span>);
+myThread.importScripts(<span class="pl-s"><span class="pl-pds">"</span>scriptB.js<span class="pl-pds">"</span></span>);
+
+<span class="pl-c">// You can also load multiple scripts at once</span>
+<span class="pl-c">// A and B load, A evaluates, B evaluates</span>
+myThread.importScripts(<span class="pl-s"><span class="pl-pds">"</span>scriptA.js<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>scriptB.js<span class="pl-pds">"</span></span>);
+
+<span class="pl-c">// Another option is to specify scripts to load in the constructor</span>
+<span class="pl-c">// A and B load, A evaluates, B evaluates</span>
+<span class="pl-k">var</span> myThread <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Thread</span>(<span class="pl-s"><span class="pl-pds">"</span>scriptA.js<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>scriptB.js<span class="pl-pds">"</span></span>);</pre></div>
+
+<h6>
+<a id="defining-script" class="anchor" href="#defining-script" aria-hidden="true"><span class="octicon octicon-link"></span></a>Defining Script</h6>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">/** An example function to run on a thread. */</span>
+<span class="pl-k">function</span> <span class="pl-en">myEchoFunc</span>(<span class="pl-smi">a</span>, <span class="pl-smi">b</span>)
+{
+  <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>Echo on thread: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> a <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span> <span class="pl-pds">"</span></span> <span class="pl-k">+</span> b);
+}
+
+<span class="pl-c">// Copies a named function to the thread's global scope</span>
+myThread.defineFunc(myEchoFunc);
+
+<span class="pl-c">// Defines a variable in thread's global scope</span>
+myThread.defineVar(<span class="pl-s"><span class="pl-pds">"</span>myVarName<span class="pl-pds">"</span></span>);</pre></div>
+
+<h3>
+<a id="running-thread-logic" class="anchor" href="#running-thread-logic" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running Thread Logic</h3>
+
+<p>You can invoke logic on a thread using a few Thread methods.</p>
+
+<h6>
+<a id="calling-functions" class="anchor" href="#calling-functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Calling Functions</h6>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// You can call any named function that is loaded or defined in the thread</span>
+<span class="pl-c">// You may optionally provide a list of paramaters</span>
+<span class="pl-c">// Parameters may be any json cloneable object</span>
+myThread.<span class="pl-c1">call</span>(<span class="pl-s"><span class="pl-pds">"</span>myEchoFunc<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>My name is: <span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Bob<span class="pl-pds">"</span></span>); <span class="pl-c">// supply 2 params</span>
+myThread.<span class="pl-c1">call</span>(<span class="pl-s"><span class="pl-pds">"</span>someOtherFunc<span class="pl-pds">"</span></span>);                     <span class="pl-c">// no params</span>
+myThread.<span class="pl-c1">call</span>(<span class="pl-s"><span class="pl-pds">"</span>myNamespace.anotherFunc<span class="pl-pds">"</span></span>);</pre></div>
+
+<h6>
+<a id="anonymous-functions" class="anchor" href="#anonymous-functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Anonymous Functions</h6>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// You can also temporarily define a function and call it once</span>
+<span class="pl-c">// You can pass the name of a named function or an anonymouse function</span>
+<span class="pl-c">// Exec will temporarily define the function, then call it</span>
+myThread.<span class="pl-c1">exec</span>(<span class="pl-k">function</span>(<span class="pl-smi">param1</span>) { <span class="pl-c">/* do something */</span> }, <span class="pl-s"><span class="pl-pds">"</span>paramValue<span class="pl-pds">"</span></span>);</pre></div>
+
+<h6>
+<a id="constructing-objects" class="anchor" href="#constructing-objects" aria-hidden="true"><span class="octicon octicon-link"></span></a>Constructing Objects</h6>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// You can also construct any named function in the thread</span>
+<span class="pl-c">// You can optionally provide a list of paramaters</span>
+<span class="pl-c">// This example constructs MyClassName with a string and object param</span>
+myThread.construct(<span class="pl-s"><span class="pl-pds">"</span>MyClassName<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>param1<span class="pl-pds">"</span></span>, {someIndex<span class="pl-k">:</span> <span class="pl-c1">99</span>});
+myThread.construct(<span class="pl-s"><span class="pl-pds">"</span>myNamespace.MyNamespacedClass<span class="pl-pds">"</span></span>);  <span class="pl-c">// You can use namespaces</span></pre></div>
+
+<h1>
+<a id="threadjs" class="anchor" href="#threadjs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Thread.js</h1>
+
+<h3>
+<a id="multi-threaded-programming-with-javascript-or-typescript" class="anchor" href="#multi-threaded-programming-with-javascript-or-typescript" aria-hidden="true"><span class="octicon octicon-link"></span></a>Multi-threaded Programming with Javascript or TypeScript</h3>
+
+<hr>
+
+<p>Thread.js is an easy to use library for leveraging the power of parallel computing in JavaScript or TypeScript. Thread.js provides an intuitive, no-hassle interface for creating, interacting with, and disposing of Web Workers. </p>
+
+<h1>
+<a id="installation-1" class="anchor" href="#installation-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h1>
+
+<p>Include thread.js in your web projects like so:</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>threadjs.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
+
+<h1>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h1>
+
+<ol>
+<li>Worker Queuing - If more than the optimal number of threads are created, later threads will queue until resources become available.</li>
+<li>Event Based Messaging - Messages to and from threads are powered by the widly understood EventTarget interface (addEventListener).</li>
+</ol>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/swevans/thread.js">Thread.js</a> is maintained by <a href="https://github.com/swevans">swevans</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
