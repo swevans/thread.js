@@ -25,8 +25,8 @@ Include thread.js in your projects like so:
 
 <!-- Full version, recommended for debugging -->
 <script src="pathto/thread.js"></script>
+
 ```
-</br>
 </br>
 
 
