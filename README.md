@@ -11,13 +11,8 @@ Download the latest versions of Thread.js or pull from the repo:
 <pre>
 Minified: <a href="http://github.com">thread.min.js</a>
 Unminified: <a href="http://github.com">thread.js</a>
+GitHub: <a href="https://github.com/swevans/thread.js">/swevans/thread.js</a>
 </pre>
-
-##### Repository
-<pre>
-GitHub: <a href="http://github.com">thread.js</a>
-</pre>
-
 
 
 
