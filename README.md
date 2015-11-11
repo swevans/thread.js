@@ -1,21 +1,43 @@
 # Thread.js
-### Multi-threaded Programming with Javascript or TypeScript
-*******
+**Multi-threaded Programming with Javascript or TypeScript**<br/>
+Thread.js is an easy to use library for leveraging the power of parallel computing in JavaScript or TypeScript. Thread.js provides an intuitive, no-hassle interface for creating, interacting with, and disposing of Web Workers. 
+
+
+## Download
+Download the latest versions of Thread.js or pull from the repo:
+##### Latest Releases
+<pre>
+Minified: <a href="http://github.com">thread.min.js</a>
+Unminified: <a href="http://github.com">thread.js</a>
+</pre>
+
+##### Repository
+<pre>
+GitHub: <a href="http://github.com">thread.js</a>
+</pre>
+
+
+
 
 ## Installation
 Include thread.js in your projects like so:
-#### Tag Loading
+##### Tag Loading
 ```html
-<!-- Full version, recommended for debugging -->
-<script src="thread.js"></script>
-
 <!-- Minified version, recommended for release -->
 <script src="thread.min.js"></script>
+
+<!-- Full version, recommended for debugging -->
+<script src="thread.js"></script>
 ```
+
+
+
+
+## Usage
 
 ### Creating and Destroying Threads
 Simply instantiate a new thread object to create a thread. Call terminate to dispose of it.
-###### Creation and Disposal
+##### Creation and Disposal
 ```js
 // Create a thread using the new keyword
 var myThread = new Thread();
@@ -26,9 +48,10 @@ var myThread = new Thread();
 myThread.terminate();
 ```
 
+
 ### Adding Thread Logic
 You can add logic to a thread by loading external scripts or defining script via code. Loading an external js file is the quickest way to add lots of logic to a thread. Scripts are loaded synchronously within the thread; no other thread code will execute until the script is loaded and evaluated within the thread's scope.
-###### Loading Scripts
+##### Loading Scripts
 ```js
 // Loads two scripts into the thread's scope
 // A loads, A evaluates, B loads, B evaluates
@@ -44,7 +67,7 @@ myThread.importScripts("scriptA.js", "scriptB.js");
 var myThread = new Thread("scriptA.js", "scriptB.js");
 ```
 
-###### Defining Script
+##### Defining Script
 ```js
 /** An example function to run on a thread. */
 function myEchoFunc(a, b)
@@ -61,7 +84,7 @@ myThread.defineVar("myVarName");
 
 ### Running Thread Logic
 You can invoke logic on a thread using a few Thread methods.
-###### Calling Functions
+##### Calling Functions
 ```js
 // You can call any named function that is loaded or defined in the thread
 // You may optionally provide a list of paramaters
@@ -71,7 +94,7 @@ myThread.call("someOtherFunc");                     // no params
 myThread.call("myNamespace.anotherFunc");
 ```
 
-###### Anonymous Functions
+##### Anonymous Functions
 ```js
 // You can also temporarily define a function and call it once
 // You can pass the name of a named function or an anonymouse function
@@ -79,7 +102,7 @@ myThread.call("myNamespace.anotherFunc");
 myThread.exec(function(param1) { /* do something */ }, "paramValue");
 ```
 
-###### Constructing Objects
+##### Constructing Objects
 ```js
 // You can also construct any named function in the thread
 // You can optionally provide a list of paramaters
@@ -87,28 +110,6 @@ myThread.exec(function(param1) { /* do something */ }, "paramValue");
 myThread.construct("MyClassName", "param1", {someIndex: 99});
 myThread.construct("myNamespace.MyNamespacedClass");  // You can use namespaces
 ```
-
-
-
-Thread.js
-===========
-
-### Multi-threaded Programming with Javascript or TypeScript
-*******
-
-Thread.js is an easy to use library for leveraging the power of parallel computing in JavaScript or TypeScript. Thread.js provides an intuitive, no-hassle interface for creating, interacting with, and disposing of Web Workers. 
-
-# Installation
-Include thread.js in your web projects like so:
-```html
-<script src="threadjs.js"></script>
-```
-
-#Usage
-
-
-
-
 
 
 
