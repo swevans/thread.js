@@ -1,23 +1,23 @@
 ### Installation
 Include thread.js in your projects like so:
-###### Unminified
+###### Tag Loading
 ```html
+<!-- Full version, recommended for debugging -->
 <script src="thread.js"></script>
-```
-###### Minified
-```html
+
+<!-- Minified version, recommended for release -->
 <script src="thread.min.js"></script>
 ```
 
 ### Creating and Destroying Threads
 Simply instantiate a new thread object to create a thread. Call terminate to dispose of it.
-###### Creating Threads
+###### Creation and Disposal
 ```js
 // Create a thread using the new keyword
 var myThread = new Thread();
-```
-###### Terminating Threads
-```js
+
+// ... Do something with the thread
+
 // Terminate will dispose the thread and release it's WebWorker resources
 myThread.terminate();
 ```
