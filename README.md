@@ -1,3 +1,4 @@
-# thread.js
+# Thread.js GitHub Pages Repo
 
-This is the github pages repo. Nothing to see here. Move along.
+Please find the project repo here:
+https://github.com/swevans/thread.js
