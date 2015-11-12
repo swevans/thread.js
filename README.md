@@ -596,6 +596,7 @@ There are many different ways to expand upon Thread.js. Feel free to weigh in on
 ## Under the Hood
 For those who already understand Web Workers, here a few details about how Thread.js works.
 ###### Worker Types:
+* Thread.js only uses dedicated workers.
 * Thread.js uses <a target="_blank" href="http://www.html5rocks.com/en/tutorials/workers/basics/#toc-inlineworkers">inline workers</a> whenever possible. IE10 is the only known browser that does not support inline workers.
 * Thread.js currently uses the web worker API <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/importScripts">importScripts</a> function to load scripts in a thread. This limits non-inline workers and script importing to the same origin. 
  
@@ -607,7 +608,7 @@ For those who already understand Web Workers, here a few details about how Threa
 * Whenever a new worker is created, it is immediately passed all of the threadjs library, making the library available on that thread. 
 
 ###### Working Directory, Library URL, and CORS:
-* Threadjs maintains a string url to the working directory of the web page. This url is passed to all threads to allow script loading when workers are not also running in the page location. You can find this value in Thread.workingDirectory.
+* Threadjs maintains a string url to the working directory of the web page. This url is passed to all threads to allow script loading when workers are not running in the page location. You can find this value in Thread.workingDirectory.
 * Threadjs needs to know its own library script url. This is determined when the library is loaded by looking at the last script tag loaded in the DOM. If you load thread.js via XHR / jQuery / some other means, you will need to set the threadjs.url property immediately after importing the library.
 
 ###### Event System:
