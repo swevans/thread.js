@@ -284,7 +284,6 @@ Thread.js works anywhere that WebWorkers are supported.
 <li>IE10: Because IE10 uses url based workers, it is subject to <a href="http://www.html5rocks.com/en/tutorials/cors/">CORS limitations</a>. There may be a fix coming for this in the future, but we'll have to see how much of an issue it is!</li>
 </ol>
 <br/>
-<br/>
 
 
 ## Advanced Topics
@@ -392,11 +391,19 @@ As of now, Thread.js only supports copying data between threads. Transferrable o
 </p>
 <br/>
 
-* Asynchronously Loading Thread.js
-* Cross Domain Security (CORS)
-* Thread Queuing, Max Threads, and Thread Lock
-* Memory Optimization
-* Debugging & Error Handling
+##### Asynchronously Loading Thread.js
+<br/>
+
+##### Cross Domain Security (CORS)
+<br/>
+
+##### Thread Queuing, Max Threads, and Thread Lock
+<br/>
+
+##### Memory Optimization
+<br/>
+
+##### Debugging & Error Handling
 <br/>
 <br/>
 
