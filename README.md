@@ -151,13 +151,13 @@ The event example below sends a ping event to a thread and the thread sends a po
 /** Defines the code that will run in the thread. */
 function threadCode()
 {
-  	/** Handles ping events sent to the thead. */
-  	function pingHandler(evt) 
+	/** Handles ping events sent to the thead. */
+	function pingHandler(evt) 
 	{
-    		// Send back a pong
-    		Thread.parent.postEvent("pong", "Hi from thread " + Thread.threadID);
-  	}
-  	
+		// Send back a pong
+		Thread.parent.postEvent("pong", "Hi from thread " + Thread.threadID);
+	}
+	
 	// Watch for ping events from the parent
 	Thread.parent.addEventListener("ping", pingHandler);
 }
@@ -166,7 +166,7 @@ function threadCode()
 function pongHandler(evt) 
 {
 	console.log("Received pong from thread!");
-  	console.log(" Got message: " + evt.data;
+	console.log(" Got message: " + evt.data);
 }
 
 // Create a new thread and watch for pong events from it
@@ -178,6 +178,11 @@ myThread.addScript(threadCode);
 
 // Send a ping event to the thread
 myThread.postEvent("ping");
+```
+
+###### Messages Example
+```js
+
 ```
 
 
