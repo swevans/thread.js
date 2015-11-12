@@ -466,7 +466,7 @@ var myThread = new Thread(threadCode);
 <a name="passingData"></a>
 ##### Passing Data Between Threads
 <p>
-Objects are passed between threads via cloning. The actual instance of the objects are not shared. This is a limitation of the Web Worker API. An additional limitation is that you cannot pass objects that contain native code (ie HTMLElements).
+Objects are passed between threads via cloning. The actual instances of the objects are not shared. This is a limitation of the Web Worker API. An additional limitation is that you cannot pass objects that contain native code (ie HTMLElements).
 </p>
 <p>
 One exception is that you may post native events (like a mouse event) between threads using postEvent(someNativeEvent). This is accomplished by creating a partial copy of the native event as a ThreadEvent.
