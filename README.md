@@ -42,6 +42,7 @@ var myThread = new Thread();
 // ... Do something with the thread
 
 // Terminate will dispose the thread and release it's WebWorker resources
+// Any pending messages or events posted to the thread will not execute
 myThread.terminate();
 ```
 <br/>
@@ -74,16 +75,16 @@ function myEchoFunc(a, b)
 }
 
 // Copies a named function to the thread's global scope
-myThread.defineFunc(myEchoFunc);
+myThread.define(myEchoFunc);
 
 // Defines a variable in thread's global scope
-myThread.defineVar("myVarName");
+myThread.define("myVarName");
 ```
 <br/>
 
 
 #### Running Thread Logic
-You can invoke logic on a thread using a few Thread methods.
+You can invoke logic on a thread using a few thread methods.
 ##### Calling Functions
 ```js
 // You can call any named function that is loaded or defined in the thread
@@ -110,11 +111,70 @@ myThread.exec(function(param1) { /* do something */ }, "paramValue");
 myThread.construct("MyClassName", "param1", {someIndex: 99});
 myThread.construct("myNamespace.MyNamespacedClass");  // You can use namespaces
 ```
+
+##### Eval
+```js
+// You can also evaluate any javascript in the threads scope
+// There are generally better ways to do things, but this 
+// function can be handy from time to time
+myThread.eval("console.log('hi from the thread!');");
+```
 <br/>
 
+#### Communicating with Threads
+You can communicate with threads using events or messages. Events are more flexible and powerful. The event example below sends a ping event to a thread and the thread sends a pong event back.
+##### Posting and Catching in Main Thread
+```js
+////// FILE: index.html
+// Start a thread to communicate with
+var myThread = new Thread("myThreadCode.js"); // load thread code
+
+/** 
+ * Handles "pong" events from the parent. Sends back a pong event.
+ * @param evt The event that was supplied, in this case a ThreadEvent.
+ *  supplied data is stored in the .data member of the event.
+ */
+function pongHandler(evt)
+{
+  // Do something with the data
+  var responseData = evt.data;
+  console.log("Main thread got pong: " + responseData.text);
+}
+
+// Watch for a pong event on the thread
+myThread.addEventListener("pong", pongHandler);
+
+// Post an event with a type and some optional data
+var someData = { text: "hello world!" };
+myThread.postEvent("ping", someData);
+```
+##### Posting and Catching in Child Thread
+```js
+////// FILE: myThreadCode.js
+/** 
+ * Handles "ping" events from the parent. Sends back a pong event.
+ * @param evt The event that was supplied, in this case a ThreadEvent. 
+ *  supplied data is stored in the .data member of the event.
+ */
+function pingHandler(evt)
+{
+  // Do something with the data
+  var someData = evt.data;
+  console.log("Thread got ping: " + someData.text);
+  
+  // Send back pong event with other data
+  var responseData = { text: someData.text + " received" }
+  Thread.parent.postEvent("pong", responseData);
+}
+
+// Listen for the ping event from the parent
+Thread.parent.addEventListener("ping", pingHandler);
+```
 
 
 
+
+<br/>
 
 
 
