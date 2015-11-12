@@ -35,6 +35,8 @@
  - Wrapper for objects constructed on the thread, so you can call functions directly on them
  - Wrapper for function calls on the thread so you can tell when they're complete and get the return result
  - Change import scripts to use XHR so CORS (and thus IE10 everywhere) is supported
+ - Add support for transferrable objects
+ - Add support for synced objects
  */
  
 /**
@@ -63,23 +65,26 @@ module threadjs
 	/** The URL of the threadjs library script file. This member is automatically set if you use synchronous tag loading of the library (recommended). */
 	export var url:string = null;
 	
+	/** Indicates if inline (Object URL and Blob) workers are supported. True by default, set to false for debugging purposes. */
+	export var allowInlineWorkers:boolean = true;
+	
 	/** Gets or the maximum number of alive threads. If there are more threads than the new cap, they will remain alive. 
 	Only valid on the main thread! Be ware of setting this value too high.*/
-	Object.defineProperty(threadjs, "maxThreads",
+	Object.defineProperty(threadjs, "maxWorkers",
 	{
 		get: function()
 		{
-			if (!Thread.isMainThread) throw new Error("maxThreads is only valid on the main thread!");
-			return (<any>Thread)._maxThreads; 
+			if (!Thread.isMainThread) throw new Error("maxWorkers is only valid on the main thread!");
+			return (<any>Thread)._maxWorkers; 
 		},
 		set: function(value)
 		{
-			if (!Thread.isMainThread) throw new Error("maxThreads is only valid on the main thread!");
+			if (!Thread.isMainThread) throw new Error("maxWorkers is only valid on the main thread!");
 			if (value < 1) 
 			{
 				try
 				{
-					console.warn("Setting maxThreads below 1 will result in no threads starting!");
+					console.warn("Setting maxWorkers below 1 will result in no threads starting!");
 				}
 				catch(err) {}
 			}
@@ -91,11 +96,11 @@ module threadjs
 			{
 				try
 				{
-					console.warn("Setting maxThreads above 16 may result in a browser crash!");
+					console.warn("Setting maxWorkers above 16 may result in a browser crash!");
 				}
 				catch(err) {}
 			}
-			(<any>Thread)._maxThreads = value; 
+			(<any>Thread)._maxWorkers = value; 
 			(<any>Thread).permitCheck(); 
 		}
 	});

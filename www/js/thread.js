@@ -33,6 +33,8 @@ FUTURE IDEAS:
 - Wrapper for objects constructed on the thread, so you can call functions directly on them
 - Wrapper for function calls on the thread so you can tell when they're complete and get the return result
 - Change import scripts to use XHR so CORS (and thus IE10 everywhere) is supported
+- Add support for transferrable objects
+- Add support for synced objects
 */
 /**
  * @private Assert that the threadjs library is not already defined by checking for the namespace existance
@@ -54,20 +56,22 @@ var threadjs;
 (function (threadjs) {
     /** The URL of the threadjs library script file. This member is automatically set if you use synchronous tag loading of the library (recommended). */
     threadjs.url = null;
+    /** Indicates if inline (Object URL and Blob) workers are supported. True by default, set to false for debugging purposes. */
+    threadjs.allowInlineWorkers = true;
     /** Gets or the maximum number of alive threads. If there are more threads than the new cap, they will remain alive.
     Only valid on the main thread! Be ware of setting this value too high.*/
-    Object.defineProperty(threadjs, "maxThreads", {
+    Object.defineProperty(threadjs, "maxWorkers", {
         get: function () {
             if (!threadjs.Thread.isMainThread)
-                throw new Error("maxThreads is only valid on the main thread!");
-            return threadjs.Thread._maxThreads;
+                throw new Error("maxWorkers is only valid on the main thread!");
+            return threadjs.Thread._maxWorkers;
         },
         set: function (value) {
             if (!threadjs.Thread.isMainThread)
-                throw new Error("maxThreads is only valid on the main thread!");
+                throw new Error("maxWorkers is only valid on the main thread!");
             if (value < 1) {
                 try {
-                    console.warn("Setting maxThreads below 1 will result in no threads starting!");
+                    console.warn("Setting maxWorkers below 1 will result in no threads starting!");
                 }
                 catch (err) { }
             }
@@ -76,11 +80,11 @@ var threadjs;
             }
             if (value > 16) {
                 try {
-                    console.warn("Setting maxThreads above 16 may result in a browser crash!");
+                    console.warn("Setting maxWorkers above 16 may result in a browser crash!");
                 }
                 catch (err) { }
             }
-            threadjs.Thread._maxThreads = value;
+            threadjs.Thread._maxWorkers = value;
             threadjs.Thread.permitCheck();
         }
     });
@@ -419,7 +423,7 @@ var threadjs;
         /**
          * Creates a new thread instance. Listen for events on the instance to capture events coming
          * from the thread.
-         * @param scrs (optional) An ordered listing of script urls to load.
+         * @param srcs (optional) An ordered listing of script urls, script definition functions, or scripts tags of script to load.
          * @constructor
          * @extends {threadjs.EventDispatcher}
          */
@@ -505,7 +509,7 @@ var threadjs;
             if (url.indexOf("://") < 0)
                 url = Thread.workingDirectory + url;
             // Create the worker
-            if (typeof (URL) !== "undefined") {
+            if (threadjs.allowInlineWorkers && typeof (URL) !== "undefined") {
                 // Use blobs if possible
                 var workerBlobStr = "importScripts('" + url + "');";
                 this._workerURL = URL.createObjectURL(new Blob([workerBlobStr]));
@@ -531,8 +535,15 @@ var threadjs;
             // Initialize the thread worker right away
             this.postMessage({ threadjsCmd: "init", workingDirectory: Thread.workingDirectory, url: url, tid: this._tid });
             // Import scripts right away if specified
-            if (this._initSrcs.length > 0)
-                this.importScripts.apply(this, this._initSrcs);
+            if (this._initSrcs.length > 0) {
+                for (var i = 0; i < this._initSrcs.length; ++i) {
+                    var src = this._initSrcs[i];
+                    if (typeof (src) === "string")
+                        this.importScripts(src);
+                    else
+                        this.addScripts(src);
+                }
+            }
             // Post any pending messages
             if (this._inbox !== null) {
                 for (var i = 0; i < this._inbox.length; ++i) {
@@ -605,13 +616,20 @@ var threadjs;
         };
         /**
          * Adds the script within the supplied function to the thread's global scope.
-         * @param funcOrScriptTag A container function that holds all the script to add, or an
+         * @param funcOrScriptTags An ordered list of container functions or script tags that hold script to load
          */
-        Thread.prototype.addScript = function (funcOrScriptTag) {
-            if (typeof (funcOrScriptTag) === "function")
-                this.exec(funcOrScriptTag);
-            else
-                this.eval(funcOrScriptTag.innerHTML);
+        Thread.prototype.addScripts = function () {
+            var funcOrScriptTags = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                funcOrScriptTags[_i - 0] = arguments[_i];
+            }
+            for (var i = 0; i < funcOrScriptTags.length; ++i) {
+                var funcOrScriptTag = funcOrScriptTags[i];
+                if (typeof (funcOrScriptTag) === "function")
+                    this.exec(funcOrScriptTag);
+                else
+                    this.eval(funcOrScriptTag.innerHTML);
+            }
         };
         /**
          * Defines a function in the thread's global scope, the function should be named for later use.
@@ -739,7 +757,7 @@ var threadjs;
             // Push the requested id
             Thread._pendingThreadIds.push(tid);
             // Check to see if we can spawn
-            if (Thread._liveThreadIds.length < Thread._maxThreads) {
+            if (Thread._liveThreadIds.length < Thread._maxWorkers) {
                 Thread.permit(tid);
             }
         };
@@ -749,7 +767,7 @@ var threadjs;
         Thread.permitCheck = function () {
             if (!Thread.isMainThread)
                 return;
-            while (Thread._pendingThreadIds.length > 0 && Thread._liveThreadIds.length < Thread._maxThreads) {
+            while (Thread._pendingThreadIds.length > 0 && Thread._liveThreadIds.length < Thread._maxWorkers) {
                 Thread.permit(Thread._pendingThreadIds[0]);
             }
         };
@@ -874,8 +892,8 @@ var threadjs;
         Thread._pendingThreadIds = new Array();
         /** @private The list of alive thread ids, only valid on the main thread. */
         Thread._liveThreadIds = new Array();
-        /** @private The maximum number of threads. Totally caps out at like 20ish. Depends on hardware. */
-        Thread._maxThreads = 4;
+        /** @private The maximum number of workers. Totally caps out at like 16. Depends on hardware. */
+        Thread._maxWorkers = 4;
         return Thread;
     })(threadjs.EventDispatcher);
     threadjs.Thread = Thread;
@@ -884,12 +902,12 @@ var threadjs;
     (function () {
         // Set up the static thread members
         if (typeof (Window) !== "undefined") {
-            var maxThreads = navigator.hardwareConcurrency || 4;
-            if (maxThreads < 1)
-                maxThreads = 1;
-            else if (maxThreads > 16)
-                maxThreads = 16;
-            Thread._maxThreads = maxThreads;
+            var maxWorkers = navigator.hardwareConcurrency || 4;
+            if (maxWorkers < 1)
+                maxWorkers = 1;
+            else if (maxWorkers > 16)
+                maxWorkers = 16;
+            Thread._maxWorkers = maxWorkers;
             Thread.isMainThread = true;
             Thread.workingDirectory = document.location.toString().substring(0, document.location.toString().lastIndexOf('/') + 1);
         }

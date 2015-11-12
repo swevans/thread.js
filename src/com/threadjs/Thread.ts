@@ -92,8 +92,8 @@ module threadjs
 		/** @private The list of alive thread ids, only valid on the main thread. */
 		private static _liveThreadIds:Array<string> = new Array<string>();
 		
-		/** @private The maximum number of threads. Totally caps out at like 20ish. Depends on hardware. */
-		private static _maxThreads:number = 4;
+		/** @private The maximum number of workers. Totally caps out at like 16. Depends on hardware. */
+		private static _maxWorkers:number = 4;
 		//}
 		
 		
@@ -134,11 +134,11 @@ module threadjs
 		/**
 		 * Creates a new thread instance. Listen for events on the instance to capture events coming 
 		 * from the thread.
-		 * @param scrs (optional) An ordered listing of script urls to load.
+		 * @param srcs (optional) An ordered listing of script urls, script definition functions, or scripts tags of script to load.
 		 * @constructor
 		 * @extends {threadjs.EventDispatcher}
 		 */
-		constructor(...srcs:Array<string>)
+		constructor(...srcs:Array<any>)
 		{
 			super();
 			
@@ -179,7 +179,7 @@ module threadjs
 			if (url.indexOf("://") < 0) url = Thread.workingDirectory + url;
 			
 			// Create the worker
-			if (typeof(URL) !== "undefined")
+			if (threadjs.allowInlineWorkers && typeof(URL) !== "undefined")
 			{
 				// Use blobs if possible
 				var workerBlobStr:string = "importScripts('" + url + "');";
@@ -212,7 +212,15 @@ module threadjs
 			this.postMessage({threadjsCmd: "init", workingDirectory: Thread.workingDirectory, url: url, tid: this._tid});
 			
 			// Import scripts right away if specified
-			if (this._initSrcs.length > 0) this.importScripts.apply(this, this._initSrcs);
+			if (this._initSrcs.length > 0)
+			{
+				for (var i = 0; i < this._initSrcs.length; ++i)
+				{
+					var src = this._initSrcs[i];
+					if (typeof(src) === "string") this.importScripts(src);
+					else this.addScripts(src);
+				}
+			}
 			
 			// Post any pending messages
 			if (this._inbox !== null)
@@ -299,12 +307,16 @@ module threadjs
 		
 		/**
 		 * Adds the script within the supplied function to the thread's global scope.
-		 * @param funcOrScriptTag A container function that holds all the script to add, or an 
+		 * @param funcOrScriptTags An ordered list of container functions or script tags that hold script to load
 		 */
-		public addScript(funcOrScriptTag:any):void
+		public addScripts(...funcOrScriptTags:Array<any>):void
 		{
-			if (typeof(funcOrScriptTag) === "function") this.exec(funcOrScriptTag);
-			else this.eval(funcOrScriptTag.innerHTML);
+			for (var i = 0; i < funcOrScriptTags.length; ++i)
+			{
+				var funcOrScriptTag = funcOrScriptTags[i];
+				if (typeof(funcOrScriptTag) === "function") this.exec(funcOrScriptTag);
+				else this.eval(funcOrScriptTag.innerHTML);
+			}
 		}
 		
 		/**
@@ -444,7 +456,7 @@ module threadjs
 			Thread._pendingThreadIds.push(tid);
 			
 			// Check to see if we can spawn
-			if (Thread._liveThreadIds.length < Thread._maxThreads)
+			if (Thread._liveThreadIds.length < Thread._maxWorkers)
 			{
 				Thread.permit(tid);
 			}
@@ -457,7 +469,7 @@ module threadjs
 		{
 			if (!Thread.isMainThread) return;
 			
-			while (Thread._pendingThreadIds.length > 0 && Thread._liveThreadIds.length < Thread._maxThreads)
+			while (Thread._pendingThreadIds.length > 0 && Thread._liveThreadIds.length < Thread._maxWorkers)
 			{
 				Thread.permit(Thread._pendingThreadIds[0]);
 			}
@@ -606,10 +618,10 @@ module threadjs
 		// Set up the static thread members
 		if (typeof(Window) !== "undefined")
 		{
-			var maxThreads = (<any>navigator).hardwareConcurrency || 4;
-			if (maxThreads < 1) maxThreads = 1;
-			else if (maxThreads > 16) maxThreads = 16;
-			(<any>Thread)._maxThreads = maxThreads;
+			var maxWorkers = (<any>navigator).hardwareConcurrency || 4;
+			if (maxWorkers < 1) maxWorkers = 1;
+			else if (maxWorkers > 16) maxWorkers = 16;
+			(<any>Thread)._maxWorkers = maxWorkers;
 			
 			Thread.isMainThread = true;
 			Thread.workingDirectory = document.location.toString().substring(0, document.location.toString().lastIndexOf('/') + 1);

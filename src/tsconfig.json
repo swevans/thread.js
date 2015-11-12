@@ -5,7 +5,7 @@
         "target": "es5",
         "noImplicitAny": true,
 		"removeComments": false,
-		"out":    "../www/js/threadjs/threadjs-1.0.js",
+		"out":    "../www/js/thread.js",
         "rootDir": ".",
         "sourceMap": false
     },
