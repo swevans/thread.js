@@ -10,8 +10,8 @@ Thread.js is an easy to use library for leveraging the power of parallel computi
 Download the latest versions of Thread.js or pull from the repo:
 ###### Latest Release
 <pre>
-Minified: <a href="http://spencer-evans.com/share/github/threads/js/threadjs/threadjs-1.0.min.js" download>thread.min.js</a>
-Unminified: <a href="http://spencer-evans.com/share/github/threads/js/threadjs/threadjs-1.0.js" download>thread.js</a>
+Minified: <a download href="http://spencer-evans.com/share/github/threads/js/threadjs/threadjs-1.0.min.js">thread.min.js</a>
+Unminified: <a download href="http://spencer-evans.com/share/github/threads/js/threadjs/threadjs-1.0.js">thread.js</a>
 </pre>
 <br/>
 
