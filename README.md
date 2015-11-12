@@ -73,7 +73,7 @@ var myThread = new Thread("scriptA.js", "scriptB.js");
 // This is another fast way to add a large amount of code
 function threadCode()
 {
-  // The code within this function will be added to the threads' global scope
+	// The code within this function will be added to the threads' global scope
 }
 myThread.addScript(threadCode);
 
@@ -89,7 +89,7 @@ myThread.addScript(document.getElementById("threadCode"));
 /** An example function to run on a thread. */
 function myEchoFunc(a, b)
 {
-  console.log("Echo on thread: " + a + " " + b);
+	console.log("Echo on thread: " + a + " " + b);
 }
 
 // Copies a named function to the thread's global scope
@@ -140,7 +140,12 @@ myThread.eval("console.log('hi from the thread!');");
 <br/>
 
 #### Communicating with Threads
-You can communicate with threads using events or messages. Events are more flexible and powerful. The event example below sends a ping event to a thread and the thread sends a pong event back.
+You can communicate with threads using events or messages. Events are more flexible and powerful. 
+
+* To communicate from the parent to the child thread, you call functions on the myThread instance.
+* To communicate from the child thread to the parent, you call functions on the Thread.parent static class member.
+
+The event example below sends a ping event to a thread and the thread sends a pong event back.
 ###### Events Example
 ```js
 /** Defines the code that will run in the thread. */
