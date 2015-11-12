@@ -286,11 +286,15 @@ For those who already understand Web Workers, here a few details about how Threa
 ###### Worker Types:
 * Thread.js uses <a href="http://www.html5rocks.com/en/tutorials/workers/basics/#toc-inlineworkers">inline workers</a> whenever possible. IE10 is the only known browser that does not support inline workers.
 * Thread.js currently uses the web worker API <a href="https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/importScripts">importScripts</a> function to load scripts in a thread. This limits non-inline workers and script importing to the same origin. 
-* Thread.js uses the navigator.hardwareConcurrency to determine the maximum number of threads allowed. Thread.js enforces a default minimum number of 4 workers and a max of 16. Any number of thread instances can be created, but they will queue until more workers become available. You can override this setting with the threadjs.maxWorkers property.
+###### Max Workers:
+* Thread.js uses the navigator.hardwareConcurrency to determine the maximum number of workers allowed. Thread.js enforces a default minimum number of 4 workers and a max of 16. Any number of thread instances can be created, but they will queue until more workers become available. You can override this setting with the threadjs.maxWorkers property.
 * Thread.js allows sub-workers but enforces a maximum number of workers by keeping track of all descendant threads within the Main UI process.
+###### Base Thread Code:
 * Whenever a new worker is created, it is immediately passed all of the threadjs library, making the library available on that thread. 
+###### Working Directory, Library URL, and CORS:
 * Threadjs maintains a string url to the working directory of the web page. This url is passed to all threads to allow script loading when workers are not also running in the page location. You can find this value in Thread.workingDirectory.
 * Threadjs needs to know its own library script url. This is determined when the library is loaded by looking at the last script tag loaded in the DOM. If you load thread.js via XHR / jQuery / some other means, you will need to set the threadjs.url property immediately after importing the library.
+###### Event System:
 * Threadjs has its own tiny, built-in EventTarget like interface called EventDispatcher. It allows Thread.js to dispatch events. 
 * Threadjs allows you to partially pass native events between threads by creating a partial copy of the native event as a threadjs ThreadEvent. Thus you can pass myThread.postEvent(mouseEvent) etc.
 <br/>
