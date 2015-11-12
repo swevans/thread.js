@@ -21,8 +21,8 @@ Key Features:
 Download the latest versions of Thread.js here:
 ###### Latest JavaScript Release
 <pre>
-Minified: <a download href="http://spencer-evans.com/share/github/threadjs/1.000/thread.min.zip">thread.min.js</a>
-Unminified: <a downlod href="http://spencer-evans.com/share/github/threadjs/1.000/thread.zip">thread.js</a>
+Minified: <a download href="http://spencer-evans.com/share/github/threadjs/latest/thread.min.zip">thread.min.js</a>
+Unminified: <a downlod href="http://spencer-evans.com/share/github/threadjs/latest/thread.zip">thread.js</a>
 </pre>
 <br/>
 
