@@ -6,7 +6,7 @@ Thread.js is lightweight multithreading library for the JavaScript <a href="http
 <p>
 Thread.js provides an intuitive, high-level interface for Web Worker creation, programming, communication, and termination. It works in any browser that <a href="http://caniuse.com/#feat=webworkers">supports Web Workers</a> (IE10+).
 </p>
-
+<br/>
 
 ## Download
 Download the latest versions of Thread.js or pull from the repo:
@@ -33,7 +33,22 @@ Include thread.js in your projects like so:
 </br>
 
 
-## Usage
+## Getting Started
+Thread.js is flexible and robust, but intuitive enough that we can just jump into code. The below code creates a thread and runs some code on it.
+```js
+// Define code to run inside the thead
+function threadCode()
+{
+	// Do something in the thread
+}
+
+// Start the thread with the code
+var myThread = new Thread(threadCode);
+```
+</br>
+
+
+## Usage Guide
 Using a thread.js is really simple. There are essentially five things you can do.
 <ol>
 <li>Create a thread</li>
