@@ -102,7 +102,7 @@ Using a thread.js is really simple. There are essentially five things you can do
 </ol>
 <a name="creatingAThread"></a>
 #### Creating a Thread
-Simply instantiate a new thread object to create a thread. The thread might start immediately or [queue](#queuing) until more worker resources become available. Either way, your thread instance is ready to work with.
+Simply instantiate a new thread object to create a thread. The thread will typically start running immediately. If all workers are currently in use, it will [queue](#queuing) until more worker resources become available. Either way, your thread instance is ready to work with.
 ###### new Thread();
 ```js
 // Create a thread using the new keyword
