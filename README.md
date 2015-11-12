@@ -13,6 +13,7 @@ Key Features:
 * FEATURES NEEDED
 * FEATURES NEEDED
 <br/>
+<br/>
 
 
 <a name="download"></a>
@@ -85,7 +86,7 @@ There is a lot to thread.js, choose a section below
 * [Future Changes](#future)
 * [Under the Hood](#underTheHood)
 * [Compiling TypeScript](#compilingTS)
-
+<br/>
 
 <a name="usage"></a>
 ## Usage Guide
