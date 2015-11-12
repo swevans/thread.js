@@ -32,18 +32,19 @@ Include thread.js in your projects like so:
 
 
 ## Usage
-#### Creating and Destroying Threads
-Simply instantiate a new thread object to create a thread. Call terminate to dispose of it.
-###### Creation and Disposal
+Using a thread.js is really simple. There are essentially four steps.
+<ol>
+<li>Create a thread</li>
+<li>Add logic to your thread</li>
+<li>Run logic on your thread</li>
+<li>Terminate the thread when its done</li>
+</ol>
+#### Creating a Thread
+Simply instantiate a new thread object to create a thread. The thread might start immediately or queue until more worker resources become available. Either way, your thread instance is ready to work with.
+###### new Thread();
 ```js
 // Create a thread using the new keyword
 var myThread = new Thread();
-
-// ... Do something with the thread
-
-// Terminate will dispose the thread and release it's WebWorker resources
-// Any pending messages or events posted to the thread will not execute
-myThread.terminate();
 ```
 <br/>
 
