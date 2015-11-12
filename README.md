@@ -140,14 +140,14 @@ myThread.eval("console.log('hi from the thread!');");
 <br/>
 
 #### Communicating with Threads
-You can communicate with threads using events or messages.
+You can communicate with threads using events or messages. Communication is a two way street:
 
-* Communication from Parent to Child
-** Parent code calls functions on the myThread instance
-** Child code catches incoming messages by listening to the Thread.parent static class member
-* Communication from Child to Parent
-** Child code calls functions on the Thread.parent static class member
-** Parent code catches incoming messages by listening to the myThread instance
+* **Communication from Parent to Child**
+	* Parent code calls functions on the myThread instance
+	* Child code catches incoming messages by listening to the Thread.parent static class member
+* **Communication from Child to Parent**
+	* Child code calls functions on the Thread.parent static class member
+	* Parent code catches incoming messages by listening to the myThread instance
 
 The event example below sends a ping event to a thread and the thread sends a pong event back.
 ###### Events Example
