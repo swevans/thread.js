@@ -1,4 +1,5 @@
-<a name="top"></a># Thread.js
+<a name="top"></a>
+# Thread.js
 **<p>Multithreading in JavaScript</p>**
 <p>
 Thread.js is lightweight multithreading library for the JavaScript <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API">Web Worker API</a>. Web Workers are powerful and fast, but the code required to use them is <a target="_blank" href="http://www.html5rocks.com/en/tutorials/workers/basics/">unintuitive, cumbersome, and error prone</a>. This library was created to make writing parallel applications easier and faster.
@@ -8,7 +9,8 @@ Thread.js provides an intuitive, high-level interface for Web Worker creation, p
 </p>
 <br/>
 
-<a name="download"></a>## Download
+<a name="download"></a>
+## Download
 Download the latest versions of Thread.js or pull from the repo:
 ###### Latest JavaScript Release
 <pre>
@@ -18,7 +20,8 @@ Unminified: <a downlod href="http://spencer-evans.com/share/github/threads/threa
 <br/>
 
 
-<a name="installation"></a>## Installation
+<a name="installation"></a>
+## Installation
 Include thread.js in your projects like so:
 ###### Tag Loading
 ```html
@@ -31,7 +34,8 @@ Include thread.js in your projects like so:
 </br>
 
 
-<a name="gettingStarted"></a>## Getting Started
+<a name="gettingStarted"></a>
+## Getting Started
 Thread.js is simple enough that we can just jump into code. The below code creates a thread and runs some code on it. We've created a fiddle to show how easy it is. <a target="_blank" href="http://jsfiddle.net/swevans/57exndpp/3/">Try it yourself</a>.
 ```js
 // Check for threadjs support in the current browser
@@ -48,7 +52,8 @@ if (threadjs.isSupported)
 </br>
 
 
-<a name="usage"></a>## Usage Guide
+<a name="usage"></a>
+## Usage Guide
 Using a thread.js is really simple. There are essentially five things you can do.
 <ol>
 <li>Create a thread</li>
@@ -57,7 +62,8 @@ Using a thread.js is really simple. There are essentially five things you can do
 <li>Communiate with your thread</li>
 <li>Terminate the thread when its done</li>
 </ol>
-<a name="creatingAThread"></a>#### Creating a Thread
+<a name="creatingAThread"></a>
+#### Creating a Thread
 Simply instantiate a new thread object to create a thread. The thread might start immediately or queue until more worker resources become available. Either way, your thread instance is ready to work with.
 ###### new Thread();
 ```js
@@ -67,7 +73,8 @@ var myThread = new Thread();
 <br/>
 
 
-<a name="addThreadLogic"></a>#### Adding Thread Logic
+<a name="addThreadLogic"></a>
+#### Adding Thread Logic
 You can add logic to a thread by loading importing scripts, adding script, or defining script. Importing an external js file is the best way to add lots of code to the thread. Scripts are loaded synchronously within the thread; no other thread code will execute until the script is loaded and evaluated within the thread's scope.
 ###### Importing Scripts
 ```js
@@ -124,7 +131,8 @@ myThread.define("keyToUniverse", 42); // runs var keyToUniverse = 42;
 <br/>
 
 
-<a name="run"></a>#### Running Thread Logic
+<a name="run"></a>
+#### Running Thread Logic
 You can invoke logic on a thread using a few thread methods.
 ###### Calling Functions
 ```js
@@ -163,7 +171,8 @@ myThread.eval("console.log('hi from the thread!');");
 <br/>
 
 
-<a name="comm"></a>#### Communicating with Threads
+<a name="comm"></a>
+#### Communicating with Threads
 You can communicate with threads using events or messages. Communication is a two way street:
 
 * Communication from Parent to Child
@@ -246,7 +255,8 @@ myThread.postMessage("ping");
 <br/>
 
 
-<a name="termination"></a>#### Terminating a Thread
+<a name="termination"></a>
+#### Terminating a Thread
 Threads use resources that need to be explicitely cleaned up when you're done with the thread. Thread.js by default will only support between 4 and 16 concurrent workers depending on hardware. Any more than the allowed number, and threads will queue, waiting for existing threads to terminate. It's super important to clean your room!
 
 There are two ways to terminate a thread, from the parent or from the child. Any fully terminated thread is no longer valid.
@@ -264,7 +274,8 @@ Thread.terminate();	// in thread code
 <br/>
 
 
-<a name="examples"></a>## Examples
+<a name="examples"></a>
+## Examples
 We've compiled a couple Thread.js examples that show off using events and performing intensive operations. More examples are sure to come in the future.
 * **<a target="_blank" href="http://jsfiddle.net/swevans/mLbzmtm5/12/">JSFiddle Events Example</a>** - Dispatches ping and pong events as shown above
 * **<a target="_blank" href="http://jsfiddle.net/swevans/5m6rqsro/8/">JSFiddle Prime Numbers Example</a>** - Performs intensive operations without disrupting animation
@@ -272,7 +283,8 @@ We've compiled a couple Thread.js examples that show off using events and perfor
 <br/>
 
 
-<a name="browsers"></a>## Browser Support
+<a name="browsers"></a>
+## Browser Support
 Thread.js works anywhere that WebWorkers are supported.
 * **<a target="_blank" href="http://caniuse.com/#feat=webworkers">Can I Use? Table for Web Workers</a>**
 
@@ -284,7 +296,8 @@ Thread.js works anywhere that WebWorkers are supported.
 <br/>
 
 
-<a name="faq"></a>## FAQ
+<a name="faq"></a>
+## FAQ
 **Q: I am calling a function on my thread then terminating the thread and the function never evaluates, why?!**<br/>
 **A:** Calling myThread.terminate() terminates the thread immediately. The prior function you're calling via myThread.call() is schedule to be called, but the thread terminates before it does. You should use events or messages to let the parent know the thread is done, OR have the thread terminate itself. 
 ```js
@@ -307,7 +320,8 @@ myThread.call("myFunc");
 <br/>
 <br/>
 
-<a name="advanced"></a>## Advanced Topics
+<a name="advanced"></a>
+## Advanced Topics
 Thread.js is simple enough to pick up quickly, but there are a few advanced topics worth posting.
 ##### Checking for Suppport
 You can check for browser support using:
@@ -317,7 +331,8 @@ threadjs.isSupported;
 ```
 <br/>
 
-<a name="threadEvents"></a>##### Thread Events
+<a name="threadEvents"></a>
+##### Thread Events
 The Thread class has a few built in events. It is not necessary to use them. They're provided more for debugging than anything else.
 ```js
 /** Code within the parent */
@@ -353,7 +368,8 @@ Thread.parent.addEventListener(Thread.MESSAGE, msgFromParentHandler);
 ```
 <br/>
 
-<a name="subThreads"></a>##### Sub Threads (Sub Workers)
+<a name="subThreads"></a>
+##### Sub Threads (Sub Workers)
 <p>
 Thread.js supports child threads, aka Sub Workers. You may spawn a thread within a thread. The maxWorkers limit and thread queuing are still enforced. See Thread Queuing below. Sub Threads are very-slightly slower to start.
 </p>
@@ -379,7 +395,8 @@ myThread.terminate();
 ```
 <br/>
 
-<a name="threadScope"></a>##### Thread Scope & Loading within a Thread
+<a name="threadScope"></a>
+##### Thread Scope & Loading within a Thread
 <p>
 Threads operate in their own execution scope. Thus code must be loaded into the thread even if it already exists in the parent scope. Additionally, thread scope does not have access to the DOM or window.
 </p>
@@ -400,7 +417,8 @@ var myThread = new Thread(threadCode);
 ```
 <br/>
 
-<a name="passingData"></a>##### Passing Data Between Threads
+<a name="passingData"></a>
+##### Passing Data Between Threads
 <p>
 Objects are passed between threads via a cloning. The actual instance of the objects are not shared. This is a limitation of the Web Worker API. An additional limitation is that you cannot pass objects that contain native code (ie HTMLElements).
 </p>
@@ -412,7 +430,8 @@ As of now, Thread.js only supports copying data between threads. Transferrable o
 </p>
 <br/>
 
-<a name="asyncLib"></a>##### Asynchronously Loading Thread.js
+<a name="asyncLib"></a>
+##### Asynchronously Loading Thread.js
 It is highly recommended that you load thread.js using a synchronous script tag within your document. If for some reason you must load thread.js using an synchronous method, you are required to set the threadjs.url property before using Threads. It should point to the location of the thread.js library file.
 ```js
 // ... some code to load and evaluate thread.js
@@ -422,12 +441,14 @@ threadjs.url = "pathto/thread.js";
 ```
 <br/>
 
-<a name="CORS"></a>##### Cross Domain Security (CORS)
+<a name="CORS"></a>
+##### Cross Domain Security (CORS)
 It is highly recommended that you host thread.js and your thread code scripts in the same domain as your page. If for some reason you can't you will lose IE10 support. You may also run into security issues loading your thread code if it is in a different domain than the threadjs library.
 <br/>
 <br/>
 
-<a name="queuing"></a>##### Thread Queuing, Max Workers, and Thread Lock
+<a name="queuing"></a>
+##### Thread Queuing, Max Workers, and Thread Lock
 Thread.js only allows a maximum number of workers. This is typically 4 by default, but may go up to 16 depending on device hardware. This limitation is to prevent you from accidentally crashing the browser by creating too many workers. You however can create as many Thread instances as you want and interact on them immediately. This is thanks to thread.js's Thread Queuing functionality.
 ###### Thread Queuing
 <p>
@@ -451,7 +472,8 @@ Let's say you have four threads; A, B, C, and D. You then create a 5th thread E.
 <br/>
 
 
-<a name="optimization"></a>##### Memory & Traffic Optimization
+<a name="optimization"></a>
+##### Memory & Traffic Optimization
 Code supplied to the thread might be lengthy and heavy to keep in memory. If you define the code inline in your main javascript, the code will be stored in memory on both the parent and child thread. If you use the script tag code definition defined above, the code won't be defined in memory on the main thread. The absolute best way to conserve memory and traffic is to define your thread code in an external js file.
 ###### Inline Thread Code
 ```js
@@ -487,7 +509,8 @@ var myThread = new Thread("myThreadCode.js");
 ```
 <br/>
 
-<a name="debugging"></a>##### Debugging & Error Handling
+<a name="debugging"></a>
+##### Debugging & Error Handling
 Debugging multithreaded code can be challenging. Luckily Threadjs and Web Workers provide some safety and help. As always.. your browser console is there to help (use F12)! FWIW we have found Firefox to be the best browser for debugging multithreaded code.
 ###### Unminified Thread.js
 It is best to use the unminified thread.js file while developing or debugging your application.
@@ -510,7 +533,8 @@ myThread.addEventListener(Thread.ERROR, function(errorEvent) {/* do something */
 <br/>
 
 
-<a name="future"></a>## Future Changes
+<a name="future"></a>
+## Future Changes
 There are many different ways to expand upon Thread.js. Feel free to weigh in on future direction by forking the repo, adding a comment, or emailing me at <a target="_blank" href="mailto:evans.spencer@gmail.com">evans.spencer@gmail.com</a>. Here are a few things being considered:
  * Wrapper for objects constructed on the thread via myThread.construct(). Will allow you to call functions on the constructed object.
  * Wrapper for function calls on the thread via myThread.call(). Will allow you to listen for function completion and get the return result.
@@ -522,7 +546,8 @@ There are many different ways to expand upon Thread.js. Feel free to weigh in on
 <br/>
 
 
-<a name="underTheHood"></a>## Under the Hood
+<a name="underTheHood"></a>
+## Under the Hood
 For those who already understand Web Workers, here a few details about how Thread.js works.
 ###### Worker Types:
 * Thread.js uses <a target="_blank" href="http://www.html5rocks.com/en/tutorials/workers/basics/#toc-inlineworkers">inline workers</a> whenever possible. IE10 is the only known browser that does not support inline workers.
@@ -545,6 +570,7 @@ For those who already understand Web Workers, here a few details about how Threa
 <br/>
 <br/>
 
-<a name="compilingTS"></a>## Compiling TypeScript
+<a name="compilingTS"></a>
+## Compiling TypeScript
 Compiling the typescript is not required to use the library. Should you decide to do so, run the compiler within the src directory. It should pickup the tsconfig.json configuration file and output to www/js/thread.js.
 
