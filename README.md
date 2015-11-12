@@ -426,7 +426,6 @@ threadjs.url = "pathto/thread.js";
 ##### Cross Domain Security (CORS)
 It is highly recommended that you host thread.js and your thread code scripts in the same domain as your page. If for some reason you can't you will lose IE10 support. You may also run into security issues loading your thread code if it is in a different domain than the threadjs library.
 <br/>
-<br/>
 
 ##### Thread Queuing, Max Workers, and Thread Lock
 Thread.js only allows a maximum number of workers. This is typically 4 by default, but may go up to 16 depending on device hardware. This limitation is to prevent you from accidentally crashing the browser by creating too many workers. You however can create as many Thread instances as you want and interact on them immediately. This is thanks to thread.js's Thread Queuing functionality.
@@ -437,7 +436,6 @@ If you create more threads than the allowed number of workers, the threads creat
 <p>
 A Thread.START ("start") event is dispatched by the thread instance when it dequeues. Even if a thread queues, you may call any functions on it. Any functions you call on a queued thread will execute in order after the thread starts. If you call terminate on a queued thread, it will never start and no longer be valid.
 </p>
-<br/>
 <br/>
 ###### Max Workers
 The maximum number of workers is safely determined by Thread.js when the library is loaded. It is safest to assume that this value is 4. You can manually increase this number (not recommended) by setting threadjs.maxWorkers. You should probably not set this above 12, and definitely not set this value above 16 for anything you plan to release. Setting this value too high will cause the browser to crash.
@@ -451,7 +449,7 @@ Thread lock happens when you have active threads which depend on queued threads.
 An Example:<br/>
 Let's say you have four threads; A, B, C, and D. You then create a 5th thread E. The thread code in A, B, C, and D all rely on E to finish, however E will never be able to start because A, B, C, and D are using all available workers. This is thread lock. You should first try to remove this dependancy. If you can't, increase max workers with threadjs.maxWorkers = 16; (be careful with this and don't go over 16!). See the Max Workers section above.
 </p>
-
+<br/>
 
 
 ##### Memory & Traffic Optimization
