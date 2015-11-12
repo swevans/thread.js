@@ -9,6 +9,7 @@ Thread.js provides an intuitive, high-level interface for Web Worker creation, p
 </p>
 <br/>
 
+
 <a name="download"></a>
 ## Download
 Download the latest versions of Thread.js or pull from the repo:
@@ -50,6 +51,20 @@ if (threadjs.isSupported)
 }
 ```
 </br>
+
+
+<a name="toc"></a>
+## Table of Contents
+There is a lot to thread.js, choose a section below
+* Usage Guide
+	* creatingAThread
+* Examples
+* Browser Support
+* FAQ
+* Advanced Topics
+* Future Changes
+* Under the Hood
+* Compiling TypeScript
 
 
 <a name="usage"></a>
