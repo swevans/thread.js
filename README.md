@@ -1,7 +1,7 @@
 # Thread.js
 **<p>Multi-threaded Programming with Javascript or TypeScript</p>**
 <p>
-Thread.js is lightweight multithreading library for the JavaScript <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API">Web Worker API</a>. Web Workers are powerful and fast, but the code required to use them is unintuitive, cumbersome, and error prone. Thread.js was created to make writing parallel applications easier and faster.
+Thread.js is lightweight multithreading library for the JavaScript <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API">Web Worker API</a>. Web Workers are powerful and fast, but the code required to use them is unintuitive, cumbersome, and error prone. This library was created to make writing parallel applications easier and faster.
 </p>
 <p>
 Thread.js provides an intuitive, high-level interface for Web Worker creation, programming, communication, and termination. It works in any browser that <a href="http://caniuse.com/#feat=webworkers">supports Web Workers</a> (IE10+).
