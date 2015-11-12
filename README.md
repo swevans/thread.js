@@ -285,6 +285,29 @@ Thread.js works anywhere that WebWorkers are supported.
 <br/>
 
 
+## FAQ & Suppport
+**Q: I am calling a function on my thread then terminating the thread and the function never evaluates, why?!**<br/>
+**A:** Calling myThread.terminate() terminates the thread immediately. The prior function you're calling via myThread.call() is schedule to be called, but the thread terminates before it does. You should use events or messages to let the parent know the thread is done, OR have the thread terminate itself. 
+```js
+function threadCode {
+	function myFunc()
+	{
+		// do some things
+		
+		// now self terminate
+		Thread.terminate();
+	}
+}
+var myThread = new Thread(threadCode);
+myThread.call("myFunc");
+```
+<br/>
+
+**Q: I am using many threads and nothing seems to be getting done or a thread never starts, why?!**<br/>
+**A:** You're likely creating too many threads that are waiting for one another to finish. Lets say you have four threads; A, B, C, and D. You then create a 5th thread E. The thread code in A, B, C, and D all rely on E to finish, however E will never be able to start because A, B, C, and D are using all available workers. This is thread lock. You should first try to remove this dependancy. If you can't, increase max threads with threadjs.maxThreads = 16; (be careful with this and don't go over 16!). See the Max Threads and Thread Queuing sections below.
+<br/>
+<br/>
+
 ## Advanced Topics
 Thread.js is simple enough to pick up quickly, but there are a few advanced topics worth posting.
 ##### Checking for Suppport
@@ -463,7 +486,6 @@ Thread instances dispatch an error event anytime their thread code throws an err
 // The event type is some form of ErrorEvent
 myThread.addEventListener(Thread.ERROR, function(errorEvent) {/* do something */} );
 ```
-<br/>
 <br/>
 
 
