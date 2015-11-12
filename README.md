@@ -221,7 +221,9 @@ You can communicate with threads using events or messages. Communication is a tw
 	* Child code calls functions on the Thread.parent static class member
 	* Parent code catches incoming messages by listening to the myThread instance
 
-Events are superiour to messages because they can be dispatched to specific event listeners, whereas messages don't have a type.
+Events are superiour to messages because they can be dispatched to specific event listeners, whereas messages don't have a type.<br/>
+<br/>
+The examples below send a ping event/message from the main code (parent) to the child thread. The child then responds to the ping by sending a pong event/message back to the parent. 
 
 ###### Events Example
 ```js
