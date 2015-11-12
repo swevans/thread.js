@@ -85,7 +85,7 @@ myThread.define("myVarName");
 
 #### Running Thread Logic
 You can invoke logic on a thread using a few thread methods.
-##### Calling Functions
+###### Calling Functions
 ```js
 // You can call any named function that is loaded or defined in the thread
 // You may optionally provide a list of paramaters
@@ -95,7 +95,7 @@ myThread.call("someOtherFunc");                     // no params
 myThread.call("myNamespace.anotherFunc");
 ```
 
-##### Anonymous Functions
+###### Anonymous Functions
 ```js
 // You can also temporarily define a function and call it once
 // You can pass the name of a named function or an anonymouse function
@@ -103,7 +103,7 @@ myThread.call("myNamespace.anotherFunc");
 myThread.exec(function(param1) { /* do something */ }, "paramValue");
 ```
 
-##### Constructing Objects
+###### Constructing Objects
 ```js
 // You can also construct any named function in the thread
 // You can optionally provide a list of paramaters
@@ -112,7 +112,7 @@ myThread.construct("MyClassName", "param1", {someIndex: 99});
 myThread.construct("myNamespace.MyNamespacedClass");  // You can use namespaces
 ```
 
-##### Eval
+###### Eval
 ```js
 // You can also evaluate any javascript in the threads scope
 // There are generally better ways to do things, but this 
@@ -123,7 +123,7 @@ myThread.eval("console.log('hi from the thread!');");
 
 #### Communicating with Threads
 You can communicate with threads using events or messages. Events are more flexible and powerful. The event example below sends a ping event to a thread and the thread sends a pong event back.
-##### Posting and Catching in Main Thread
+###### Posting and Catching Events in Main (UI) Thread
 ```js
 ////// FILE: index.html
 // Start a thread to communicate with
@@ -148,7 +148,7 @@ myThread.addEventListener("pong", pongHandler);
 var someData = { text: "hello world!" };
 myThread.postEvent("ping", someData);
 ```
-##### Posting and Catching in Child Thread
+##### Posting and Catching Events in Child Thread
 ```js
 ////// FILE: myThreadCode.js
 /** 
