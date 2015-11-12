@@ -56,28 +56,28 @@ if (threadjs.isSupported)
 <a name="toc"></a>
 ## Table of Contents
 There is a lot to thread.js, choose a section below
-* Usage Guide usage
-	* Creating a Thread creatingAThread
-	* Adding Thread Logic addThreadLogic
-	* Running Thread Logic run
-	* Communicating with Threads comm
-	* Terminating Threads termination
-* Examples examples
-* Browser Support browsers
-* FAQ faq
-* Advanced Topics advanced
-	* Thread Events threadEvents
-	* Sub Threads (Sub Workers) subThreads
-	* Thread Scope & Loading within a Thread threadScope
-	* Passing Data Between Threads passingData
-	* Asynchronously Loading Thread.js asyncLib
-	* Cross Domain Security (CORS) CORS
-	* Thread Queuing, Max Workers, and Thread Lock queuing
-	* Memory & Traffic Optimization optimization
-	* Debugging & Error Handling debugging
-* Future Changes future
-* Under the Hood underTheHood
-* Compiling TypeScript compilingTS
+* [Usage Guide](#usage)
+	* [Creating a Thread](#creatingAThread)
+	* [Adding Thread Logic](#addThreadLogic)
+	* [Running Thread Logic](#run)
+	* [Communicating with Threads](#comm)
+	* [Terminating Threads](#termination)
+* [Examples](#examples)
+* [Browser Support](#browsers)
+* [FAQ](#faq)
+* [Advanced Topics](#advanced)
+	* [Thread Events](#threadEvents)
+	* [Sub Threads (Sub Workers)](#subThreads)
+	* [Thread Scope & Loading within a Thread](#threadScope)
+	* [Passing Data Between Threads](#passingData)
+	* [Asynchronously Loading Thread.js](#asyncLib)
+	* [Cross Domain Security (CORS)](#CORS)
+	* [Thread Queuing, Max Workers, and Thread Lock](#queuing)
+	* [Memory & Traffic Optimization](#optimization)
+	* [Debugging & Error Handling](#debugging)
+* [Future Changes](#future)
+* [Under the Hood](#underTheHood)
+* [Compiling TypeScript](#compilingTS)
 
 
 <a name="usage"></a>
