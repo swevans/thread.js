@@ -5,9 +5,10 @@ Thread.js is an easy to use library for leveraging the power of parallel computi
 </p>
 <br/>
 
+
 ## Download
 Download the latest versions of Thread.js or pull from the repo:
-**<p>Latest Releases</p>**
+###### Latest Release
 <pre>
 Minified: <a href="http://github.com">thread.min.js</a>
 Unminified: <a href="http://github.com">thread.js</a>
@@ -18,7 +19,7 @@ GitHub: <a href="https://github.com/swevans/thread.js">/swevans/thread.js</a>
 
 ## Installation
 Include thread.js in your projects like so:
-**<p>Tag Loading</p>**
+###### Tag Loading
 ```html
 <!-- Minified version, recommended for release -->
 <script src="pathto/thread.min.js"></script>
@@ -33,7 +34,7 @@ Include thread.js in your projects like so:
 ## Usage
 #### Creating and Destroying Threads
 Simply instantiate a new thread object to create a thread. Call terminate to dispose of it.
-**<p>Creation and Disposal</p>**
+###### Creation and Disposal
 ```js
 // Create a thread using the new keyword
 var myThread = new Thread();
@@ -48,7 +49,7 @@ myThread.terminate();
 
 #### Adding Thread Logic
 You can add logic to a thread by loading external scripts or defining script via code. Loading an external js file is the quickest way to add lots of logic to a thread. Scripts are loaded synchronously within the thread; no other thread code will execute until the script is loaded and evaluated within the thread's scope.
-**<p>Loading Scripts</p>**
+###### Loading Scripts
 ```js
 // Loads two scripts into the thread's scope
 // A loads, A evaluates, B loads, B evaluates
@@ -64,7 +65,7 @@ myThread.importScripts("scriptA.js", "scriptB.js");
 var myThread = new Thread("scriptA.js", "scriptB.js");
 ```
 
-**<p>Defining Script</p>**
+###### Defining Script
 ```js
 /** An example function to run on a thread. */
 function myEchoFunc(a, b)
@@ -80,7 +81,8 @@ myThread.defineVar("myVarName");
 ```
 <br/>
 
-### Running Thread Logic
+
+#### Running Thread Logic
 You can invoke logic on a thread using a few Thread methods.
 ##### Calling Functions
 ```js
@@ -108,7 +110,7 @@ myThread.exec(function(param1) { /* do something */ }, "paramValue");
 myThread.construct("MyClassName", "param1", {someIndex: 99});
 myThread.construct("myNamespace.MyNamespacedClass");  // You can use namespaces
 ```
-
+<br/>
 
 
 
