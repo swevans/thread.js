@@ -49,8 +49,8 @@ myThread.terminate();
 
 
 #### Adding Thread Logic
-You can add logic to a thread by loading external scripts or defining script via code. Loading an external js file is the quickest way to add lots of logic to a thread. Scripts are loaded synchronously within the thread; no other thread code will execute until the script is loaded and evaluated within the thread's scope.
-###### Loading Scripts
+You can add logic to a thread by loading importing scripts, adding script, or defining script. Importing an external js file is the best way to add lots of code to the thread. Scripts are loaded synchronously within the thread; no other thread code will execute until the script is loaded and evaluated within the thread's scope.
+###### Importing Scripts
 ```js
 // Loads two scripts into the thread's scope
 // A loads, A evaluates, B loads, B evaluates
@@ -68,14 +68,19 @@ var myThread = new Thread("scriptA.js", "scriptB.js");
 
 ###### Adding Script
 ```js
-/** Code to be added to the thread. */
+// You can add code to the thread via one big body function
+// This is another fast way to add a large amount of code
 function threadCode()
 {
-  // my thread logic
-  // The within this function will be added to the threads' global scope
+  // The code within this function will be added to the threads' global scope
 }
+myThread.addScript(threadCode);
 
-myThread.exec(threadCode);
+// Another option is to add a script tag
+// If we had the following script tag in our html
+// it won't evaluate on the main thread, but can be loaded into the thread
+// <script id="threadCode" type="text/js-worker">console.log('hello from thread!');</script>
+myThread.addScript(document.getElementById("threadCode"));
 ```
 
 ###### Defining Script
@@ -90,7 +95,7 @@ function myEchoFunc(a, b)
 myThread.define(myEchoFunc);
 
 // Defines a variable in thread's global scope
-myThread.define("myVarName");
+myThread.define("myVarName", 99); // runs var myVarName = 99;
 ```
 <br/>
 
