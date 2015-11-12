@@ -7,6 +7,11 @@ Thread.js is lightweight multithreading library for the JavaScript <a target="_b
 <p>
 Thread.js provides an intuitive, high-level interface for Web Worker creation, programming, communication, and termination. It works in any browser that <a href="http://caniuse.com/#feat=webworkers">supports Web Workers</a> (IE10+).
 </p>
+Key Features:
+* FEATURES NEEDED
+* FEATURES NEEDED
+* FEATURES NEEDED
+* FEATURES NEEDED
 <br/>
 
 
@@ -50,6 +55,7 @@ if (threadjs.isSupported)
 	});
 }
 ```
+Now move on to the [Usage Guide](#usage) to learn more about working with Threads.
 </br>
 
 
@@ -65,6 +71,7 @@ There is a lot to thread.js, choose a section below
 * [Examples](#examples)
 * [Browser Support](#browsers)
 * [FAQ](#faq)
+* Full Documentation
 * [Advanced Topics](#advanced)
 	* [Thread Events](#threadEvents)
 	* [Sub Threads (Sub Workers)](#subThreads)
@@ -344,7 +351,7 @@ myThread.call("myFunc");
 <br/>
 
 **Q: I am using many threads and nothing seems to be getting done or a thread never starts, why?!**<br/>
-**A:** You're likely creating too many threads that are waiting for one another to finish. Lets say you have four threads; A, B, C, and D. You then create a 5th thread E. The thread code in A, B, C, and D all rely on E to finish, however E will never be able to start because A, B, C, and D are using all available workers. This is thread lock. You should first try to remove this dependancy. If you can't, increase max workers with threadjs.maxWorkers = 16; (be careful with this and don't go over 16!). See the Max Workers and Thread Queuing section below.
+**A:** You're likely creating too many threads that are waiting for one another to finish. Lets say you have four threads; A, B, C, and D. You then create a 5th thread E. The thread code in A, B, C, and D all rely on E to finish, however E will never be able to start because A, B, C, and D are using all available workers. This is thread lock. You should first try to remove this dependancy. If you can't, increase max workers with threadjs.maxWorkers = 16; (be careful with this and don't go over 16!). See the [Max Workers and Thread Queuing](#queuing) section below.
 <br/>
 <br/>
 
@@ -399,7 +406,7 @@ Thread.parent.addEventListener(Thread.MESSAGE, msgFromParentHandler);
 <a name="subThreads"></a>
 ##### Sub Threads (Sub Workers)
 <p>
-Thread.js supports child threads, aka Sub Workers. You may spawn a thread within a thread. The maxWorkers limit and thread queuing are still enforced. See Thread Queuing below. Sub Threads are very-slightly slower to start.
+Thread.js supports child threads, aka Sub Workers. You may spawn a thread within a thread. The maxWorkers limit and thread queuing are still enforced. See [Thread Queuing](#queuing) below. Sub Threads are very-slightly slower to start.
 </p>
 <p>
 Sub threads are dependant on their parent; when the parent terminates, the child will terminate. An example; Your main code in index.html creates myThread, myThread then creates mySubThread, index.html calls myThread.terminate(), both mySubThread and myThread will terminate.
@@ -485,6 +492,7 @@ If you create more threads than the allowed number of workers, the threads creat
 <p>
 A Thread.START ("start") event is dispatched by the thread instance when it dequeues. Even if a thread queues, you may call any functions on it. Any functions you call on a queued thread will execute in order after the thread starts. If you call terminate on a queued thread, it will never start and no longer be valid.
 </p>
+<a name="maxWorkers"></a>
 ###### Max Workers
 <p>
 The maximum number of workers is safely determined by Thread.js when the library is loaded. It is safest to assume that this value is 4. You can manually increase this number (not recommended) by setting threadjs.maxWorkers. You should probably not set this above 12, and definitely not set this value above 16 for anything you plan to release. Setting this value too high will cause the browser to crash.
@@ -495,7 +503,7 @@ Thread lock happens when you have active threads which depend on queued threads.
 </p>
 <p>
 An Example:<br/>
-Let's say you have four threads; A, B, C, and D. You then create a 5th thread E. The thread code in A, B, C, and D all rely on E to finish, however E will never be able to start because A, B, C, and D are using all available workers. This is thread lock. You should first try to remove this dependancy. If you can't, increase max workers with threadjs.maxWorkers = 16; (be careful with this and don't go over 16!). See the Max Workers section above.
+Let's say you have four threads; A, B, C, and D. You then create a 5th thread E. The thread code in A, B, C, and D all rely on E to finish, however E will never be able to start because A, B, C, and D are using all available workers. This is thread lock. You should first try to remove this dependancy. If you can't, increase max workers with threadjs.maxWorkers = 16; (be careful with this and don't go over 16!). See the [Max Workers](#maxWorkers) section above.
 </p>
 <br/>
 
