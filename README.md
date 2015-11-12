@@ -34,7 +34,7 @@ Include thread.js in your projects like so:
 
 
 ## Getting Started
-Thread.js is flexible and robust, but intuitive enough that we can just jump into code. The below code creates a thread and runs some code on it.
+Thread.js is simple enough that we can just jump into code. The below code creates a thread and runs some code on it. We've created a fiddle to show how easy it is. <a href="http://jsfiddle.net/swevans/57exndpp/2/">Try it yourself</a>.
 ```js
 // Define code to run inside the thead
 function threadCode()
