@@ -274,6 +274,19 @@ We've compiled a couple Thread.js examples that show off using events and perfor
 <br/>
 
 
+## Browser Support
+Thread.js works anywhere that WebWorkers are supported.
+* **<a href="http://caniuse.com/#feat=webworkers">Can I Use? Table for Web Workers</a>**
+
+###### Quirks:
+<ol>
+<li>IE10: <a href="http://www.html5rocks.com/en/tutorials/workers/basics/#toc-inlineworkers">Inline workers</a> are not supported. Thread.js will fall back to url based web workers, loading the library itself as the root code.</li>
+<li>IE10: Because IE10 uses url based workers, it is subject to <a href="http://www.html5rocks.com/en/tutorials/cors/">CORS limitations</a>. There may be a fix coming for this in the future, but we'll have to see how much of an issue it is!</li>
+</ol>
+<br/>
+<br/>
+
+
 ## Advanced Topics
 Thread.js is simple enough to pick up quickly, but there are a few advanced topics worth posting.
 ##### Checking for Suppport
@@ -385,18 +398,6 @@ As of now, Thread.js only supports copying data between threads. Transferrable o
 * Memory Optimization
 * Debugging & Error Handling
 <br/>
-<br/>
-
-
-## Browser Support
-Thread.js works anywhere that WebWorkers are supported.
-* **<a href="http://caniuse.com/#feat=webworkers">Can I Use? Table for Web Workers</a>**
-
-###### Quirks:
-<ol>
-<li>IE10: <a href="http://www.html5rocks.com/en/tutorials/workers/basics/#toc-inlineworkers">Inline workers</a> are not supported. Thread.js will fall back to url based web workers, loading the library itself as the root code.</li>
-<li>IE10: Because IE10 uses url based workers, it is subject to <a href="http://www.html5rocks.com/en/tutorials/cors/">CORS limitations</a>. There may be a fix coming for this in the future, but we'll have to see how much of an issue it is!</li>
-</ol>
 <br/>
 
 
