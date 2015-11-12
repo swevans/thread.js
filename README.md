@@ -91,13 +91,18 @@ function threadCode()
 {
 	// The code within this function will be added to the threads' global scope
 }
-myThread.addScript(threadCode);
+myThread.addScripts(threadCode);
 
 // Another option is to add a script tag
 // If we had the following script tag in our html
 // it won't evaluate on the main thread, but can be loaded into the child thread
 // <script id="threadCode" type="text/js-worker">console.log('hello from thread!');</script>
-myThread.addScript(document.getElementById("threadCode"));
+myThread.addScripts(document.getElementById("threadCode"));
+
+// One last option is to supply the constructor with function references or tags
+// This is pretty powerful as you can mix and match how you add code
+// Adds threadCode function, Adds threadCode tag, finally loads and evaluates script A
+var myThread = new Thread(threadCode, document.getElementById("threadCode"), "scriptA.js");
 ```
 
 ###### Defining Script
@@ -192,11 +197,8 @@ function pongHandler(evt)
 }
 
 // Create a new thread and watch for pong events from it
-var myThread = new Thread();
+var myThread = new Thread(threadCode);
 myThread.addEventListener("pong", pongHandler);
-
-// Add code to the thread
-myThread.addScript(threadCode);
 
 // Send a ping event to the thread
 myThread.postEvent("ping");
@@ -233,11 +235,8 @@ function msgHandler(evt)
 }
 
 // Create a new thread and watch for pong events from it
-var myThread = new Thread();
+var myThread = new Thread(threadCode);
 myThread.addEventListener(Thread.MESSAGE, msgHandler);
-
-// Add code to the thread
-myThread.addScript(threadCode);
 
 // Send a ping event to the thread
 myThread.postMessage("ping");
