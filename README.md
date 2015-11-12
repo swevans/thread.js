@@ -478,7 +478,7 @@ As of now, Thread.js only supports copying data between threads. Transferrable o
 
 <a name="asyncLib"></a>
 ##### Asynchronously Loading Thread.js
-It is highly recommended that you load thread.js using a synchronous script tag within your document. If for some reason you must load thread.js using an synchronous method, you are required to set the threadjs.url property before using Threads. It should point to the location of the thread.js library file.
+It is highly recommended that you load thread.js using a synchronous script tag within your document. If for some reason you must load thread.js using an asynchronous method, you are required to set the threadjs.url property before using Threads. It should point to the location of the thread.js library file.
 ```js
 // ... some code to load and evaluate thread.js
 
