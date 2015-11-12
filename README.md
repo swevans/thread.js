@@ -282,6 +282,17 @@ Thread.js works anywhere that WebWorkers are supported.
 <br/>
 
 
+## Future Changes
+There are many different ways to expand upon Thread.js. Feel free to weigh in on future direction by forking the repo, adding a comment, or emailing me at <a href="mailto:evans.spencer@gmail.com">evans.spencer@gmail.com</a>. Here are a few things being considered:
+ * Wrapper for objects constructed on the thread via myThread.construct(). Will allow you to call functions on the constructed object.
+ * Wrapper for function calls on the thread via myThread.call(). Will allow you to listen for function completion and get the return result.
+ * Change importScripts to use XHR so CORS is supported.
+ * Add support for transferrable objects.
+ * Add a object sync feature that mirrors an object between two threads.
+<br/>
+<br/>
+
+
 ## Under the Hood
 For those who already understand Web Workers, here a few details about how Thread.js works.
 ###### Worker Types:
