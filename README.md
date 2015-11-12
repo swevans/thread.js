@@ -63,8 +63,8 @@ Now move on to the [Usage Guide](#usage) to learn more about working with Thread
 <a name="toc"></a>
 ## Table of Contents
 There is a lot to thread.js, choose a section below
-* Concepts - A brief description explaining thread scope, parent child relationship, messaging, and an image
 * [Usage Guide](#usage)
+	* Concepts - A brief description explaining thread scope, parent child relationship, messaging, and an image
 	* [Creating a Thread](#creatingAThread)
 	* [Adding Thread Logic](#addThreadLogic)
 	* [Running Thread Logic](#run)
