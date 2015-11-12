@@ -1,7 +1,7 @@
 # Thread.js
 **<p>Multithreading in JavaScript</p>**
 <p>
-Thread.js is lightweight multithreading library for the JavaScript <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API">Web Worker API</a>. Web Workers are powerful and fast, but the code required to use them is <a href="http://www.html5rocks.com/en/tutorials/workers/basics/">unintuitive, cumbersome, and error prone</a>. This library was created to make writing parallel applications easier and faster.
+Thread.js is lightweight multithreading library for the JavaScript <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API">Web Worker API</a>. Web Workers are powerful and fast, but the code required to use them is <a target="_blank" href="http://www.html5rocks.com/en/tutorials/workers/basics/">unintuitive, cumbersome, and error prone</a>. This library was created to make writing parallel applications easier and faster.
 </p>
 <p>
 Thread.js provides an intuitive, high-level interface for Web Worker creation, programming, communication, and termination. It works in any browser that <a href="http://caniuse.com/#feat=webworkers">supports Web Workers</a> (IE10+).
@@ -12,9 +12,8 @@ Thread.js provides an intuitive, high-level interface for Web Worker creation, p
 Download the latest versions of Thread.js or pull from the repo:
 ###### Latest JavaScript Release
 <pre>
-Minified: <a href="http://spencer-evans.com/share/github/threads/threadjs-1.0.min.zip">thread.min.js</a>
-Unminified: <a href="http://spencer-evans.com/share/github/threads/threadjs-1.0.zip">thread.js</a>
-TypeScript: <a href="http://spencer-evans.com/share/github/threads/threadjs-typescript-1.0.zip">threadjs-typescript-1.0.zip</a>
+Minified: <a download href="http://spencer-evans.com/share/github/threads/threadjs-1.0.min.zip">thread.min.js</a>
+Unminified: <a downlod href="http://spencer-evans.com/share/github/threads/threadjs-1.0.zip">thread.js</a>
 </pre>
 <br/>
 
@@ -33,7 +32,7 @@ Include thread.js in your projects like so:
 
 
 ## Getting Started
-Thread.js is simple enough that we can just jump into code. The below code creates a thread and runs some code on it. We've created a fiddle to show how easy it is. <a href="http://jsfiddle.net/swevans/57exndpp/3/">Try it yourself</a>.
+Thread.js is simple enough that we can just jump into code. The below code creates a thread and runs some code on it. We've created a fiddle to show how easy it is. <a target="_blank" href="http://jsfiddle.net/swevans/57exndpp/3/">Try it yourself</a>.
 ```js
 // Check for threadjs support in the current browser
 if (threadjs.isSupported)
@@ -267,20 +266,20 @@ Thread.terminate();	// in thread code
 
 ## Examples
 We've compiled a couple Thread.js examples that show off using events and performing intensive operations. More examples are sure to come in the future.
-* **<a href="http://jsfiddle.net/swevans/mLbzmtm5/12/">JSFiddle Events Example</a>** - Dispatches ping and pong events as shown above
-* **<a href="http://jsfiddle.net/swevans/5m6rqsro/8/">JSFiddle Prime Numbers Example</a>** - Performs intensive operations without disrupting animation
+* **<a target="_blank" href="http://jsfiddle.net/swevans/mLbzmtm5/12/">JSFiddle Events Example</a>** - Dispatches ping and pong events as shown above
+* **<a target="_blank" href="http://jsfiddle.net/swevans/5m6rqsro/8/">JSFiddle Prime Numbers Example</a>** - Performs intensive operations without disrupting animation
 <br/>
 <br/>
 
 
 ## Browser Support
 Thread.js works anywhere that WebWorkers are supported.
-* **<a href="http://caniuse.com/#feat=webworkers">Can I Use? Table for Web Workers</a>**
+* **<a target="_blank" href="http://caniuse.com/#feat=webworkers">Can I Use? Table for Web Workers</a>**
 
 ###### Quirks:
 <ol>
-<li>IE10: <a href="http://www.html5rocks.com/en/tutorials/workers/basics/#toc-inlineworkers">Inline workers</a> are not supported. Thread.js will fall back to url based web workers, loading the library itself as the root code.</li>
-<li>IE10: Because IE10 uses url based workers, it is subject to <a href="http://www.html5rocks.com/en/tutorials/cors/">CORS limitations</a>. There may be a fix coming for this in the future, but we'll have to see how much of an issue it is!</li>
+<li>IE10: <a target="_blank" href="http://www.html5rocks.com/en/tutorials/workers/basics/#toc-inlineworkers">Inline workers</a> are not supported. Thread.js will fall back to url based web workers, loading the library itself as the root code.</li>
+<li>IE10: Because IE10 uses url based workers, it is subject to <a target="_blank" href="http://www.html5rocks.com/en/tutorials/cors/">CORS limitations</a>. There may be a fix coming for this in the future, but we'll have to see how much of an issue it is!</li>
 </ol>
 <br/>
 
@@ -512,7 +511,7 @@ myThread.addEventListener(Thread.ERROR, function(errorEvent) {/* do something */
 
 
 ## Future Changes
-There are many different ways to expand upon Thread.js. Feel free to weigh in on future direction by forking the repo, adding a comment, or emailing me at <a href="mailto:evans.spencer@gmail.com">evans.spencer@gmail.com</a>. Here are a few things being considered:
+There are many different ways to expand upon Thread.js. Feel free to weigh in on future direction by forking the repo, adding a comment, or emailing me at <a target="_blank" href="mailto:evans.spencer@gmail.com">evans.spencer@gmail.com</a>. Here are a few things being considered:
  * Wrapper for objects constructed on the thread via myThread.construct(). Will allow you to call functions on the constructed object.
  * Wrapper for function calls on the thread via myThread.call(). Will allow you to listen for function completion and get the return result.
  * Change importScripts to use XHR so CORS is supported.
@@ -526,8 +525,8 @@ There are many different ways to expand upon Thread.js. Feel free to weigh in on
 ## Under the Hood
 For those who already understand Web Workers, here a few details about how Thread.js works.
 ###### Worker Types:
-* Thread.js uses <a href="http://www.html5rocks.com/en/tutorials/workers/basics/#toc-inlineworkers">inline workers</a> whenever possible. IE10 is the only known browser that does not support inline workers.
-* Thread.js currently uses the web worker API <a href="https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/importScripts">importScripts</a> function to load scripts in a thread. This limits non-inline workers and script importing to the same origin. 
+* Thread.js uses <a target="_blank" href="http://www.html5rocks.com/en/tutorials/workers/basics/#toc-inlineworkers">inline workers</a> whenever possible. IE10 is the only known browser that does not support inline workers.
+* Thread.js currently uses the web worker API <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/importScripts">importScripts</a> function to load scripts in a thread. This limits non-inline workers and script importing to the same origin. 
  
 ###### Max Workers:
 * Thread.js uses the navigator.hardwareConcurrency to determine the maximum number of workers allowed. Thread.js enforces a default minimum number of 4 workers and a max of 16. Any number of thread instances can be created, but they will queue until more workers become available. You can override this setting with the threadjs.maxWorkers property.
