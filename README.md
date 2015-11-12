@@ -257,7 +257,15 @@ We've compiled a Thread.js example that shows off counting prime numbers on a ba
 <br/>
 
 
+## Browser Support
+Thread.js works anywhere that WebWorkers are supported.
+* **<a href="http://caniuse.com/#feat=webworkers">Can I Use? Table for Web Workers</a>**
+
+##### Quirks:
 <ol>
-<li>Worker Queuing - If more than the optimal number of threads are created, later threads will queue until resources become available.</li>
-<li>Event Based Messaging - Messages to and from threads are powered by the widly understood EventTarget interface (addEventListener).</li>
+<li>IE10: Inline workers (via URL.createObjectURL and new Blob()) are not supported. Thread.js will fall back to url based web workers, loading the library itself as the root code.</li>
+<li>IE10: Because IE10 uses url based workers, it is subject to <a href="http://www.html5rocks.com/en/tutorials/cors/">CORS limitations</a>. There may be a fix coming for this in the future, but we'll have to see how much of an issue it is!</li>
 </ol>
+
+
+<br/>
