@@ -184,9 +184,8 @@ myThread.call("myNamespace.anotherFunc");
 
 ###### Anonymous Functions
 ```js
-// You can also temporarily define a function and call it once
-// You can pass the name of a named function or an anonymouse function
 // Exec will temporarily define the function, then call it
+// You can pass the name of a named function that exists in the main code
 myThread.exec(function(param1) { /* do something */ }, "paramValue");
 ```
 
