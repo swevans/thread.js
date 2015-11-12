@@ -153,9 +153,6 @@ You can communicate with threads using events or messages. Communication is a tw
 
 Events are superiour to messages because they can be dispatched to specific event listeners, whereas messages don't have a type.
 
-The event example below sends a ping event to a thread and the thread sends a pong event back. We've also created a slightly different <a href="http://jsfiddle.net/swevans/mLbzmtm5/12/">JSFiddle example of this demo</a>.<br/>
-* **<a href="http://jsfiddle.net/swevans/mLbzmtm5/12/">JSFiddle Events Example</a>**
-
 ###### Events Example
 ```js
 /** Defines the code that will run in the thread. */
@@ -252,8 +249,9 @@ Thread.terminate();	// in thread code
 
 
 ## Examples
-We've compiled a Thread.js example that shows off counting prime numbers on a background thread. More examples are sure to come in the future.
-* **<a href="http://jsfiddle.net/swevans/5m6rqsro/8/">JSFiddle Prime Numbers Example</a>**
+We've compiled a couple Thread.js examples that show off using events and performing intensive operations. More examples are sure to come in the future.
+* **<a href="http://jsfiddle.net/swevans/mLbzmtm5/12/">JSFiddle Events Example</a>** - Dispatches ping and pong events as shown above
+* **<a href="http://jsfiddle.net/swevans/5m6rqsro/8/">JSFiddle Prime Numbers Example</a>** - Performs intensive prime number counting operation without disrupting UI animation
 <br/>
 <br/>
 
