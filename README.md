@@ -251,7 +251,7 @@ Thread.terminate();	// in thread code
 ## Examples
 We've compiled a couple Thread.js examples that show off using events and performing intensive operations. More examples are sure to come in the future.
 * **<a href="http://jsfiddle.net/swevans/mLbzmtm5/12/">JSFiddle Events Example</a>** - Dispatches ping and pong events as shown above
-* **<a href="http://jsfiddle.net/swevans/5m6rqsro/8/">JSFiddle Prime Numbers Example</a>** - Performs intensive prime number counting operation without disrupting UI animation
+* **<a href="http://jsfiddle.net/swevans/5m6rqsro/8/">JSFiddle Prime Numbers Example</a>** - Performs intensive operations without disrupting animation
 <br/>
 <br/>
 
