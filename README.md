@@ -12,6 +12,7 @@ Download the latest versions of Thread.js or pull from the repo:
 <pre>
 Minified: <a href="http://spencer-evans.com/share/github/threads/threadjs-1.0.min.zip">thread.min.js</a>
 Unminified: <a href="http://spencer-evans.com/share/github/threads/threadjs-1.0.zip">thread.js</a>
+TypeScript: <a href="http://spencer-evans.com/share/github/threads/threadjs-typescript-1.0.zip">threadjs-typescript-1.0.zip</a>
 </pre>
 <br/>
 
