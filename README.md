@@ -36,12 +36,16 @@ Include thread.js in your projects like so:
 ## Getting Started
 Thread.js is simple enough that we can just jump into code. The below code creates a thread and runs some code on it. We've created a fiddle to show how easy it is. <a href="http://jsfiddle.net/swevans/57exndpp/3/">Try it yourself</a>.
 ```js
-// Start a thread and have it evaluate the supplied function
-var myThread = new Thread(function()
+// Check for threadjs support in the current browser
+if (threadjs.isSupported)
 {
-	// do something in the thread
-	console.log("hello world!");
-});
+	// Start a thread and have it evaluate the supplied function
+	var myThread = new Thread(function()
+	{
+		// do something in the thread
+		console.log("hello world!");
+	});
+}
 ```
 </br>
 
@@ -271,6 +275,7 @@ We've compiled a couple Thread.js examples that show off using events and perfor
 
 
 ## Advanced Topics
+* Checking for suppport
 * Built-in Thread Events
 * Passing Data Between Threads
 * Asynchronously Loading Thread.js
@@ -299,6 +304,7 @@ There are many different ways to expand upon Thread.js. Feel free to weigh in on
  * Change importScripts to use XHR so CORS is supported.
  * Add support for transferrable objects.
  * Add a object sync feature that mirrors an object between two threads.
+ * Add support for synchronous threads when workers are not supported.
 <br/>
 <br/>
 
