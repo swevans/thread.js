@@ -12,58 +12,176 @@
   <body>
     <section class="page-header">
       <h1 class="project-name">Thread.js</h1>
-      <h2 class="project-tagline">this is some tagline</h2>
+      <h2 class="project-tagline">A lightweight multithreading library for JavaScript.</h2>
       <a href="https://github.com/swevans/thread.js" class="btn">View on GitHub</a>
       <a href="https://github.com/swevans/thread.js/zipball/master" class="btn">Download .zip</a>
       <a href="https://github.com/swevans/thread.js/tarball/master" class="btn">Download .tar.gz</a>
     </section>
 
     <section class="main-content">
-      <h1>
-<a id="threadjs" class="anchor" href="#threadjs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Thread.js</h1>
+      <p>Thread.js is lightweight multithreading library for the JavaScript <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API">Web Worker API</a>. Web Workers are powerful and fast, but the code required to use them is <a target="_blank" href="http://www.html5rocks.com/en/tutorials/workers/basics/">unintuitive, cumbersome, and error prone</a>. This library was created to make writing parallel applications easier and faster.
+</p>
 
-<h3>
-<a id="multi-threaded-programming-with-javascript-or-typescript" class="anchor" href="#multi-threaded-programming-with-javascript-or-typescript" aria-hidden="true"><span class="octicon octicon-link"></span></a>Multi-threaded Programming with Javascript or TypeScript</h3>
+<p>
+Thread.js provides an intuitive, high-level interface for Web Worker creation, programming, communication, and termination. It works in any browser that <a href="http://caniuse.com/#feat=webworkers">supports Web Workers</a> (IE10+).
+</p>
 
-<hr>
+<p>Key Features:</p>
+
+<ul>
+<li>FEATURES NEEDED</li>
+<li>FEATURES NEEDED</li>
+<li>FEATURES NEEDED</li>
+<li>FEATURES NEEDED
+<br>
+<br>
+</li>
+</ul>
+
+<p><a name="download"></a></p>
+
+<h2>
+<a id="download" class="anchor" href="#download" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download</h2>
+
+<p>Download the latest versions of Thread.js here:</p>
+
+<h6>
+<a id="latest-javascript-release" class="anchor" href="#latest-javascript-release" aria-hidden="true"><span class="octicon octicon-link"></span></a>Latest JavaScript Release</h6>
+
+<pre>
+Minified: <a href="http://spencer-evans.com/share/github/threadjs/latest/thread.min.zip">thread.min.js</a>
+Unminified: <a href="http://spencer-evans.com/share/github/threadjs/latest/thread.zip">thread.js</a>
+</pre>
+
+<p><br></p>
+
+<p><a name="installation"></a></p>
 
 <h2>
 <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
 
 <p>Include thread.js in your projects like so:</p>
 
+<h6>
+<a id="tag-loading" class="anchor" href="#tag-loading" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tag Loading</h6>
+
+<div class="highlight highlight-text-html-basic"><pre><span class="pl-c">&lt;!-- Minified version, recommended for release --&gt;</span>
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>pathto/thread.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+
+<span class="pl-c">&lt;!-- Full version, recommended for debugging --&gt;</span>
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>pathto/thread.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
+
+<p></p>
+
+<p><a name="gettingStarted"></a></p>
+
+<h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting Started</h2>
+
+<p>Thread.js is simple enough that we can just jump into code. The below code creates a thread and runs some code on it. We've created a fiddle to show how easy it is. <a target="_blank" href="http://jsfiddle.net/swevans/57exndpp/6/">Try it yourself</a>.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// Check for threadjs support in the current browser</span>
+<span class="pl-k">if</span> (threadjs.isSupported)
+{
+    <span class="pl-c">// Start a thread and have it evaluate the supplied function</span>
+    <span class="pl-k">var</span> myThread <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Thread</span>(<span class="pl-k">function</span>()
+    {
+        <span class="pl-c">// do something in the thread</span>
+        <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>hello world!<span class="pl-pds">"</span></span>);
+    });
+}</pre></div>
+
+<p>Now move on to the <a href="#usage">Usage Guide</a> to learn more about working with Threads.
+
+<br></p>
+
+<p><a name="toc"></a></p>
+
+<h2>
+<a id="table-of-contents" class="anchor" href="#table-of-contents" aria-hidden="true"><span class="octicon octicon-link"></span></a>Table of Contents</h2>
+
+<p>There is a lot to thread.js, choose a section below</p>
+
+<ul>
+<li>
+<a href="#usage">Usage Guide</a>
+
+<ul>
+<li>Concepts - A brief description explaining thread scope, parent child relationship, messaging, and an image</li>
+<li><a href="#creatingAThread">Creating a Thread</a></li>
+<li><a href="#addThreadLogic">Adding Thread Logic</a></li>
+<li><a href="#run">Running Thread Logic</a></li>
+<li><a href="#comm">Communicating with Threads</a></li>
+<li><a href="#termination">Terminating Threads</a></li>
+</ul>
+</li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#browsers">Browser Support</a></li>
+<li><a href="#faq">FAQ</a></li>
+<li>Full Documentation - link to javadocs or page with docs...</li>
+<li>
+<a href="#advanced">Advanced Topics</a>
+
+<ul>
+<li><a href="#threadEvents">Thread Events</a></li>
+<li><a href="#subThreads">Sub Threads (Sub Workers)</a></li>
+<li><a href="#threadScope">Thread Scope &amp; Loading within a Thread</a></li>
+<li><a href="#passingData">Passing Data Between Threads</a></li>
+<li><a href="#asyncLib">Asynchronously Loading Thread.js</a></li>
+<li><a href="#CORS">Cross Domain Security (CORS)</a></li>
+<li><a href="#queuing">Thread Queuing, Max Workers, and Thread Lock</a></li>
+<li><a href="#optimization">Memory &amp; Traffic Optimization</a></li>
+<li><a href="#debugging">Debugging &amp; Error Handling</a></li>
+</ul>
+</li>
+<li><a href="#future">Future Changes</a></li>
+<li><a href="#underTheHood">Under the Hood</a></li>
+<li>
+<a href="#compilingTS">Compiling TypeScript</a>
+<br>
+<br>
+</li>
+</ul>
+
+<p><a name="usage"></a></p>
+
+<h2>
+<a id="usage-guide" class="anchor" href="#usage-guide" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage Guide</h2>
+
+<p>Using a thread.js is really simple. There are essentially five things you can do.</p>
+
+<ol>
+<li>Create a thread</li>
+<li>Add logic to your thread</li>
+<li>Run logic on your thread</li>
+<li>Communiate with your thread</li>
+<li>Terminate the thread when its done</li>
+</ol>
+
+<p><a name="creatingAThread"></a></p>
+
 <h4>
-<a id="tag-loading" class="anchor" href="#tag-loading" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tag Loading</h4>
+<a id="creating-a-thread" class="anchor" href="#creating-a-thread" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating a Thread</h4>
 
-<div class="highlight highlight-text-html-basic"><pre><span class="pl-c">&lt;!-- Full version, recommended for debugging --&gt;</span>
-&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>thread.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
-
-<span class="pl-c">&lt;!-- Minified version, recommended for release --&gt;</span>
-&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>thread.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
-
-<h3>
-<a id="creating-and-destroying-threads" class="anchor" href="#creating-and-destroying-threads" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating and Destroying Threads</h3>
-
-<p>Simply instantiate a new thread object to create a thread. Call terminate to dispose of it.</p>
+<p>Simply instantiate a new thread object to create a thread. The thread will typically start running immediately. If all workers are currently in use, it will <a href="#queuing">queue</a> until more worker resources become available. Either way, your thread instance is ready to work with.</p>
 
 <h6>
-<a id="creation-and-disposal" class="anchor" href="#creation-and-disposal" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creation and Disposal</h6>
+<a id="new-thread" class="anchor" href="#new-thread" aria-hidden="true"><span class="octicon octicon-link"></span></a>new Thread();</h6>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-c">// Create a thread using the new keyword</span>
-<span class="pl-k">var</span> myThread <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Thread</span>();
+<span class="pl-k">var</span> myThread <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Thread</span>();</pre></div>
 
-<span class="pl-c">// ... Do something with the thread</span>
+<p><br></p>
 
-<span class="pl-c">// Terminate will dispose the thread and release it's WebWorker resources</span>
-myThread.terminate();</pre></div>
+<p><a name="addThreadLogic"></a></p>
 
-<h3>
-<a id="adding-thread-logic" class="anchor" href="#adding-thread-logic" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding Thread Logic</h3>
+<h4>
+<a id="adding-thread-logic" class="anchor" href="#adding-thread-logic" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding Thread Logic</h4>
 
-<p>You can add logic to a thread by loading external scripts or defining script via code. Loading an external js file is the quickest way to add lots of logic to a thread. Scripts are loaded synchronously within the thread; no other thread code will execute until the script is loaded and evaluated within the thread's scope.</p>
+<p>You can add logic to a thread by importing scripts, adding script, or defining script. Importing an external js file is the best way to add lots of code to the thread. Scripts are loaded synchronously within the thread; no other code within the scope of a thread will execute until the script is loaded and evaluated.</p>
 
 <h6>
-<a id="loading-scripts" class="anchor" href="#loading-scripts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Loading Scripts</h6>
+<a id="importing-scripts" class="anchor" href="#importing-scripts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Importing Scripts</h6>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-c">// Loads two scripts into the thread's scope</span>
 <span class="pl-c">// A loads, A evaluates, B loads, B evaluates</span>
@@ -79,29 +197,62 @@ myThread.importScripts(<span class="pl-s"><span class="pl-pds">"</span>scriptA.j
 <span class="pl-k">var</span> myThread <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Thread</span>(<span class="pl-s"><span class="pl-pds">"</span>scriptA.js<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>scriptB.js<span class="pl-pds">"</span></span>);</pre></div>
 
 <h6>
+<a id="adding-script" class="anchor" href="#adding-script" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding Script</h6>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// You can add code to the thread via one big body function</span>
+<span class="pl-c">// This is another fast way to add a large amount of code</span>
+<span class="pl-k">function</span> <span class="pl-en">threadCode</span>()
+{
+    <span class="pl-c">// The code within this function will be added to the threads' global scope</span>
+}
+myThread.addScripts(threadCode);
+
+<span class="pl-c">// Another option is to add a script tag</span>
+<span class="pl-c">// If we had the following script tag in our html</span>
+<span class="pl-c">// it won't evaluate on the main thread, but can be loaded into the child thread</span>
+<span class="pl-c">// &lt;script id="threadCode" type="text/js-worker"&gt;console.log('hello from thread!');&lt;/script&gt;</span>
+myThread.addScripts(<span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">"</span>threadCode<span class="pl-pds">"</span></span>));
+
+<span class="pl-c">// One last option is to supply the constructor with function references or tags</span>
+<span class="pl-c">// This is pretty powerful as you can mix and match how you add code</span>
+<span class="pl-c">// Adds threadCode function, Adds threadCode tag, finally loads and evaluates script A</span>
+<span class="pl-k">var</span> myThread <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Thread</span>(threadCode, <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">"</span>threadCode<span class="pl-pds">"</span></span>), <span class="pl-s"><span class="pl-pds">"</span>scriptA.js<span class="pl-pds">"</span></span>);</pre></div>
+
+<h6>
 <a id="defining-script" class="anchor" href="#defining-script" aria-hidden="true"><span class="octicon octicon-link"></span></a>Defining Script</h6>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-c">/** An example function to run on a thread. */</span>
 <span class="pl-k">function</span> <span class="pl-en">myEchoFunc</span>(<span class="pl-smi">a</span>, <span class="pl-smi">b</span>)
 {
-  <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>Echo on thread: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> a <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span> <span class="pl-pds">"</span></span> <span class="pl-k">+</span> b);
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>Echo on thread: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> a <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span> <span class="pl-pds">"</span></span> <span class="pl-k">+</span> b);
 }
 
 <span class="pl-c">// Copies a named function to the thread's global scope</span>
-myThread.defineFunc(myEchoFunc);
+myThread.define(myEchoFunc);
 
 <span class="pl-c">// Defines a variable in thread's global scope</span>
-myThread.defineVar(<span class="pl-s"><span class="pl-pds">"</span>myVarName<span class="pl-pds">"</span></span>);</pre></div>
+myThread.define(<span class="pl-s"><span class="pl-pds">"</span>keyToUniverse<span class="pl-pds">"</span></span>, <span class="pl-c1">42</span>); <span class="pl-c">// runs var keyToUniverse = 42;</span></pre></div>
 
-<h3>
-<a id="running-thread-logic" class="anchor" href="#running-thread-logic" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running Thread Logic</h3>
+<p><br></p>
 
-<p>You can invoke logic on a thread using a few Thread methods.</p>
+<p><a name="run"></a></p>
+
+<h4>
+<a id="running-thread-logic" class="anchor" href="#running-thread-logic" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running Thread Logic</h4>
+
+<p>You can invoke logic on a thread using a few thread methods.</p>
 
 <h6>
 <a id="calling-functions" class="anchor" href="#calling-functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Calling Functions</h6>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-c">// You can call any named function that is loaded or defined in the thread</span>
+<div class="highlight highlight-source-js"><pre><span class="pl-c">/** An example function to run on a thread. */</span>
+<span class="pl-k">function</span> <span class="pl-en">myEchoFunc</span>(<span class="pl-smi">a</span>, <span class="pl-smi">b</span>)
+{
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>Echo on thread: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> a <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span> <span class="pl-pds">"</span></span> <span class="pl-k">+</span> b);
+}
+myThread.define(myEchoFunc);
+
+<span class="pl-c">// You can call any named function that is loaded or defined in the thread</span>
 <span class="pl-c">// You may optionally provide a list of paramaters</span>
 <span class="pl-c">// Parameters may be any json cloneable object</span>
 myThread.<span class="pl-c1">call</span>(<span class="pl-s"><span class="pl-pds">"</span>myEchoFunc<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>My name is: <span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Bob<span class="pl-pds">"</span></span>); <span class="pl-c">// supply 2 params</span>
@@ -111,9 +262,10 @@ myThread.<span class="pl-c1">call</span>(<span class="pl-s"><span class="pl-pds"
 <h6>
 <a id="anonymous-functions" class="anchor" href="#anonymous-functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Anonymous Functions</h6>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-c">// You can also temporarily define a function and call it once</span>
-<span class="pl-c">// You can pass the name of a named function or an anonymouse function</span>
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// You can execute a function once using exec()</span>
 <span class="pl-c">// Exec will temporarily define the function, then call it</span>
+<span class="pl-c">// This can be an anonymous function or a named function that</span>
+<span class="pl-c">// exists in the main code</span>
 myThread.<span class="pl-c1">exec</span>(<span class="pl-k">function</span>(<span class="pl-smi">param1</span>) { <span class="pl-c">/* do something */</span> }, <span class="pl-s"><span class="pl-pds">"</span>paramValue<span class="pl-pds">"</span></span>);</pre></div>
 
 <h6>
@@ -122,33 +274,551 @@ myThread.<span class="pl-c1">exec</span>(<span class="pl-k">function</span>(<spa
 <div class="highlight highlight-source-js"><pre><span class="pl-c">// You can also construct any named function in the thread</span>
 <span class="pl-c">// You can optionally provide a list of paramaters</span>
 <span class="pl-c">// This example constructs MyClassName with a string and object param</span>
-myThread.construct(<span class="pl-s"><span class="pl-pds">"</span>MyClassName<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>param1<span class="pl-pds">"</span></span>, {someIndex<span class="pl-k">:</span> <span class="pl-c1">99</span>});
+myThread.construct(<span class="pl-s"><span class="pl-pds">"</span>MyClassName<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>param1<span class="pl-pds">"</span></span>, { keyToUniverse<span class="pl-k">:</span> <span class="pl-c1">42</span> });
 myThread.construct(<span class="pl-s"><span class="pl-pds">"</span>myNamespace.MyNamespacedClass<span class="pl-pds">"</span></span>);  <span class="pl-c">// You can use namespaces</span></pre></div>
 
-<h1>
-<a id="threadjs-1" class="anchor" href="#threadjs-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Thread.js</h1>
+<h6>
+<a id="eval" class="anchor" href="#eval" aria-hidden="true"><span class="octicon octicon-link"></span></a>Eval</h6>
 
-<h3>
-<a id="multi-threaded-programming-with-javascript-or-typescript-1" class="anchor" href="#multi-threaded-programming-with-javascript-or-typescript-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Multi-threaded Programming with Javascript or TypeScript</h3>
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// You can also evaluate any javascript in the threads scope</span>
+<span class="pl-c">// There are generally better ways to do things, but this </span>
+<span class="pl-c">// function can be handy from time to time</span>
+myThread.<span class="pl-c1">eval</span>(<span class="pl-s"><span class="pl-pds">"</span>console.log('hi from the thread!');<span class="pl-pds">"</span></span>);</pre></div>
 
-<hr>
+<p><br></p>
 
-<p>Thread.js is an easy to use library for leveraging the power of parallel computing in JavaScript or TypeScript. Thread.js provides an intuitive, no-hassle interface for creating, interacting with, and disposing of Web Workers. </p>
+<p><a name="comm"></a></p>
 
-<h1>
-<a id="installation-1" class="anchor" href="#installation-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h1>
+<h4>
+<a id="communicating-with-threads" class="anchor" href="#communicating-with-threads" aria-hidden="true"><span class="octicon octicon-link"></span></a>Communicating with Threads</h4>
 
-<p>Include thread.js in your web projects like so:</p>
+<p>You can communicate with threads using events or messages. Communication is a two way street:</p>
 
-<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>threadjs.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
+<ul>
+<li>Communication from Parent to Child
 
-<h1>
-<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h1>
+<ul>
+<li>Parent code calls functions on the myThread instance</li>
+<li>Child code catches incoming messages by listening to the Thread.parent static class member</li>
+</ul>
+</li>
+<li>Communication from Child to Parent
+
+<ul>
+<li>Child code calls functions on the Thread.parent static class member</li>
+<li>Parent code catches incoming messages by listening to the myThread instance</li>
+</ul>
+</li>
+</ul>
+
+<p>Events are superiour to messages because they can be dispatched to specific event listeners, whereas messages don't have a type.<br>
+<br>
+The examples below send a ping event/message from the main code (parent) to the child thread. The child then responds to the ping by sending a pong event/message back to the parent. </p>
+
+<h6>
+<a id="events-example" class="anchor" href="#events-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Events Example</h6>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">/** Defines the code that will run in the thread. */</span>
+<span class="pl-k">function</span> <span class="pl-en">threadCode</span>()
+{
+    <span class="pl-c">/** Handles ping events sent to the thead. */</span>
+    <span class="pl-k">function</span> <span class="pl-en">pingHandler</span>(<span class="pl-smi">evt</span>) 
+    {
+        <span class="pl-c">// Send back a pong</span>
+        Thread.<span class="pl-c1">parent</span>.postEvent(<span class="pl-s"><span class="pl-pds">"</span>pong<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Hi from thread <span class="pl-pds">"</span></span> <span class="pl-k">+</span> Thread.threadID);
+    }
+
+    <span class="pl-c">// Watch for ping events from the parent</span>
+    Thread.<span class="pl-c1">parent</span>.addEventListener(<span class="pl-s"><span class="pl-pds">"</span>ping<span class="pl-pds">"</span></span>, pingHandler);
+}
+
+<span class="pl-c">/** Will run in Main window context to handle pong events from the child thread. */</span>
+<span class="pl-k">function</span> <span class="pl-en">pongHandler</span>(<span class="pl-smi">evt</span>) 
+{
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>Received pong from thread!<span class="pl-pds">"</span></span>);
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span> Got message: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> evt.<span class="pl-c1">data</span>);
+}
+
+<span class="pl-c">// Create a new thread and watch for pong events from it</span>
+<span class="pl-k">var</span> myThread <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Thread</span>(threadCode);
+myThread.addEventListener(<span class="pl-s"><span class="pl-pds">"</span>pong<span class="pl-pds">"</span></span>, pongHandler);
+
+<span class="pl-c">// Send a ping event to the thread</span>
+myThread.postEvent(<span class="pl-s"><span class="pl-pds">"</span>ping<span class="pl-pds">"</span></span>);</pre></div>
+
+<h6>
+<a id="messages-example" class="anchor" href="#messages-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Messages Example</h6>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">/** Defines the code that will run in the thread. */</span>
+<span class="pl-k">function</span> <span class="pl-en">threadCode</span>()
+{
+    <span class="pl-c">/** Handles ping events sent to the thead. */</span>
+    <span class="pl-k">function</span> <span class="pl-en">msgHandler</span>(<span class="pl-smi">evt</span>) 
+    {
+        <span class="pl-c">// Send back a pong if the message was a ping</span>
+        <span class="pl-k">if</span> (evt.<span class="pl-c1">data</span> <span class="pl-k">===</span> <span class="pl-s"><span class="pl-pds">"</span>ping<span class="pl-pds">"</span></span>)
+        {
+            Thread.<span class="pl-c1">parent</span>.postMessage(<span class="pl-s"><span class="pl-pds">"</span>pong<span class="pl-pds">"</span></span>);
+        }
+    }
+
+    <span class="pl-c">// Watch for ping events from the parent</span>
+    Thread.<span class="pl-c1">parent</span>.addEventListener(Thread.MESSAGE, msgHandler);
+}
+
+<span class="pl-c">/** Will run in Main window context to handle pong events from the child thread. */</span>
+<span class="pl-k">function</span> <span class="pl-en">msgHandler</span>(<span class="pl-smi">evt</span>) 
+{
+    <span class="pl-c">// Respond to the message if it was a pong</span>
+    <span class="pl-k">if</span> (evt.<span class="pl-c1">data</span> <span class="pl-k">===</span> <span class="pl-s"><span class="pl-pds">"</span>pong<span class="pl-pds">"</span></span>)
+    {
+        <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>Received pong from thread!<span class="pl-pds">"</span></span>);
+        <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span> Got message: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> evt.<span class="pl-c1">data</span>);
+    }
+}
+
+<span class="pl-c">// Create a new thread and watch for pong events from it</span>
+<span class="pl-k">var</span> myThread <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Thread</span>(threadCode);
+myThread.addEventListener(Thread.MESSAGE, msgHandler);
+
+<span class="pl-c">// Send a ping event to the thread</span>
+myThread.postMessage(<span class="pl-s"><span class="pl-pds">"</span>ping<span class="pl-pds">"</span></span>);</pre></div>
+
+<p><br></p>
+
+<p><a name="termination"></a></p>
+
+<h4>
+<a id="terminating-a-thread" class="anchor" href="#terminating-a-thread" aria-hidden="true"><span class="octicon octicon-link"></span></a>Terminating a Thread</h4>
+
+<p>Threads use resources that need to be explicitely cleaned up when you're done with the thread. By default, thread.js will only support between 4 and 16 concurrent workers (depending on hardware). Any more than the allowed number, and threads will queue, waiting for existing threads to terminate. Remember to call terminate()- It's super important to clean your room!</p>
+
+<p>There are two ways to terminate a thread, from the parent or from the child. Any fully terminated thread is no longer valid.</p>
+
+<h6>
+<a id="terminate" class="anchor" href="#terminate" aria-hidden="true"><span class="octicon octicon-link"></span></a>terminate();</h6>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// To terminate a thread instance within the parent, you call terminate on the thread instance</span>
+<span class="pl-c">// The thread will immediately terminate, any pending messages to the thread will be ignored</span>
+<span class="pl-c">// Trying to interact with a terminated thread will throw an error</span>
+myThread.terminate();   <span class="pl-c">// in parent code</span>
+
+<span class="pl-c">// To have a child thread terminate itself, call the static terminate function from within the thread</span>
+<span class="pl-c">// This will schedule the thread for termination, pending messages may still arrive until termination</span>
+Thread.terminate(); <span class="pl-c">// in thread code</span></pre></div>
+
+<p><br></p>
+
+<p><a name="examples"></a></p>
+
+<h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
+
+<p>We've compiled a couple Thread.js examples that show off using events and performing intensive operations. More examples are sure to come in the future.</p>
+
+<ul>
+<li>
+<strong><a target="_blank" href="http://jsfiddle.net/swevans/mLbzmtm5/13/">JSFiddle Events Example</a></strong> - Dispatches ping and pong events as shown above</li>
+<li>
+<strong><a target="_blank" href="http://jsfiddle.net/swevans/5m6rqsro/9/">JSFiddle Prime Numbers Example</a></strong> - Performs intensive operations without disrupting animation
+<br>
+<br>
+</li>
+</ul>
+
+<p><a name="browsers"></a></p>
+
+<h2>
+<a id="browser-support" class="anchor" href="#browser-support" aria-hidden="true"><span class="octicon octicon-link"></span></a>Browser Support</h2>
+
+<p>Thread.js works anywhere that WebWorkers are supported.</p>
+
+<ul>
+<li><strong><a target="_blank" href="http://caniuse.com/#feat=webworkers">Can I Use? Table for Web Workers</a></strong></li>
+</ul>
+
+<h6>
+<a id="quirks" class="anchor" href="#quirks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quirks:</h6>
 
 <ol>
-<li>Worker Queuing - If more than the optimal number of threads are created, later threads will queue until resources become available.</li>
-<li>Event Based Messaging - Messages to and from threads are powered by the widly understood EventTarget interface (addEventListener).</li>
+<li>IE10: <a target="_blank" href="http://www.html5rocks.com/en/tutorials/workers/basics/#toc-inlineworkers">Inline workers</a> are not supported. Thread.js will fall back to url based web workers, loading the library itself as the root code.</li>
+<li>IE10: Because IE10 uses url based workers, it is subject to <a target="_blank" href="http://www.html5rocks.com/en/tutorials/cors/">CORS limitations</a>. There may be a fix coming for this in the future, but we'll have to see how much of an issue it is!</li>
 </ol>
+
+<p><br></p>
+
+<p><a name="faq"></a></p>
+
+<h2>
+<a id="faq" class="anchor" href="#faq" aria-hidden="true"><span class="octicon octicon-link"></span></a>FAQ</h2>
+
+<p><strong>Q: I am calling a function on my thread then terminating the thread and the function never evaluates, why?!</strong><br>
+<strong>A:</strong> Calling myThread.terminate() terminates the thread immediately. The prior function you're calling via myThread.call() is schedule to be called, but the thread terminates before it does. You should use events or messages to let the parent know the thread is done, OR have the thread terminate itself. </p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> threadCode {
+    <span class="pl-k">function</span> <span class="pl-en">myFunc</span>()
+    {
+        <span class="pl-c">// do some things</span>
+
+        <span class="pl-c">// now self terminate</span>
+        Thread.terminate();
+    }
+}
+<span class="pl-k">var</span> myThread <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Thread</span>(threadCode);
+myThread.<span class="pl-c1">call</span>(<span class="pl-s"><span class="pl-pds">"</span>myFunc<span class="pl-pds">"</span></span>);</pre></div>
+
+<p><br></p>
+
+<p><strong>Q: I am using many threads and nothing seems to be getting done or a thread never starts, why?!</strong><br>
+<strong>A:</strong> You're likely creating too many threads that are waiting for one another to finish. Lets say you have four threads; A, B, C, and D. You then create a 5th thread E. The thread code in A, B, C, and D all rely on E to finish, however E will never be able to start because A, B, C, and D are using all available workers. This is thread lock. You should first try to remove this dependancy. If you can't, increase max workers with threadjs.maxWorkers = 16; (be careful with this and don't go over 16!). See the <a href="#queuing">Max Workers and Thread Queuing</a> section below.
+<br>
+<br></p>
+
+<p><a name="advanced"></a></p>
+
+<h2>
+<a id="advanced-topics" class="anchor" href="#advanced-topics" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advanced Topics</h2>
+
+<p>Thread.js is simple enough to pick up quickly, but there are a few advanced topics worth posting.</p>
+
+<h5>
+<a id="checking-for-suppport" class="anchor" href="#checking-for-suppport" aria-hidden="true"><span class="octicon octicon-link"></span></a>Checking for Suppport</h5>
+
+<p>You can check for browser support using:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// Will be true if the Web Worker API is supported</span>
+threadjs.isSupported;</pre></div>
+
+<p><br></p>
+
+<p><a name="threadEvents"></a></p>
+
+<h5>
+<a id="thread-events" class="anchor" href="#thread-events" aria-hidden="true"><span class="octicon octicon-link"></span></a>Thread Events</h5>
+
+<p>The Thread class has a few built in events. It is not necessary to use them. They're provided more for debugging than anything else.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">/** Code within the parent */</span>
+<span class="pl-c">// The start event is dispatched when a thread starts </span>
+<span class="pl-c">// This might be dispatched within the Thread() constructor and thus you can't catch it</span>
+<span class="pl-c">// You'll only catch this event if the thread was queued, see Thread Queuing topic</span>
+<span class="pl-c">// The event type is a ThreadEvent</span>
+myThread.addEventListener(Thread.START, startHandler);
+
+<span class="pl-c">// Catches messages sent from child to parent</span>
+<span class="pl-c">// Only applies if you're using Thread.parent.postMessage</span>
+<span class="pl-c">// It is recommended that you use postEvent instead</span>
+<span class="pl-c">// The event type is a MessageEvent</span>
+<span class="pl-c">// Data passed with the message is in the data member of the event</span>
+myThread.addEventListener(Thread.MESSAGE, msgFromChildHandler);
+
+<span class="pl-c">// Dispatched whenever a thread actually terminates</span>
+<span class="pl-c">// You can use this to tell if your thread self terminated via a static Thread.terminate()</span>
+<span class="pl-c">// The event type is a ThreadEvent</span>
+myThread.addEventListener(Thread.TERMINATE, terminateHandler);
+
+<span class="pl-c">// Dispatched whenever an error is thrown within the thread code</span>
+<span class="pl-c">// The event type is some form of ErrorEvent</span>
+myThread.addEventListener(Thread.ERROR, errorHandler);
+
+<span class="pl-c">/** Code within the thread */</span>
+<span class="pl-c">// Catches messages sent from parent to child</span>
+<span class="pl-c">// Only applies if you're using myThread.postMessage</span>
+<span class="pl-c">// It is recommended that you use postEvent instead</span>
+<span class="pl-c">// The event type is a MessageEvent</span>
+<span class="pl-c">// Data passed with the message is in the data member of the event</span>
+Thread.<span class="pl-c1">parent</span>.addEventListener(Thread.MESSAGE, msgFromParentHandler);</pre></div>
+
+<p><br></p>
+
+<p><a name="subThreads"></a></p>
+
+<h5>
+<a id="sub-threads-sub-workers" class="anchor" href="#sub-threads-sub-workers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sub Threads (Sub Workers)</h5>
+
+<p>Thread.js supports child threads, aka Sub Workers. You may spawn a thread within a thread. The maxWorkers limit and thread queuing are still enforced. See <a href="#queuing">Max Workers and Thread Queuing</a> below. Sub Threads are very-slightly slower to start.<br></p>
+
+<p>
+Sub threads are dependant on their parent; when the parent terminates, the child will terminate. An example; Your main code in index.html creates myThread, myThread then creates mySubThread, index.html calls myThread.terminate(), both mySubThread and myThread will terminate.
+</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// Define code for the thread</span>
+<span class="pl-k">function</span> <span class="pl-en">myThreadCode</span>() {
+
+    <span class="pl-c">// Define code for the sub thread</span>
+    <span class="pl-k">function</span> <span class="pl-en">mySubThreadCode</span>() {}
+
+    <span class="pl-c">// Create the sub thread</span>
+    <span class="pl-k">var</span> mySubThread <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Thread</span>(mySubThreadCode);
+}
+
+<span class="pl-c">// Create the thread, which in turn creates a sub thread</span>
+<span class="pl-k">var</span> myThread <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Thread</span>(myThreadCode);
+
+<span class="pl-c">// Terminate myThread, which will also terminate mySubThread</span>
+myThread.terminate();</pre></div>
+
+<p><br></p>
+
+<p><a name="threadScope"></a></p>
+
+<h5>
+<a id="thread-scope--loading-within-a-thread" class="anchor" href="#thread-scope--loading-within-a-thread" aria-hidden="true"><span class="octicon octicon-link"></span></a>Thread Scope &amp; Loading within a Thread</h5>
+
+<p>
+Threads operate in their own execution scope. Thus code must be loaded into the thread even if it already exists in the parent scope. Additionally, thread scope does not have access to the DOM or window.
+</p>
+
+<p>
+One benefit to loading within a thread is that loading can be done synchronously without disrupting user experience. On the flip side, a drawback is that urls provided to loaders must be absolute. Thread.js makes this simple by providing the Thread.workingDirectory static member. An example below shows how to use it.
+</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> <span class="pl-en">threadCode</span>()
+{
+    <span class="pl-c">// load something synchronously within the thread</span>
+    <span class="pl-c">// using Thread.workingDirectory and a url that is relative to the page</span>
+    <span class="pl-k">var</span> xhttp <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">XMLHttpRequest</span>();
+    xhttp.<span class="pl-c1">open</span>(<span class="pl-s"><span class="pl-pds">"</span>GET<span class="pl-pds">"</span></span>, Thread.workingDirectory <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span>myFile.txt<span class="pl-pds">"</span></span>, <span class="pl-c1">false</span>);
+    xhttp.<span class="pl-c1">send</span>();
+}
+
+<span class="pl-k">var</span> myThread <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Thread</span>(threadCode);</pre></div>
+
+<p><br></p>
+
+<p><a name="passingData"></a></p>
+
+<h5>
+<a id="passing-data-between-threads" class="anchor" href="#passing-data-between-threads" aria-hidden="true"><span class="octicon octicon-link"></span></a>Passing Data Between Threads</h5>
+
+<p>
+Objects are passed between threads via cloning. The actual instances of the objects are not shared. This is a limitation of the Web Worker API. An additional limitation is that you cannot pass objects that contain native code (ie HTMLElements).
+</p>
+
+<p>
+One exception is that you may post native events (like a mouse event) between threads using postEvent(someNativeEvent). This is accomplished by creating a partial copy of the native event as a ThreadEvent.
+</p>
+
+<p>
+As of now, Thread.js only supports copying data between threads. Transferrable objects are not yet supported.
+</p>
+
+<p><br></p>
+
+<p><a name="asyncLib"></a></p>
+
+<h5>
+<a id="asynchronously-loading-threadjs" class="anchor" href="#asynchronously-loading-threadjs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Asynchronously Loading Thread.js</h5>
+
+<p>It is highly recommended that you load thread.js using a synchronous script tag within your document. If for some reason you must load thread.js using an asynchronous method, you are required to set the threadjs.url property before using Threads. It should point to the location of the thread.js library file.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// ... some code to load and evaluate thread.js</span>
+
+<span class="pl-c">// Set the threadjs url relative to the document</span>
+threadjs.url <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>pathto/thread.js<span class="pl-pds">"</span></span>;</pre></div>
+
+<p><br></p>
+
+<p><a name="CORS"></a></p>
+
+<h5>
+<a id="cross-domain-security-cors" class="anchor" href="#cross-domain-security-cors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cross Domain Security (CORS)</h5>
+
+<p>It is highly recommended that you host thread.js and your thread code scripts in the same domain as your page. If for some reason you can't, you will lose IE10 support. You may also run into security issues loading your thread code if it is in a different domain than the threadjs library.
+<br>
+<br></p>
+
+<p><a name="queuing"></a></p>
+
+<h5>
+<a id="thread-queuing-max-workers-and-thread-lock" class="anchor" href="#thread-queuing-max-workers-and-thread-lock" aria-hidden="true"><span class="octicon octicon-link"></span></a>Thread Queuing, Max Workers, and Thread Lock</h5>
+
+<p>Thread.js only allows a maximum number of workers. This is typically 4 by default, but may go up to 16 depending on device hardware. This limitation is to prevent you from accidentally crashing the browser by creating too many workers. However, you can create as many Thread instances as you want and act on them immediately. This is thanks to thread.js's Thread Queuing functionality.</p>
+
+<h6>
+<a id="thread-queuing" class="anchor" href="#thread-queuing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Thread Queuing</h6>
+
+<p>
+If you create more threads than the allowed number of workers, the threads created most recently will queue until a worker become available when an existing thread terminates. Queued threads will dequeue and start in the order they are created.
+</p>
+
+<p>
+A Thread.START ("start") event is dispatched by the thread instance when it dequeues. Even if a thread queues, you may call any functions on it. Any functions you call on a queued thread will execute, in order, after the thread starts. If you call terminate on a queued thread, it will never start and no longer be valid.
+</p>
+
+<p><a name="maxWorkers"></a></p>
+
+<h6>
+<a id="max-workers" class="anchor" href="#max-workers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Max Workers</h6>
+
+<p>
+The maximum number of workers is safely determined by Thread.js when the library is loaded. It is safest to assume that this value is 4. You can manually increase this number (not recommended) by setting threadjs.maxWorkers. You should probably not set this above 12, and definitely not set this value above 16 for anything you plan to release. Setting this value too high will cause the browser to crash.
+</p>
+
+<h6>
+<a id="thread-lock" class="anchor" href="#thread-lock" aria-hidden="true"><span class="octicon octicon-link"></span></a>Thread Lock</h6>
+
+<p>
+Thread lock happens when you have active threads which depend on queued threads. This is something you should avidly try to avoid by removing thread dependancies and avoiding sub threads.
+</p>
+
+<p><br>
+An Example:<br>
+Let's say you have four threads; A, B, C, and D. You then create a 5th thread E. The thread code in A, B, C, and D all rely on E to finish, however E will never be able to start because A, B, C, and D are using all available workers. This is thread lock. You should first try to remove this dependancy. If you can't, then your only option is to increase max workers with threadjs.maxWorkers (be careful with this and don't go over 16!). See the <a href="#maxWorkers">Max Workers</a> section above.
+<br></p>
+
+<p><a name="optimization"></a></p>
+
+<h5>
+<a id="memory--traffic-optimization" class="anchor" href="#memory--traffic-optimization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Memory &amp; Traffic Optimization</h5>
+
+<p>Code supplied to the thread might be lengthy and heavy to keep in memory. If you define the code inline in your main javascript, the code will be stored in memory on both the parent and child thread. If you use the script tag code definition defined above, the code won't be defined in memory on the main thread. The absolute best way to conserve memory and traffic is to define your thread code in an external js file.</p>
+
+<h6>
+<a id="inline-thread-code" class="anchor" href="#inline-thread-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inline Thread Code</h6>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// threadCode src will obviously download with the page</span>
+<span class="pl-c">// threadCode will exist in memory in the page root and the thread.</span>
+<span class="pl-k">function</span> <span class="pl-en">threadCode</span>() {
+    <span class="pl-c">// some code</span>
+}
+<span class="pl-k">var</span> myThread <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Thread</span>(threadCode);</pre></div>
+
+<h6>
+<a id="tag-defined-thread-code" class="anchor" href="#tag-defined-thread-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tag Defined Thread Code</h6>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">html</span>&gt;
+    &lt;<span class="pl-ent">head</span>&gt;
+         &lt;<span class="pl-ent">script</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>threadCode<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/js-worker<span class="pl-pds">"</span></span>&gt;
+            // threadCode src will obviously download with the page
+            // threadCode will exist in memory only in the thread
+            function threadCode() {
+                // some code
+            }
+        &lt;/<span class="pl-ent">script</span>&gt;
+<span class="pl-s1">        &lt;<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1">            <span class="pl-k">var</span> myThread <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Thread</span>(<span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">"</span>threadCode<span class="pl-pds">"</span></span>));</span>
+<span class="pl-s1">        &lt;/<span class="pl-ent">script</span>&gt;</span>
+    &lt;/<span class="pl-ent">head</span>&gt;
+&lt;/<span class="pl-ent">html</span>&gt;</pre></div>
+
+<h6>
+<a id="externally-loaded-thread-code" class="anchor" href="#externally-loaded-thread-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Externally Loaded Thread Code</h6>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// threadCode src will only download when the thread starts</span>
+<span class="pl-c">// threadCode will only exist in memory within the thread only</span>
+<span class="pl-k">var</span> myThread <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Thread</span>(<span class="pl-s"><span class="pl-pds">"</span>myThreadCode.js<span class="pl-pds">"</span></span>);</pre></div>
+
+<p><br></p>
+
+<p><a name="debugging"></a></p>
+
+<h5>
+<a id="debugging--error-handling" class="anchor" href="#debugging--error-handling" aria-hidden="true"><span class="octicon octicon-link"></span></a>Debugging &amp; Error Handling</h5>
+
+<p>Debugging multithreaded code can be challenging. Luckily Threadjs and Web Workers provide some safety and help. As always.. your browser console is there to help (use F12)! FWIW- we have found Firefox to be the best browser for debugging multithreaded code.</p>
+
+<h6>
+<a id="unminified-threadjs" class="anchor" href="#unminified-threadjs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Unminified Thread.js</h6>
+
+<p>It is best to use the unminified thread.js file while developing or debugging your application.</p>
+
+<div class="highlight highlight-text-html-basic"><pre><span class="pl-c">&lt;!-- Full version, recommended for debugging --&gt;</span>
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>pathto/thread.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
+
+<h6>
+<a id="disallowing-inline-workers" class="anchor" href="#disallowing-inline-workers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Disallowing Inline Workers</h6>
+
+<p>Inline workers create fictional urls to run code. Threadjs uses inline workers by default. These can be tricky to debug because file name and line information may be lost. Thankfully, you can disable inline workers.</p>
+
+<div class="highlight highlight-source-js"><pre>threadjs.allowInlineWorkers <span class="pl-k">=</span> <span class="pl-c1">false</span>;    <span class="pl-c">// turn off inline workers</span></pre></div>
+
+<h6>
+<a id="catching-errors-generated-in-the-thread" class="anchor" href="#catching-errors-generated-in-the-thread" aria-hidden="true"><span class="octicon octicon-link"></span></a>Catching Errors Generated in the Thread</h6>
+
+<p>Thread instances dispatch an error event anytime their thread code throws an error. You can catch it like so:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// Dispatched whenever an error is thrown within the thread code</span>
+<span class="pl-c">// The event type is some form of ErrorEvent</span>
+myThread.addEventListener(Thread.ERROR, <span class="pl-k">function</span>(<span class="pl-smi">errorEvent</span>) {<span class="pl-c">/* do something */</span>} );</pre></div>
+
+<p><br></p>
+
+<p><a name="future"></a></p>
+
+<h2>
+<a id="future-changes" class="anchor" href="#future-changes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Future Changes</h2>
+
+<p>There are many different ways to expand upon Thread.js. Feel free to weigh in on future direction by forking the repo, adding a comment, or emailing me at <a target="_blank" href="mailto:evans.spencer@gmail.com"></a><a href="mailto:evans.spencer@gmail.com">evans.spencer@gmail.com</a>. Here are a few things being considered:</p>
+
+<ul>
+<li>Wrapper for objects constructed on the thread via myThread.construct(). Will allow you to call functions on the constructed object.</li>
+<li>Wrapper for function calls on the thread via myThread.call(). Will allow you to listen for function completion and get the return result.</li>
+<li>Change importScripts to use XHR such that CORS is supported.</li>
+<li>Add support for transferrable objects.</li>
+<li>Add a object sync feature that mirrors an object between two threads.</li>
+<li>Add support for synchronous threads when workers are not supported.
+<br>
+<br>
+</li>
+</ul>
+
+<p><a name="underTheHood"></a></p>
+
+<h2>
+<a id="under-the-hood" class="anchor" href="#under-the-hood" aria-hidden="true"><span class="octicon octicon-link"></span></a>Under the Hood</h2>
+
+<p>For those who already understand Web Workers, here a few details about how Thread.js works.</p>
+
+<h6>
+<a id="worker-types" class="anchor" href="#worker-types" aria-hidden="true"><span class="octicon octicon-link"></span></a>Worker Types:</h6>
+
+<ul>
+<li>Thread.js only uses dedicated workers.</li>
+<li>Thread.js uses <a target="_blank" href="http://www.html5rocks.com/en/tutorials/workers/basics/#toc-inlineworkers">inline workers</a> whenever possible. IE10 is the only known browser that does not support inline workers.</li>
+<li>Thread.js currently uses the web worker API <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/importScripts">importScripts</a> function to load scripts in a thread. This limits non-inline workers and script importing to the same origin. </li>
+</ul>
+
+<h6>
+<a id="max-workers-1" class="anchor" href="#max-workers-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Max Workers:</h6>
+
+<ul>
+<li>Thread.js uses the navigator.hardwareConcurrency to determine the maximum number of workers allowed. Thread.js enforces a default minimum number of 4 workers and a max of 16. Any number of thread instances can be created, but they will queue until more workers become available. You can override this setting with the threadjs.maxWorkers property.</li>
+<li>Thread.js allows sub-workers but enforces a maximum number of workers by keeping track of all descendant threads within the Main UI process.</li>
+</ul>
+
+<h6>
+<a id="base-thread-code" class="anchor" href="#base-thread-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Base Thread Code:</h6>
+
+<ul>
+<li>Whenever a new worker is created, it is immediately passed all of the threadjs library, making the library available on that thread. </li>
+</ul>
+
+<h6>
+<a id="working-directory-library-url-and-cors" class="anchor" href="#working-directory-library-url-and-cors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Working Directory, Library URL, and CORS:</h6>
+
+<ul>
+<li>Threadjs maintains a string url to the working directory of the web page. This url is passed to all threads to allow script loading when workers are not running in the page location. You can find this value in Thread.workingDirectory.</li>
+<li>Threadjs needs to know its own library script url. This is determined when the library is loaded by looking at the last script tag loaded in the DOM. If you load thread.js via XHR / jQuery / some other means, you will need to set the threadjs.url property immediately after importing the library.</li>
+</ul>
+
+<h6>
+<a id="event-system" class="anchor" href="#event-system" aria-hidden="true"><span class="octicon octicon-link"></span></a>Event System:</h6>
+
+<ul>
+<li>Threadjs has its own tiny, built-in EventTarget like interface called EventDispatcher. It allows Thread.js to dispatch events. </li>
+<li>Threadjs allows you to partially pass native events between threads by creating a partial copy of the native event as a threadjs ThreadEvent. Thus you can pass myThread.postEvent(mouseEvent) etc.
+<br>
+<br>
+</li>
+</ul>
+
+<p><a name="compilingTS"></a></p>
+
+<h2>
+<a id="compiling-typescript" class="anchor" href="#compiling-typescript" aria-hidden="true"><span class="octicon octicon-link"></span></a>Compiling TypeScript</h2>
+
+<p>Compiling the typescript is not required to use the library. Should you decide to do so, run the compiler within the src directory. It should pickup the tsconfig.json configuration file and output to www/js/thread.js.</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/swevans/thread.js">Thread.js</a> is maintained by <a href="https://github.com/swevans">swevans</a>.</span>
