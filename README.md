@@ -250,7 +250,7 @@ myThread.postMessage("ping");
 #### Terminating a Thread
 Threads use resources that need to be explicitely cleaned up when you're done with the thread. Thread.js by default will only support between 4 and 16 concurrent workers depending on hardware. Any more than the allowed number, and threads will queue, waiting for existing threads to terminate. It's super important to clean your room!
 
-There are two ways to terminate a thread, from the parent or from the child.
+There are two ways to terminate a thread, from the parent or from the child. Any fully terminated thread is no longer valid.
 ###### terminate();
 ```js
 // To terminate a thread instance within the parent by calling terminate on the thread
@@ -285,7 +285,7 @@ Thread.js works anywhere that WebWorkers are supported.
 <br/>
 
 
-## FAQ & Suppport
+## FAQ
 **Q: I am calling a function on my thread then terminating the thread and the function never evaluates, why?!**<br/>
 **A:** Calling myThread.terminate() terminates the thread immediately. The prior function you're calling via myThread.call() is schedule to be called, but the thread terminates before it does. You should use events or messages to let the parent know the thread is done, OR have the thread terminate itself. 
 ```js
@@ -304,7 +304,7 @@ myThread.call("myFunc");
 <br/>
 
 **Q: I am using many threads and nothing seems to be getting done or a thread never starts, why?!**<br/>
-**A:** You're likely creating too many threads that are waiting for one another to finish. Lets say you have four threads; A, B, C, and D. You then create a 5th thread E. The thread code in A, B, C, and D all rely on E to finish, however E will never be able to start because A, B, C, and D are using all available workers. This is thread lock. You should first try to remove this dependancy. If you can't, increase max threads with threadjs.maxThreads = 16; (be careful with this and don't go over 16!). See the Max Threads and Thread Queuing sections below.
+**A:** You're likely creating too many threads that are waiting for one another to finish. Lets say you have four threads; A, B, C, and D. You then create a 5th thread E. The thread code in A, B, C, and D all rely on E to finish, however E will never be able to start because A, B, C, and D are using all available workers. This is thread lock. You should first try to remove this dependancy. If you can't, increase max workers with threadjs.maxWorkers = 16; (be careful with this and don't go over 16!). See the Max Workers and Thread Queuing section below.
 <br/>
 <br/>
 
@@ -356,7 +356,7 @@ Thread.parent.addEventListener(Thread.MESSAGE, msgFromParentHandler);
 
 ##### Sub Threads (Sub Workers)
 <p>
-Thread.js supports child threads, aka Sub Workers. You may spawn a thread within a thread. The maxThreads limit and thread queuing are still enforced. See Thread Queuing below. Sub Threads are very-slightly slower to start.
+Thread.js supports child threads, aka Sub Workers. You may spawn a thread within a thread. The maxWorkers limit and thread queuing are still enforced. See Thread Queuing below. Sub Threads are very-slightly slower to start.
 </p>
 <p>
 Sub threads are dependant on their parent; when the parent terminates, the child will terminate. An example; Your main code in index.html creates myThread, myThread then creates mySubThread, index.html calls myThread.terminate(), both mySubThread and myThread will terminate.
@@ -426,9 +426,33 @@ threadjs.url = "pathto/thread.js";
 ##### Cross Domain Security (CORS)
 It is highly recommended that you host thread.js and your thread code scripts in the same domain as your page. If for some reason you can't you will lose IE10 support. You may also run into security issues loading your thread code if it is in a different domain than the threadjs library.
 <br/>
-
-##### Thread Queuing, Max Threads, and Thread Lock
 <br/>
+
+##### Thread Queuing, Max Workers, and Thread Lock
+Thread.js only allows a maximum number of workers. This is typically 4 by default, but may go up to 16 depending on device hardware. This limitation is to prevent you from accidentally crashing the browser by creating too many workers. You however can create as many Thread instances as you want and interact on them immediately. This is thanks to thread.js's Thread Queuing functionality.
+###### Thread Queuing
+<p>
+If you create more threads than the allowed number of workers, the threads created most recently will queue until workers become available because existing threads have terminated. Queued threads will dequeue and start in the order they are created.
+</p>
+<p>
+A Thread.START ("start") event is dispatched by the thread instance when it dequeues. Even if a thread queues, you may call any functions on it. Any functions you call on a queued thread will execute in order after the thread starts. If you call terminate on a queued thread, it will never start and no longer be valid.
+</p>
+<br/>
+<br/>
+###### Max Workers
+The maximum number of workers is safely determined by Thread.js when the library is loaded. It is safest to assume that this value is 4. You can manually increase this number (not recommended) by setting threadjs.maxWorkers. You should probably not set this above 12, and definitely not set this value above 16 for anything you plan to release. Setting this value too high will cause the browser to crash.
+<br/>
+<br/>
+###### Thread Lock
+<p>
+Thread lock happens when you have active threads which depend on queued threads. This is something you should avidly try to avoid by removing thread dependancies and avoiding sub threads.
+</p>
+<p>
+An Example:<br/>
+Let's say you have four threads; A, B, C, and D. You then create a 5th thread E. The thread code in A, B, C, and D all rely on E to finish, however E will never be able to start because A, B, C, and D are using all available workers. This is thread lock. You should first try to remove this dependancy. If you can't, increase max workers with threadjs.maxWorkers = 16; (be careful with this and don't go over 16!). See the Max Workers section above.
+</p>
+
+
 
 ##### Memory & Traffic Optimization
 Code supplied to the thread might be lengthy and heavy to keep in memory. If you define the code inline in your main javascript, the code will be stored in memory on both the parent and child thread. If you use the script tag code definition defined above, the code won't be defined in memory on the main thread. The absolute best way to conserve memory and traffic is to define your thread code in an external js file.
