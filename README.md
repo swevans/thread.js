@@ -140,10 +140,14 @@ myThread.eval("console.log('hi from the thread!');");
 <br/>
 
 #### Communicating with Threads
-You can communicate with threads using events or messages. Events are more flexible and powerful. 
+You can communicate with threads using events or messages.
 
-* To communicate from the parent to the child thread, you call functions on the myThread instance.
-* To communicate from the child thread to the parent, you call functions on the Thread.parent static class member.
+* Communication from Parent to Child
+** Parent code calls functions on the myThread instance
+** Child code catches incoming messages by listening to the Thread.parent static class member
+* Communication from Child to Parent
+** Child code calls functions on the Thread.parent static class member
+** Parent code catches incoming messages by listening to the myThread instance
 
 The event example below sends a ping event to a thread and the thread sends a pong event back.
 ###### Events Example
@@ -182,7 +186,43 @@ myThread.postEvent("ping");
 
 ###### Messages Example
 ```js
+/** Defines the code that will run in the thread. */
+function threadCode()
+{
+	/** Handles ping events sent to the thead. */
+	function msgHandler(evt) 
+	{
+		// Send back a pong if the message was a ping
+		if (evt.data === "ping")
+		{
+			Thread.parent.postMessage("pong");
+		}
+	}
+	
+	// Watch for ping events from the parent
+	Thread.parent.addEventListener(Thread.MESSAGE, msgHandler);
+}
 
+/** Will run in Main window context to handle pong events from the child thread. */
+function msgHandler(evt) 
+{
+	// Respond to the message if it was a pong
+	if (evt.data === "pong")
+	{
+		console.log("Received pong from thread!");
+		console.log(" Got message: " + evt.data);
+	}
+}
+
+// Create a new thread and watch for pong events from it
+var myThread = new Thread();
+myThread.addEventListener(Thread.MESSAGE, msgHandler);
+
+// Add code to the thread
+myThread.addScript(threadCode);
+
+// Send a ping event to the thread
+myThread.postMessage("ping");
 ```
 
 
