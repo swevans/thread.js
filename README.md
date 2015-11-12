@@ -17,7 +17,7 @@ Key Features:
 
 <a name="download"></a>
 ## Download
-Download the latest versions of Thread.js or pull from the repo:
+Download the latest versions of Thread.js here:
 ###### Latest JavaScript Release
 <pre>
 Minified: <a download href="http://spencer-evans.com/share/github/threads/threadjs-1.0.min.zip">thread.min.js</a>
@@ -99,7 +99,7 @@ Using a thread.js is really simple. There are essentially five things you can do
 </ol>
 <a name="creatingAThread"></a>
 #### Creating a Thread
-Simply instantiate a new thread object to create a thread. The thread might start immediately or queue until more worker resources become available. Either way, your thread instance is ready to work with.
+Simply instantiate a new thread object to create a thread. The thread might start immediately or [queue](#queuing) until more worker resources become available. Either way, your thread instance is ready to work with.
 ###### new Thread();
 ```js
 // Create a thread using the new keyword
@@ -110,7 +110,7 @@ var myThread = new Thread();
 
 <a name="addThreadLogic"></a>
 #### Adding Thread Logic
-You can add logic to a thread by loading importing scripts, adding script, or defining script. Importing an external js file is the best way to add lots of code to the thread. Scripts are loaded synchronously within the thread; no other thread code will execute until the script is loaded and evaluated within the thread's scope.
+You can add logic to a thread by importing scripts, adding script, or defining script. Importing an external js file is the best way to add lots of code to the thread. Scripts are loaded synchronously within the thread; no other thread code will execute until the script is loaded and evaluated within the thread's scope.
 ###### Importing Scripts
 ```js
 // Loads two scripts into the thread's scope
