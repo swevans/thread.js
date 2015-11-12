@@ -66,6 +66,18 @@ myThread.importScripts("scriptA.js", "scriptB.js");
 var myThread = new Thread("scriptA.js", "scriptB.js");
 ```
 
+###### Adding Script
+```js
+/** Code to be added to the thread. */
+function threadCode()
+{
+  // my thread logic
+  // The within this function will be added to the threads' global scope
+}
+
+myThread.exec(threadCode);
+```
+
 ###### Defining Script
 ```js
 /** An example function to run on a thread. */
