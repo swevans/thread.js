@@ -43,7 +43,7 @@ Include thread.js in your projects like so:
 
 <a name="gettingStarted"></a>
 ## Getting Started
-Thread.js is simple enough that we can just jump into code. The below code creates a thread and runs some code on it. We've created a fiddle to show how easy it is. <a target="_blank" href="http://jsfiddle.net/swevans/57exndpp/3/">Try it yourself</a>.
+Thread.js is simple enough that we can just jump into code. The below code creates a thread and runs some code on it. We've created a fiddle to show how easy it is. <a target="_blank" href="http://jsfiddle.net/swevans/57exndpp/6/">Try it yourself</a>.
 ```js
 // Check for threadjs support in the current browser
 if (threadjs.isSupported)
@@ -325,8 +325,8 @@ Thread.terminate();	// in thread code
 <a name="examples"></a>
 ## Examples
 We've compiled a couple Thread.js examples that show off using events and performing intensive operations. More examples are sure to come in the future.
-* **<a target="_blank" href="http://jsfiddle.net/swevans/mLbzmtm5/12/">JSFiddle Events Example</a>** - Dispatches ping and pong events as shown above
-* **<a target="_blank" href="http://jsfiddle.net/swevans/5m6rqsro/8/">JSFiddle Prime Numbers Example</a>** - Performs intensive operations without disrupting animation
+* **<a target="_blank" href="http://jsfiddle.net/swevans/mLbzmtm5/13/">JSFiddle Events Example</a>** - Dispatches ping and pong events as shown above
+* **<a target="_blank" href="http://jsfiddle.net/swevans/5m6rqsro/9/">JSFiddle Prime Numbers Example</a>** - Performs intensive operations without disrupting animation
 <br/>
 <br/>
 
