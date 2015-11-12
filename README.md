@@ -174,6 +174,13 @@ myThread.define("keyToUniverse", 42); // runs var keyToUniverse = 42;
 You can invoke logic on a thread using a few thread methods.
 ###### Calling Functions
 ```js
+/** An example function to run on a thread. */
+function myEchoFunc(a, b)
+{
+	console.log("Echo on thread: " + a + " " + b);
+}
+myThread.define(myEchoFunc);
+
 // You can call any named function that is loaded or defined in the thread
 // You may optionally provide a list of paramaters
 // Parameters may be any json cloneable object
@@ -298,12 +305,12 @@ myThread.postMessage("ping");
 
 <a name="termination"></a>
 #### Terminating a Thread
-Threads use resources that need to be explicitely cleaned up when you're done with the thread. Thread.js by default will only support between 4 and 16 concurrent workers depending on hardware. Any more than the allowed number, and threads will queue, waiting for existing threads to terminate. It's super important to clean your room!
+Threads use resources that need to be explicitely cleaned up when you're done with the thread. By default, thread.js will only support between 4 and 16 concurrent workers (depending on hardware). Any more than the allowed number, and threads will queue, waiting for existing threads to terminate. Remember to call terminate()- It's super important to clean your room!
 
 There are two ways to terminate a thread, from the parent or from the child. Any fully terminated thread is no longer valid.
 ###### terminate();
 ```js
-// To terminate a thread instance within the parent by calling terminate on the thread
+// To terminate a thread instance within the parent, you call terminate on the thread instance
 // The thread will immediately terminate, any pending messages to the thread will be ignored
 // Trying to interact with a terminated thread will throw an error
 myThread.terminate();	// in parent code
