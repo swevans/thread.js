@@ -58,7 +58,7 @@ if (threadjs.isSupported)
 ```
 Now move on to the [Usage Guide](#usage) to learn more about working with Threads.
 </br>
-
+<br/>
 
 <a name="toc"></a>
 ## Table of Contents
@@ -86,6 +86,7 @@ There is a lot to thread.js, choose a section below
 * [Future Changes](#future)
 * [Under the Hood](#underTheHood)
 * [Compiling TypeScript](#compilingTS)
+<br/>
 <br/>
 
 <a name="usage"></a>
