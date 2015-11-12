@@ -1,0 +1,68 @@
+<!DOCTYPE html><!-- saved from url=(0014)about:internet -->
+<html lang="en">
+	<head>
+		
+		<meta charset="utf-8" />
+		<title>Threads Test</title>
+		
+		<script src="js/threadjs/threadjs-1.0.min.js"></script>
+		
+		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=3.0, minimum-scale=0.1" />
+		
+		<style>
+			* {
+				font-family: monospace;
+			}
+		</style>
+		
+	</head>
+	<body>
+		
+		<script id="threadCode" type="text/js-worker">
+			console.log('hello from thread!');
+		</script>
+		
+		<script>
+			
+			/** Defines the code that will run in the thread. */
+			function threadCode()
+			{
+				/** Handles ping events sent to the thead. */
+				function msgHandler(evt) 
+				{
+					// Send back a pong if the message was a ping
+					if (evt.data === "ping")
+					{
+						Thread.parent.postMessage("pong");
+					}
+				}
+				
+				// Watch for ping events from the parent
+				Thread.parent.addEventListener(Thread.MESSAGE, msgHandler);
+			}
+
+			/** Will run in Main window context to handle pong events from the child thread. */
+			function msgHandler(evt) 
+			{
+				// Respond to the message if it was a pong
+				if (evt.data === "pong")
+				{
+					console.log("Received pong from thread!");
+					console.log(" Got message: " + evt.data);
+				}
+			}
+
+			// Create a new thread and watch for pong events from it
+			var myThread = new Thread();
+			myThread.addEventListener(Thread.MESSAGE, msgHandler);
+
+			// Add code to the thread
+			myThread.addScript(threadCode);
+
+			// Send a ping event to the thread
+			myThread.postMessage("ping");
+			
+		</script>
+		
+	</body>
+</html>
