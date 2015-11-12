@@ -28,7 +28,6 @@ Include thread.js in your projects like so:
 
 <!-- Full version, recommended for debugging -->
 <script src="pathto/thread.js"></script>
-
 ```
 </br>
 
@@ -445,6 +444,25 @@ var myThread = new Thread("myThreadCode.js");
 <br/>
 
 ##### Debugging & Error Handling
+Debugging multithreaded code can be challenging. Luckily Threadjs and Web Workers provide some safety and help. As always.. your browser console is there to help (use F12)! FWIW we have found Firefox to be the best browser for debugging multithreaded code.
+###### Unminified Thread.js
+It is best to use the unminified thread.js file while developing or debugging your application.
+```html
+<!-- Full version, recommended for debugging -->
+<script src="pathto/thread.js"></script>
+```
+###### Disallowing Inline Workers
+Inline workers create fictional urls to run code, by default threadjs uses inline workers. These can be tricky to debug because file name and line information may be lost. Thankfully, you can disable inline workers.
+```js
+threadjs.allowInlineWorkers = false;	// turn off inline workers
+```
+###### Catching Errors Generated in the Thread
+Thread instances dispatch an error event anytime their thread code throws an error. You can catch it like so:
+```js
+// Dispatched whenever an error is thrown within the thread code
+// The event type is some form of ErrorEvent
+myThread.addEventListener(Thread.ERROR, function(errorEvent) {/* do something */} );
+```
 <br/>
 <br/>
 
