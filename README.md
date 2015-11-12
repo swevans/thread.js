@@ -426,6 +426,7 @@ threadjs.url = "pathto/thread.js";
 ##### Cross Domain Security (CORS)
 It is highly recommended that you host thread.js and your thread code scripts in the same domain as your page. If for some reason you can't you will lose IE10 support. You may also run into security issues loading your thread code if it is in a different domain than the threadjs library.
 <br/>
+<br/>
 
 ##### Thread Queuing, Max Workers, and Thread Lock
 Thread.js only allows a maximum number of workers. This is typically 4 by default, but may go up to 16 depending on device hardware. This limitation is to prevent you from accidentally crashing the browser by creating too many workers. You however can create as many Thread instances as you want and interact on them immediately. This is thanks to thread.js's Thread Queuing functionality.
