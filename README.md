@@ -32,11 +32,12 @@ Include thread.js in your projects like so:
 
 
 ## Usage
-Using a thread.js is really simple. There are essentially four steps.
+Using a thread.js is really simple. There are essentially five things you can do.
 <ol>
 <li>Create a thread</li>
 <li>Add logic to your thread</li>
 <li>Run logic on your thread</li>
+<li>Communiate with your thread<li>
 <li>Terminate the thread when its done</li>
 </ol>
 #### Creating a Thread
@@ -150,8 +151,10 @@ You can communicate with threads using events or messages. Communication is a tw
 	* Child code calls functions on the Thread.parent static class member
 	* Parent code catches incoming messages by listening to the myThread instance
 
-The event example below sends a ping event to a thread and the thread sends a pong event back. We've also created a slightly different <a href="http://jsfiddle.net/swevans/mLbzmtm5/8/">JSFiddle example of this demo</a>.<br/>
-* **<a href="http://jsfiddle.net/swevans/mLbzmtm5/8/">JSFiddle Events Example</a>**
+Events are superiour to messages because they can be dispatched to specific event listeners, whereas messages don't have a type.
+
+The event example below sends a ping event to a thread and the thread sends a pong event back. We've also created a slightly different <a href="http://jsfiddle.net/swevans/mLbzmtm5/12/">JSFiddle example of this demo</a>.<br/>
+* **<a href="http://jsfiddle.net/swevans/mLbzmtm5/12/">JSFiddle Events Example</a>**
 
 ###### Events Example
 ```js
@@ -227,11 +230,31 @@ myThread.addScript(threadCode);
 // Send a ping event to the thread
 myThread.postMessage("ping");
 ```
-
-
-
 <br/>
 
+
+#### Terminating a Thread
+Threads use resources that need to be explicitely cleaned up when you're done with the thread. Thread.js by default will only support between 4 and 16 concurrent workers depending on hardware. Any more than the allowed number, and threads will queue, waiting for existing threads to terminate. It's super important to clean your room!
+
+There are two ways to terminate a thread, from the parent or from the child.
+###### terminate();
+```js
+// To terminate a thread instance within the parent by calling terminate on the thread
+// The thread will immediately terminate, any pending messages to the thread will be ignored
+// Trying to interact with a terminated thread will throw an error
+myThread.terminate();	// in parent code
+
+// To have a child thread terminate itself, call the static terminate function from within the thread
+// This will schedule the thread for termination, pending messages may still arrive until termination
+Thread.terminate();	// in thread code
+```
+<br/>
+
+
+## Examples
+We've compiled a Thread.js example that shows off counting prime numbers on a background thread. More examples are sure to come in the future.
+* **<a href="http://jsfiddle.net/swevans/5m6rqsro/8/">JSFiddle Prime Numbers Example</a>**
+<br/>
 
 
 <ol>
