@@ -255,6 +255,7 @@ Thread.terminate();	// in thread code
 We've compiled a Thread.js example that shows off counting prime numbers on a background thread. More examples are sure to come in the future.
 * **<a href="http://jsfiddle.net/swevans/5m6rqsro/8/">JSFiddle Prime Numbers Example</a>**
 <br/>
+<br/>
 
 
 ## Browser Support
