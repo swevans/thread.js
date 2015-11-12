@@ -113,7 +113,7 @@ var myThread = new Thread();
 
 <a name="addThreadLogic"></a>
 #### Adding Thread Logic
-You can add logic to a thread by importing scripts, adding script, or defining script. Importing an external js file is the best way to add lots of code to the thread. Scripts are loaded synchronously within the thread; no other thread code will execute until the script is loaded and evaluated within the thread's scope.
+You can add logic to a thread by importing scripts, adding script, or defining script. Importing an external js file is the best way to add lots of code to the thread. Scripts are loaded synchronously within the thread; no other code within the scope of a thread will execute until the script is loaded and evaluated.
 ###### Importing Scripts
 ```js
 // Loads two scripts into the thread's scope
@@ -184,9 +184,10 @@ myThread.call("myNamespace.anotherFunc");
 
 ###### Anonymous Functions
 ```js
+// You can execute a function once using exec()
 // Exec will temporarily define the function, then call it
-// Instead of an anony funciton, you can also pass the name 
-// of a named function that exists in the main code
+// This can be an anonymous function or a named function that
+// exists in the main code
 myThread.exec(function(param1) { /* do something */ }, "paramValue");
 ```
 
