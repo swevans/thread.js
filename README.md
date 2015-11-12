@@ -282,6 +282,8 @@ You can check for browser support using:
 // Will be true if the Web Worker API is supported
 threadjs.isSupported;
 ```
+<br/>
+
 ##### Thread Events
 The Thread class has a few built in events. It is not necessary to use them. They're provided more for debugging than anything else.
 ```js
@@ -316,6 +318,7 @@ myThread.addEventListener(Thread.ERROR, errorHandler);
 // Data passed with the message is in the data member of the event
 Thread.parent.addEventListener(Thread.MESSAGE, msgFromParentHandler);
 ```
+<br/>
 
 ##### Sub Threads (Sub Workers)
 <p>
@@ -341,6 +344,7 @@ var myThread = new Thread(myThreadCode);
 // Terminate myThread, which will also terminate mySubThread
 myThread.terminate();
 ```
+<br/>
 
 ##### Thread Scope & Loading within a Thread
 <p>
@@ -352,20 +356,28 @@ One benefit to loading within a thread is that loading can be done synchronously
 ```js
 function threadCode()
 {
-	// load something within the thread
+	// load something synchronously within the thread
 	// using a url that is relative to the page
 	var xhttp = new XMLHttpRequest();
-  	xhttp.open("GET", Thread.workingDirectory + "demo_get2.asp?fname=Henry&lname=Ford", true);
+  	xhttp.open("GET", Thread.workingDirectory + "myFile.txt", false);
   	xhttp.send();
 }
 
 var myThread = new Thread(threadCode);
 ```
+<br/>
 
 ##### Passing Data Between Threads
-Objects are passed between threads via a cloning. The actual instance of the objects are not shared. This is a limitation of the Web Worker API. An additional limitation is that you cannot pass objects that contain native code (ie HTMLElements). 
-
+<p>
+Objects are passed between threads via a cloning. The actual instance of the objects are not shared. This is a limitation of the Web Worker API. An additional limitation is that you cannot pass objects that contain native code (ie HTMLElements).
+</p>
+<p>
+One exception is that you may post native events (like a mouse event) between threads using postEvent(someNativeEvent). This is accomplished by creating a partial copy of the native event as a ThreadEvent.
+</p>
+<p>
 As of now, Thread.js only supports copying data between threads. Transferrable objects are not yet supported.
+</p>
+<br/>
 
 * Asynchronously Loading Thread.js
 * Cross Domain Security (CORS)
