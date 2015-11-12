@@ -37,7 +37,7 @@ Using a thread.js is really simple. There are essentially five things you can do
 <li>Create a thread</li>
 <li>Add logic to your thread</li>
 <li>Run logic on your thread</li>
-<li>Communiate with your thread<li>
+<li>Communiate with your thread</li>
 <li>Terminate the thread when its done</li>
 </ol>
 #### Creating a Thread
