@@ -273,6 +273,7 @@ We've compiled a couple Thread.js examples that show off using events and perfor
 ## Browser Support
 Thread.js works anywhere that WebWorkers are supported.
 * **<a href="http://caniuse.com/#feat=webworkers">Can I Use? Table for Web Workers</a>**
+
 ###### Quirks:
 <ol>
 <li>IE10: <a href="http://www.html5rocks.com/en/tutorials/workers/basics/#toc-inlineworkers">Inline workers</a> are not supported. Thread.js will fall back to url based web workers, loading the library itself as the root code.</li>
@@ -301,6 +302,7 @@ For those who already understand Web Workers, here a few details about how Threa
 ###### Event System:
 * Threadjs has its own tiny, built-in EventTarget like interface called EventDispatcher. It allows Thread.js to dispatch events. 
 * Threadjs allows you to partially pass native events between threads by creating a partial copy of the native event as a threadjs ThreadEvent. Thus you can pass myThread.postEvent(mouseEvent) etc.
+<br/>
 <br/>
 
 ## Compiling TypeScript
