@@ -79,7 +79,7 @@ myThread.addScript(threadCode);
 
 // Another option is to add a script tag
 // If we had the following script tag in our html
-// it won't evaluate on the main thread, but can be loaded into the thread
+// it won't evaluate on the main thread, but can be loaded into the child thread
 // <script id="threadCode" type="text/js-worker">console.log('hello from thread!');</script>
 myThread.addScript(document.getElementById("threadCode"));
 ```
