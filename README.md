@@ -146,22 +146,22 @@ You can communicate with threads using events or messages. Events are more flexi
 /** Defines the code that will run in the thread. */
 function threadCode()
 {
-  /** Handles ping events sent to the thead. */
-  function pingHandler(evt) 
-  {
-    // Send back a pong
-    Thread.parent.postEvent("pong", "Hi from thread " + Thread.threadID);
-  }
-  
-  // Watch for ping events from the parent
-  Thread.parent.addEventListener("ping", pingHandler);
+  	/** Handles ping events sent to the thead. */
+  	function pingHandler(evt) 
+	{
+    		// Send back a pong
+    		Thread.parent.postEvent("pong", "Hi from thread " + Thread.threadID);
+  	}
+  	
+	// Watch for ping events from the parent
+	Thread.parent.addEventListener("ping", pingHandler);
 }
 
 /** Will run in Main window context to handle pong events from the child thread. */
 function pongHandler(evt) 
 {
 	console.log("Received pong from thread!");
-  console.log(" Got message: " + evt.data;
+  	console.log(" Got message: " + evt.data;
 }
 
 // Create a new thread and watch for pong events from it
