@@ -275,12 +275,79 @@ We've compiled a couple Thread.js examples that show off using events and perfor
 
 
 ## Advanced Topics
-* Checking for suppport
-* Built-in Thread Events
+Thread.js is simple enough to pick up quickly, but there are a few advanced topics worth posting.
+###### Checking for Suppport
+You can check for browser support using:
+```js
+// Will be true if the Web Worker API is supported
+threadjs.isSupported;
+```
+###### Thread Events
+The Thread class has a few built in events. It is not necessary to use them. They're provided more for debugging than anything else.
+```js
+/** Code within the parent */
+// The start event is dispatched when a thread starts 
+// This might be dispatched within the Thread() constructor and thus you can't catch it
+// You'll only catch this event if the thread was queued, see Thread Queuing topic
+// The event type is a ThreadEvent
+myThread.addEventListener(Thread.START, startHandler);
+
+// Catches messages sent from child to parent
+// Only applies if you're using Thread.parent.postMessage
+// It is recommended that you use postEvent instead
+// The event type is a MessageEvent
+// Data passed with the message is in the data member of the event
+myThread.addEventListener(Thread.MESSAGE, msgFromChildHandler);
+
+// Dispatched whenever a thread actually terminates
+// You can use this to tell if your thread self terminated via a static Thread.terminate()
+// The event type is a ThreadEvent
+myThread.addEventListener(Thread.TERMINATE, terminateHandler);
+
+// Dispatched whenever an error is thrown within the thread code
+// The event type is some form of ErrorEvent
+myThread.addEventListener(Thread.ERROR, errorHandler);
+
+/** Code within the thread */
+// Catches messages sent from parent to child
+// Only applies if you're using myThread.postMessage
+// It is recommended that you use postEvent instead
+// The event type is a MessageEvent
+// Data passed with the message is in the data member of the event
+Thread.parent.addEventListener(Thread.MESSAGE, msgFromParentHandler);
+```
+
+###### Sub Threads (Sub Workers)
+<p>
+Thread.js supports child threads, aka Sub Workers. You may spawn a thread within a thread. The maxThreads limit and thread queuing are still enforced. See Thread Queuing below. Sub Threads are very-slightly slower to start.
+</p>
+<p>
+Sub threads are dependant on their parent; when the parent terminates, the child will terminate. An example; Your main code in index.html creates myThread, myThread then creates mySubThread, index.html calls myThread.terminate(), both mySubThread and myThread will terminate.
+</p>
+```js
+// Define code for the thread
+function myThreadCode() {
+
+	// Define code for the sub thread
+	function mySubThreadCode() {}
+	
+	// Create the sub thread
+	var mySubThread = new Thread(mySubThreadCode);
+}
+
+// Create the thread, which in turn creates a sub thread
+var myThread = new Thread(myThreadCode);
+
+// Terminate myThread, which will also terminate mySubThread
+myThread.terminate();
+```
+
 * Passing Data Between Threads
 * Asynchronously Loading Thread.js
+* Cross Domain Security (CORS)
 * Thread Queuing, Max Threads, and Thread Lock
 * Memory Optimization
+* Debugging & Error Handling
 <br/>
 <br/>
 
