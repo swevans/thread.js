@@ -392,15 +392,56 @@ As of now, Thread.js only supports copying data between threads. Transferrable o
 <br/>
 
 ##### Asynchronously Loading Thread.js
+It is highly recommended that you load thread.js using a synchronous script tag within your document. If for some reason you must load thread.js using an synchronous method, you are required to set the threadjs.url property before using Threads. It should point to the location of the thread.js library file.
+```js
+// ... some code to load and evaluate thread.js
+
+// Set the threadjs url relative to the document
+threadjs.url = "pathto/thread.js";
+```
 <br/>
 
 ##### Cross Domain Security (CORS)
+It is highly recommended that you host thread.js and your thread code scripts in the same domain as your page. If for some reason you can't you will lose IE10 support. You may also run into security issues loading your thread code if it is in a different domain than the threadjs library.
 <br/>
 
 ##### Thread Queuing, Max Threads, and Thread Lock
 <br/>
 
-##### Memory Optimization
+##### Memory & Traffic Optimization
+Code supplied to the thread might be lengthy and heavy to keep in memory. If you define the code inline in your main javascript, the code will be stored in memory on both the parent and child thread. If you use the script tag code definition defined above, the code won't be defined in memory on the main thread. The absolute best way to conserve memory and traffic is to define your thread code in an external js file.
+###### Inline Thread Code
+```js
+// threadCode src will obviously download with the page
+// threadCode will exist in memory in the page root and the thread.
+function threadCode() {
+	// some code
+}
+var myThread = new Thread(threadCode);
+```
+###### Tag Defined Thread Code
+```html
+<html>
+	<head>
+		 <script id="threadCode" type="text/js-worker">
+			// threadCode src will obviously download with the page
+			// threadCode will exist in memory only in the thread
+			function threadCode() {
+				// some code
+			}
+		</script>
+		<script>
+			var myThread = new Thread(document.getElementById("threadCode"));
+		</script>
+	</head>
+</html>
+```
+###### Externally Loaded Thread Code
+```js
+// threadCode src will only download when the thread starts
+// threadCode will only exist in memory within the thread only
+var myThread = new Thread(threadCode);
+```
 <br/>
 
 ##### Debugging & Error Handling
