@@ -418,9 +418,7 @@ Thread.parent.addEventListener(Thread.MESSAGE, msgFromParentHandler);
 
 <a name="subThreads"></a>
 ##### Sub Threads (Sub Workers)
-<p>
-Thread.js supports child threads, aka Sub Workers. You may spawn a thread within a thread. The maxWorkers limit and thread queuing are still enforced. See [Max Workers and Thread Queuing](#queuing) below. Sub Threads are very-slightly slower to start.
-</p>
+Thread.js supports child threads, aka Sub Workers. You may spawn a thread within a thread. The maxWorkers limit and thread queuing are still enforced. See [Max Workers and Thread Queuing](#queuing) below. Sub Threads are very-slightly slower to start.<br/>
 <p>
 Sub threads are dependant on their parent; when the parent terminates, the child will terminate. An example; Your main code in index.html creates myThread, myThread then creates mySubThread, index.html calls myThread.terminate(), both mySubThread and myThread will terminate.
 </p>
@@ -514,10 +512,9 @@ The maximum number of workers is safely determined by Thread.js when the library
 <p>
 Thread lock happens when you have active threads which depend on queued threads. This is something you should avidly try to avoid by removing thread dependancies and avoiding sub threads.
 </p>
-<p>
+<br/>
 An Example:<br/>
 Let's say you have four threads; A, B, C, and D. You then create a 5th thread E. The thread code in A, B, C, and D all rely on E to finish, however E will never be able to start because A, B, C, and D are using all available workers. This is thread lock. You should first try to remove this dependancy. If you can't, increase max workers with threadjs.maxWorkers = 16; (be careful with this and don't go over 16!). See the [Max Workers](#maxWorkers) section above.
-</p>
 <br/>
 
 
