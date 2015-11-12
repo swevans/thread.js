@@ -489,19 +489,19 @@ threadjs.url = "pathto/thread.js";
 
 <a name="CORS"></a>
 ##### Cross Domain Security (CORS)
-It is highly recommended that you host thread.js and your thread code scripts in the same domain as your page. If for some reason you can't you will lose IE10 support. You may also run into security issues loading your thread code if it is in a different domain than the threadjs library.
+It is highly recommended that you host thread.js and your thread code scripts in the same domain as your page. If for some reason you can't, you will lose IE10 support. You may also run into security issues loading your thread code if it is in a different domain than the threadjs library.
 <br/>
 <br/>
 
 <a name="queuing"></a>
 ##### Thread Queuing, Max Workers, and Thread Lock
-Thread.js only allows a maximum number of workers. This is typically 4 by default, but may go up to 16 depending on device hardware. This limitation is to prevent you from accidentally crashing the browser by creating too many workers. You however can create as many Thread instances as you want and interact on them immediately. This is thanks to thread.js's Thread Queuing functionality.
+Thread.js only allows a maximum number of workers. This is typically 4 by default, but may go up to 16 depending on device hardware. This limitation is to prevent you from accidentally crashing the browser by creating too many workers. However, you can create as many Thread instances as you want and act on them immediately. This is thanks to thread.js's Thread Queuing functionality.
 ###### Thread Queuing
 <p>
-If you create more threads than the allowed number of workers, the threads created most recently will queue until workers become available because existing threads have terminated. Queued threads will dequeue and start in the order they are created.
+If you create more threads than the allowed number of workers, the threads created most recently will queue until a worker become available when an existing thread terminates. Queued threads will dequeue and start in the order they are created.
 </p>
 <p>
-A Thread.START ("start") event is dispatched by the thread instance when it dequeues. Even if a thread queues, you may call any functions on it. Any functions you call on a queued thread will execute in order after the thread starts. If you call terminate on a queued thread, it will never start and no longer be valid.
+A Thread.START ("start") event is dispatched by the thread instance when it dequeues. Even if a thread queues, you may call any functions on it. Any functions you call on a queued thread will execute, in order, after the thread starts. If you call terminate on a queued thread, it will never start and no longer be valid.
 </p>
 <a name="maxWorkers"></a>
 ###### Max Workers
@@ -514,7 +514,7 @@ Thread lock happens when you have active threads which depend on queued threads.
 </p>
 <br/>
 An Example:<br/>
-Let's say you have four threads; A, B, C, and D. You then create a 5th thread E. The thread code in A, B, C, and D all rely on E to finish, however E will never be able to start because A, B, C, and D are using all available workers. This is thread lock. You should first try to remove this dependancy. If you can't, increase max workers with threadjs.maxWorkers = 16; (be careful with this and don't go over 16!). See the [Max Workers](#maxWorkers) section above.
+Let's say you have four threads; A, B, C, and D. You then create a 5th thread E. The thread code in A, B, C, and D all rely on E to finish, however E will never be able to start because A, B, C, and D are using all available workers. This is thread lock. You should first try to remove this dependancy. If you can't, then your only option is to increase max workers with threadjs.maxWorkers (be careful with this and don't go over 16!). See the [Max Workers](#maxWorkers) section above.
 <br/>
 
 
@@ -557,7 +557,7 @@ var myThread = new Thread("myThreadCode.js");
 
 <a name="debugging"></a>
 ##### Debugging & Error Handling
-Debugging multithreaded code can be challenging. Luckily Threadjs and Web Workers provide some safety and help. As always.. your browser console is there to help (use F12)! FWIW we have found Firefox to be the best browser for debugging multithreaded code.
+Debugging multithreaded code can be challenging. Luckily Threadjs and Web Workers provide some safety and help. As always.. your browser console is there to help (use F12)! FWIW- we have found Firefox to be the best browser for debugging multithreaded code.
 ###### Unminified Thread.js
 It is best to use the unminified thread.js file while developing or debugging your application.
 ```html
@@ -565,7 +565,7 @@ It is best to use the unminified thread.js file while developing or debugging yo
 <script src="pathto/thread.js"></script>
 ```
 ###### Disallowing Inline Workers
-Inline workers create fictional urls to run code, by default threadjs uses inline workers. These can be tricky to debug because file name and line information may be lost. Thankfully, you can disable inline workers.
+Inline workers create fictional urls to run code. Threadjs uses inline workers by default. These can be tricky to debug because file name and line information may be lost. Thankfully, you can disable inline workers.
 ```js
 threadjs.allowInlineWorkers = false;	// turn off inline workers
 ```
@@ -584,7 +584,7 @@ myThread.addEventListener(Thread.ERROR, function(errorEvent) {/* do something */
 There are many different ways to expand upon Thread.js. Feel free to weigh in on future direction by forking the repo, adding a comment, or emailing me at <a target="_blank" href="mailto:evans.spencer@gmail.com">evans.spencer@gmail.com</a>. Here are a few things being considered:
  * Wrapper for objects constructed on the thread via myThread.construct(). Will allow you to call functions on the constructed object.
  * Wrapper for function calls on the thread via myThread.call(). Will allow you to listen for function completion and get the return result.
- * Change importScripts to use XHR so CORS is supported.
+ * Change importScripts to use XHR such that CORS is supported.
  * Add support for transferrable objects.
  * Add a object sync feature that mirrors an object between two threads.
  * Add support for synchronous threads when workers are not supported.
