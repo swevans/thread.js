@@ -440,7 +440,7 @@ var myThread = new Thread(threadCode);
 ```js
 // threadCode src will only download when the thread starts
 // threadCode will only exist in memory within the thread only
-var myThread = new Thread(threadCode);
+var myThread = new Thread("myThreadCode.js");
 ```
 <br/>
 
