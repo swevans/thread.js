@@ -419,7 +419,7 @@ Thread.parent.addEventListener(Thread.MESSAGE, msgFromParentHandler);
 <a name="subThreads"></a>
 ##### Sub Threads (Sub Workers)
 <p>
-Thread.js supports child threads, aka Sub Workers. You may spawn a thread within a thread. The maxWorkers limit and thread queuing are still enforced. See [Thread Queuing](#queuing) below. Sub Threads are very-slightly slower to start.
+Thread.js supports child threads, aka Sub Workers. You may spawn a thread within a thread. The maxWorkers limit and thread queuing are still enforced. See [Max Workers and Thread Queuing](#queuing) below. Sub Threads are very-slightly slower to start.
 </p>
 <p>
 Sub threads are dependant on their parent; when the parent terminates, the child will terminate. An example; Your main code in index.html creates myThread, myThread then creates mySubThread, index.html calls myThread.terminate(), both mySubThread and myThread will terminate.
