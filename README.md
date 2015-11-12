@@ -270,6 +270,16 @@ We've compiled a couple Thread.js examples that show off using events and perfor
 <br/>
 
 
+## Advanced Topics
+* Built-in Thread Events
+* Passing Data Between Threads
+* Asynchronously Loading Thread.js
+* Thread Queuing, Max Threads, and Thread Lock
+* Memory Optimization
+<br/>
+<br/>
+
+
 ## Browser Support
 Thread.js works anywhere that WebWorkers are supported.
 * **<a href="http://caniuse.com/#feat=webworkers">Can I Use? Table for Web Workers</a>**
