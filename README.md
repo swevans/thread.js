@@ -22,7 +22,7 @@ Unminified: <a downlod href="http://spencer-evans.com/share/github/threads/threa
 
 
 <a name="installation"></a>
-## Installation
+## Installation 
 Include thread.js in your projects like so:
 ###### Tag Loading
 ```html
