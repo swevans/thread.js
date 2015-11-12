@@ -276,13 +276,13 @@ We've compiled a couple Thread.js examples that show off using events and perfor
 
 ## Advanced Topics
 Thread.js is simple enough to pick up quickly, but there are a few advanced topics worth posting.
-###### Checking for Suppport
+##### Checking for Suppport
 You can check for browser support using:
 ```js
 // Will be true if the Web Worker API is supported
 threadjs.isSupported;
 ```
-###### Thread Events
+##### Thread Events
 The Thread class has a few built in events. It is not necessary to use them. They're provided more for debugging than anything else.
 ```js
 /** Code within the parent */
@@ -317,7 +317,7 @@ myThread.addEventListener(Thread.ERROR, errorHandler);
 Thread.parent.addEventListener(Thread.MESSAGE, msgFromParentHandler);
 ```
 
-###### Sub Threads (Sub Workers)
+##### Sub Threads (Sub Workers)
 <p>
 Thread.js supports child threads, aka Sub Workers. You may spawn a thread within a thread. The maxThreads limit and thread queuing are still enforced. See Thread Queuing below. Sub Threads are very-slightly slower to start.
 </p>
@@ -342,7 +342,31 @@ var myThread = new Thread(myThreadCode);
 myThread.terminate();
 ```
 
-* Passing Data Between Threads
+##### Thread Scope & Loading within a Thread
+<p>
+Threads operate in their own execution scope. Thus code must be loaded into the thread even if it already exists in the parent scope. Additionally, thread scope does not have access to the DOM or window.
+</p>
+<p>
+One benefit to loading within a thread is that loading can be done synchronously without disrupting user experience. On the flip side, a drawback is that urls provided to loaders must be absolute. Thread.js makes this simple by providing the Thread.workingDirectory static member. An example below shows how to use it.
+</p>
+```js
+function threadCode()
+{
+	// load something within the thread
+	// using a url that is relative to the page
+	var xhttp = new XMLHttpRequest();
+  	xhttp.open("GET", Thread.workingDirectory + "demo_get2.asp?fname=Henry&lname=Ford", true);
+  	xhttp.send();
+}
+
+var myThread = new Thread(threadCode);
+```
+
+##### Passing Data Between Threads
+Objects are passed between threads via a cloning. The actual instance of the objects are not shared. This is a limitation of the Web Worker API. An additional limitation is that you cannot pass objects that contain native code (ie HTMLElements). 
+
+As of now, Thread.js only supports copying data between threads. Transferrable objects are not yet supported.
+
 * Asynchronously Loading Thread.js
 * Cross Domain Security (CORS)
 * Thread Queuing, Max Threads, and Thread Lock
