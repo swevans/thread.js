@@ -59,37 +59,37 @@ if (threadjs.isSupported)
 	});
 }
 ```
-Now move on to review [Thread.js Concepts](#concepts) to learn more about how threads work, or jump to the [Usage Guide](#usage) to learn more about using thread.js.
+Now move on to review <a href="#concepts">Thread.js Concepts</a> to learn more about how threads work, or jump to the <a href="usage">Usage Guide</a> to learn more about using thread.js.
 </br>
 <br/>
 
 <a name="toc"></a>
 ## Table of Contents
 There is a lot to thread.js, choose a section below
-* [Thread.js Concepts](#concepts)
-* [Usage Guide](#usage)
-	* [Creating a Thread](#creatingAThread)
-	* [Adding Thread Logic](#addThreadLogic)
-	* [Running Thread Logic](#run)
-	* [Communicating with Threads](#comm)
-	* [Terminating Threads](#termination)
-* [Examples](#examples)
-* [Browser Support](#browsers)
-* [FAQ](#faq)
+* <a href="#concepts">Thread.js Concepts</a>
+* <a href="#usage">Usage Guide</a>
+	* <a href="#creatingAThread">Creating a Thread</a>
+	* <a href="#addThreadLogic">Adding Thread Logic</a>
+	* <a href="#run">Running Thread Logic</a>
+	* <a href="#comm">Communicating with Threads</a>
+	* <a href="#termination">Terminating Threads</a>
+* <a href="#examples">Examples</a>
+* <a href="#browsers">Browser Support</a>
+* <a href="#faq">FAQ</a>
 * Documentation (Coming Soon, see typescript or unminified js comments for now)
-* [Advanced Topics](#advanced)
-	* [Thread Events](#threadEvents)
-	* [Sub Threads (Sub Workers)](#subThreads)
-	* [Thread Scope & Loading within a Thread](#threadScope)
-	* [Passing Data Between Threads](#passingData)
-	* [Asynchronously Loading Thread.js](#asyncLib)
-	* [Cross Domain Security (CORS)](#CORS)
-	* [Thread Queuing, Max Workers, and Thread Lock](#queuing)
-	* [Memory & Traffic Optimization](#optimization)
-	* [Debugging & Error Handling](#debugging)
-* [Future Changes](#future)
-* [Under the Hood](#underTheHood)
-* [Compiling TypeScript](#compilingTS)
+* <a href="#advanced">Advanced Topics</a>
+	* <a href="#threadEvents">Thread Events</a>
+	* <a href="#subThreads">Sub Threads (Sub Workers)</a>
+	* <a href="#threadScope">Thread Scope & Loading within a Thread</a>
+	* <a href="#passingData">Passing Data Between Threads</a>
+	* <a href="#asyncLib">Asynchronously Loading Thread.js</a>
+	* <a href="#CORS">Cross Domain Security (CORS)</a>
+	* <a href="#queuing">Thread Queuing, Max Workers, and Thread Lock</a>
+	* <a href="#optimization">Memory & Traffic Optimization</a>
+	* <a href="#debugging">Debugging & Error Handling</a>
+* <a href="#future">Future Changes</a>
+* <a href="#underTheHood">Under the Hood</a>
+* <a href="#compilingTS">Compiling TypeScript</a>
 <br/>
 <br/>
 
