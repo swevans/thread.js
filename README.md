@@ -7,13 +7,13 @@ Thread.js is lightweight multithreading library for the JavaScript <a target="_b
 <p>
 Thread.js provides an intuitive, high-level interface for Web Worker creation, programming, communication, and termination. It works in any browser that <a href="http://caniuse.com/#feat=webworkers">supports Web Workers</a> (IE10+).
 </p>
-Key Features:
+###### Key Features:
 * Flexible, robust method set for creating and managing threads
 * Typed Event messaging between threads
 * Self terminating thread support
 * A thread queue automagically manages worker resources
 
-Demo:
+###### Demo:
 * **<a target="_blank" href="http://jsfiddle.net/swevans/5m6rqsro/9/">JSFiddle Prime Numbers Example</a>** - Performs intensive operations without disrupting animation
 <br/>
 <br/>
