@@ -63,8 +63,8 @@ Now move on to the [Usage Guide](#usage) to learn more about working with Thread
 <a name="toc"></a>
 ## Table of Contents
 There is a lot to thread.js, choose a section below
+* [Thread.js Concepts](#concepts)
 * [Usage Guide](#usage)
-	* Concepts - A brief description explaining thread scope, parent child relationship, messaging, and an image
 	* [Creating a Thread](#creatingAThread)
 	* [Adding Thread Logic](#addThreadLogic)
 	* [Running Thread Logic](#run)
@@ -89,6 +89,39 @@ There is a lot to thread.js, choose a section below
 * [Compiling TypeScript](#compilingTS)
 <br/>
 <br/>
+
+<a name="concepts"></a>
+## Thread.js Concepts
+Programming multi-threaded applications can sometimes be a little mind bending. It never hurts to review a few of the core concepts before diving deep. 
+
+1. There is one Main UI (Window) thread that starts when your page loads. This is the thread that your html files load into. Any javascript you load from your html is loaded into the main thread. This thread is not managed by thread.js.
+
+2. Child Threads are background threads. Child threads always operate in their own space. They do not have access to the window, DOM, or files loaded into the main thread. By default child threads have no code to run. You must add code to them and set that code up to run
+
+3. Threads can communicate with one another using Events and Messages.
+
+The following code and simplified thread diagram illustrate the relationship between 3 threads: Our Main UI thread, a child thread, and a grandchild (sub) thread.
+###### index.html
+```js
+var myThread = new Thread("scriptA.js");
+```
+###### scriptA.js
+```js
+var mySubThread = new Thread();
+```
+###### Thread Diagram
+![Thread Diagram Image](http://spencer-evans.com/share/github/threadjs/pages/ThreadScope.png "Thread Diagram")
+<br/>
+This simple diagram illustrates that each thread runs in its own independant space. It has its own set of loaded files and its own set of variables in memory.<br/>
+<br/>
+Each thread has a reference to any child thread it creates. The child also has a reference to the thread that created it (it's parent). We have 4 references in this example:<br/>
+* The main thread has a reference to the child thread via a myThread instance.
+* The child thread has a reference to the main thread via the static Thread.parent member.
+* The child thread also has a reference to the sub thread via a mySubThread instance.
+* The sub thread has a reference to the middle child thread via the static Thread.parent member.
+
+Threads can use these references to communicate with one another. Scroll down to the usage guide to see how its done.
+<br/><br/>
 
 <a name="usage"></a>
 ## Usage Guide
