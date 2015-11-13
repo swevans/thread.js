@@ -56,7 +56,7 @@ if (threadjs.isSupported)
 	});
 }
 ```
-Now move on to the [Usage Guide](#usage) to learn more about working with Threads.
+Now move on to review [Thread.js Concepts](#concepts) to learn more about how threads work, or jump to the [Usage Guide](#usage) to learn more about using thread.js.
 </br>
 <br/>
 
