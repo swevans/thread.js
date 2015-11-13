@@ -13,7 +13,6 @@ Key Features:
 * Self terminating thread support
 * A thread queue automagically manages worker resources
 
-<br/>
 Demo:
 * **<a target="_blank" href="http://jsfiddle.net/swevans/5m6rqsro/9/">JSFiddle Prime Numbers Example</a>** - Performs intensive operations without disrupting animation
 <br/>
