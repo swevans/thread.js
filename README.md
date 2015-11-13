@@ -98,7 +98,9 @@ Programming multi-threaded applications can sometimes be a little mind bending. 
 
 2. Child Threads are background threads. Child threads always operate in their own space. They do not have access to the window, DOM, or files loaded into the main thread. By default child threads have no code to run. You must add code to them and set that code up to run
 
-3. Threads can communicate with one another using Events and Messages.
+3. Child (background) threads can run for extended periods of time without affecting page performance. Imagine a while loop that does a very large number of calculations.. so much so that it takes 10 full seconds to finish. If you ran this code on the main thread, your browser would hang.. yuck. However, background threads have no problem running that code!
+
+4. Threads can communicate with one another using Events and Messages.
 
 The following code and simplified thread diagram illustrate the relationship between 3 threads: Our Main UI thread, a child thread, and a grandchild (sub) thread.
 ###### index.html
