@@ -19,20 +19,28 @@
     </section>
 
     <section class="main-content">
-      <p>Thread.js is lightweight multithreading library for the JavaScript <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API">Web Worker API</a>. Web Workers are powerful and fast, but the code required to use them is <a target="_blank" href="http://www.html5rocks.com/en/tutorials/workers/basics/">unintuitive, cumbersome, and error prone</a>. This library was created to make writing parallel applications easier and faster.
-</p>
+      <p>Thread.js is lightweight multithreading library for the JavaScript <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API">Web Worker API</a>. Web Workers are fast and powerful. They're the best option for performing heavy computation without ruining user experience, but the code required to use them is <a target="_blank" href="http://www.html5rocks.com/en/tutorials/workers/basics/">unintuitive, cumbersome, and error prone</a>. This library was created to make writing parallel applications easier and faster.</p>
 
 <p>
 Thread.js provides an intuitive, high-level interface for Web Worker creation, programming, communication, and termination. It works in any browser that <a href="http://caniuse.com/#feat=webworkers">supports Web Workers</a> (IE10+).
 </p>
 
-<p>Key Features:</p>
+<h6>
+<a id="key-features" class="anchor" href="#key-features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Key Features:</h6>
 
 <ul>
-<li>FEATURES NEEDED</li>
-<li>FEATURES NEEDED</li>
-<li>FEATURES NEEDED</li>
-<li>FEATURES NEEDED
+<li>Flexible, robust method set for creating and managing threads</li>
+<li>Typed Event messaging between threads</li>
+<li>Self terminating thread support</li>
+<li>A thread queue automagically manages worker resources</li>
+</ul>
+
+<h6>
+<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo:</h6>
+
+<ul>
+<li>
+<strong><a target="_blank" href="http://jsfiddle.net/swevans/5m6rqsro/9/">JSFiddle Prime Numbers Example</a></strong> - Performs intensive operations without disrupting animation
 <br>
 <br>
 </li>
@@ -91,7 +99,7 @@ Unminified: <a href="http://spencer-evans.com/share/github/threadjs/latest/threa
     });
 }</pre></div>
 
-<p>Now move on to the <a href="#usage">Usage Guide</a> to learn more about working with Threads.
+<p>Now move on to review <a href="#concepts">Thread.js Concepts</a> to learn more about how threads work, or jump to the <a href="#usage">Usage Guide</a> to learn more about using thread.js.
 
 <br></p>
 
@@ -103,11 +111,11 @@ Unminified: <a href="http://spencer-evans.com/share/github/threadjs/latest/threa
 <p>There is a lot to thread.js, choose a section below</p>
 
 <ul>
+<li><a href="#concepts">Thread.js Concepts</a></li>
 <li>
 <a href="#usage">Usage Guide</a>
 
 <ul>
-<li>Concepts - A brief description explaining thread scope, parent child relationship, messaging, and an image</li>
 <li><a href="#creatingAThread">Creating a Thread</a></li>
 <li><a href="#addThreadLogic">Adding Thread Logic</a></li>
 <li><a href="#run">Running Thread Logic</a></li>
@@ -118,7 +126,7 @@ Unminified: <a href="http://spencer-evans.com/share/github/threadjs/latest/threa
 <li><a href="#examples">Examples</a></li>
 <li><a href="#browsers">Browser Support</a></li>
 <li><a href="#faq">FAQ</a></li>
-<li>Full Documentation - link to javadocs or page with docs...</li>
+<li>Documentation (Coming Soon, see typescript or unminified js comments for now)</li>
 <li>
 <a href="#advanced">Advanced Topics</a>
 
@@ -142,6 +150,51 @@ Unminified: <a href="http://spencer-evans.com/share/github/threadjs/latest/threa
 <br>
 </li>
 </ul>
+
+<p><a name="concepts"></a></p>
+
+<h2>
+<a id="threadjs-concepts" class="anchor" href="#threadjs-concepts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Thread.js Concepts</h2>
+
+<p>Programming multi-threaded applications can sometimes be a little mind bending. It never hurts to review a few of the core concepts before diving deep. </p>
+
+<ol>
+<li><p>There is one Main UI (Window) thread that starts when your page loads. This is the thread that your html files load into. Any javascript you load from your html is loaded into the main thread. This thread is not managed by thread.js.</p></li>
+<li><p>Child Threads are background threads. Child threads always operate in their own space. They do not have access to the window, DOM, or files loaded into the main thread. By default child threads have no code to run. You must add code to them and set that code up to run</p></li>
+<li><p>Child (background) threads can run for extended periods of time without affecting page performance. Imagine a while loop that does a very large number of calculations.. so much so that it takes 10 full seconds to finish. If you ran this code on the main thread, your browser would hang.. yuck. However, background threads have no problem running that code!</p></li>
+<li><p>Threads can communicate with one another using Events and Messages.</p></li>
+</ol>
+
+<p>The following code and simplified thread diagram illustrate the relationship between 3 threads: Our Main UI thread, a child thread, and a grandchild (sub) thread.</p>
+
+<h6>
+<a id="indexhtml" class="anchor" href="#indexhtml" aria-hidden="true"><span class="octicon octicon-link"></span></a>index.html</h6>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> myThread <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Thread</span>(<span class="pl-s"><span class="pl-pds">"</span>scriptA.js<span class="pl-pds">"</span></span>);</pre></div>
+
+<h6>
+<a id="scriptajs" class="anchor" href="#scriptajs" aria-hidden="true"><span class="octicon octicon-link"></span></a>scriptA.js</h6>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> mySubThread <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Thread</span>();</pre></div>
+
+<h6>
+<a id="thread-diagram" class="anchor" href="#thread-diagram" aria-hidden="true"><span class="octicon octicon-link"></span></a>Thread Diagram</h6>
+
+<p><img src="http://spencer-evans.com/share/github/threadjs/pages/ThreadScope.png" alt="Thread Diagram Image" title="Thread Diagram">
+<br>
+This simple diagram illustrates that each thread runs in its own independant space. It has its own set of loaded files and its own set of variables in memory.<br>
+<br>
+Each thread has a reference to any child thread it creates. The child also has a reference to the thread that created it (it's parent). We have 4 references in this example:<br></p>
+
+<ul>
+<li>The main thread has a reference to the child thread via a myThread instance.</li>
+<li>The child thread has a reference to the main thread via the static Thread.parent member.</li>
+<li>The child thread also has a reference to the sub thread via a mySubThread instance.</li>
+<li>The sub thread has a reference to the middle child thread via the static Thread.parent member.</li>
+</ul>
+
+<p>Threads can use these references to communicate with one another. Scroll down to the usage guide to see how its done.
+<br><br></p>
 
 <p><a name="usage"></a></p>
 
