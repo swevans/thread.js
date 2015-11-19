@@ -277,6 +277,7 @@ var threadjs;
          */
         function Context(scope) {
             _super.call(this);
+            this.postEvent = this.postEvent.bind(this);
             this._scope = scope;
             // If background, look for messages from the parent
             if (!threadjs.Thread.isMainThread) {
@@ -443,6 +444,7 @@ var threadjs;
             this._inbox = new Array();
             /** @private The blob url used to create the worker, if applicable. */
             this._workerURL = null;
+            this.postEvent = this.postEvent.bind(this);
             Thread._children.push(this);
             this._initSrcs = srcs;
             var tid = Thread._tid;

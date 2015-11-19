@@ -61,6 +61,8 @@ module threadjs
 		{
 			super();
 			
+			this.postEvent = this.postEvent.bind(this);
+			
 			this._scope = scope;
 			
 			// If background, look for messages from the parent

@@ -142,6 +142,8 @@ module threadjs
 		{
 			super();
 			
+			this.postEvent = this.postEvent.bind(this);
+			
 			Thread._children.push(this);
 			
 			this._initSrcs = srcs;
@@ -324,7 +326,7 @@ module threadjs
 		 * @param varNameOrFunc A variable name as a string, or a reference to the function that should be defined.
 		 * @param value (optional) The value to initialize the var with. Ignored if the first param is a func reference.
 		 */
-		public define(varNameOrFunc:any, value:any):void
+		public define(varNameOrFunc:any, value?:any):void
 		{
 			if (typeof(varNameOrFunc) === "function")
 			{
